@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MembershipTest < ActiveSupport::TestCase
 	def setup
-		@membership = Membership.new(member_id: 1
+		@membership = Membership.new(member_id: 1,
 																 membership_type: "Full",
 																 welcome_pack_sent: true,
 																 fees_received_on: "01-01-2017",
