@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809211748) do
+ActiveRecord::Schema.define(version: 20170810173415) do
 
   create_table "members", force: :cascade do |t|
     t.text "first_name"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(version: 20170809211748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_members_on_email", unique: true
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "member_id"
+    t.string "bmc_number"
+    t.string "membership_type", default: "Provisional"
+    t.boolean "welcome_pack_sent", default: false
+    t.date "fees_received_on"
+    t.date "made_full_member"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_memberships_on_member_id", unique: true
   end
 
 end
