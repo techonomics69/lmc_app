@@ -1,6 +1,8 @@
 class Member < ApplicationRecord
 	has_one :membership
+	has_one :emergency_contact
 	before_save { build_membership }
+	before_save { build_emergency_contact }
 
 	before_save { email.downcase! }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

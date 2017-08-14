@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810173415) do
+ActiveRecord::Schema.define(version: 20170814204040) do
+
+  create_table "emergency_contacts", force: :cascade do |t|
+    t.integer "member_id"
+    t.string "name"
+    t.string "address_1"
+    t.string "address_2"
+    t.string "address_3"
+    t.string "town"
+    t.string "postcode"
+    t.string "country"
+    t.string "primary_phone"
+    t.string "secondary_phone"
+    t.string "relationship"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_emergency_contacts_on_member_id", unique: true
+  end
 
   create_table "members", force: :cascade do |t|
     t.text "first_name"
