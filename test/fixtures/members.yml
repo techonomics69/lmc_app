@@ -1,33 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  first_name: MyText
-#  last_name: MyText
-#  address_1: MyString
-#  address_2: MyString
-#  address_3: MyString
-#  town: MyString
-#  postcode: MyString
-#  country: MyString
-#  phone: MyString
-#  email: MyString
-#  dob: 2017-08-07
-#  experience: MyString
-#  accept_risks: false
-#  password_digest: MyString
-
-#two:
-#  first_name: MyText
-#  last_name: MyText
-#  address_1: MyString
-#  address_2: MyString
-#  address_3: MyString
-#  town: MyString
-#  postcode: MyString
-#  country: MyString
-#  phone: MyString
-#  email: MyString
-#  dob: 2017-08-07
-#  experience: MyString
-#  accept_risks: false
-#  password_digest: MyString
+test:
+  first_name: Test
+  last_name: Example
+  address_1: 1 Road Street
+  address_2: Some Estate
+  address_3: Some Area
+  town: Test Town
+  postcode: TE51 1ST
+  country: United Kingdom
+  phone: 09876543212
+  email: test@example.com
+  dob: 1990-08-07
+  experience: Mountaineering experience
+  accept_risks: true
+  password_digest: <%= Member.digest('password') %>
