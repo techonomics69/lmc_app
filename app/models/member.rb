@@ -24,6 +24,12 @@ class Member < ApplicationRecord
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }
 
+	def Member.digest(string)
+		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+																									BCrypt::Engine.cost
+		BCrypt::Password.create(string, cost: cost)
+	end
+
 	PARTICIPATION_STATEMENT = "I accept that climbing and mountaineering are activities with a danger of personal injury or death. I am aware of and shall accept these risks and wish to participate in these activities voluntarily and shall be responsible for my own actions and involvement."
 	
 	COUNTRIES = [

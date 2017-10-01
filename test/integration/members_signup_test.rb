@@ -23,6 +23,7 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 		follow_redirect!
 		assert_template 'members/show'
 		assert_not flash.empty?
+		assert is_logged_in?
 	end
 
 	test "invalid application information" do

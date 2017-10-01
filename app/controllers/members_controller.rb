@@ -11,8 +11,9 @@ class MembersController < ApplicationController
   def create
   	@member = Member.new(member_params)
   	if @member.save
+  		log_in @member
   		flash[:success] = "Welcome to the Leeds Mountaineering Club!"
-  		redirect_to @member
+  		redirect_to @member #update this to redirect to emergency contact form
   	else
   		render 'new'
   	end
