@@ -1,8 +1,7 @@
 <div class ="center jumbotron">
 	<h2>Welcome to the Members Section</h2>
 	<% if logged_in? %>
-		<p>Hi <%= @current_user.first_name %>, you're logged in. Don't forget to log out when you're done.</p>
-		<%= link_to "Edit My Details", '#', class: "btn btn-lg btn-primary" %>
+		<% controller.redirect_to member_path(@current_user) %>
  	<% else %>	
 	<p>To join the club fill out the application form by clicking the link below.</p>
 	<div class="row">

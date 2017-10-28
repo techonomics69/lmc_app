@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+  before_action :logged_in_member, only: [:edit, :update]
+  before_action :correct_member, only: [:edit, :update]
 
 	def show
 		@member = Member.find(params[:id])
@@ -17,6 +19,20 @@ class MembersController < ApplicationController
   	else
   		render 'new'
   	end
+  end
+
+  def update
+#  	@member = Member.find(params[:id])
+  	if @member.update_attributes(member_params)
+  		flash[:success] = "Profile updated"
+      redirect_to @member
+  	else
+  		render 'edit'
+  	end
+  end
+
+  def edit
+#  	@member = Member.find(params[:id])
   end
 
   private
@@ -38,4 +54,20 @@ class MembersController < ApplicationController
 	  															 :password, 
 	  															 :password_confirmation)
 	  end
+
+    #Before filters
+
+    #confirms member is logged in
+    def logged_in_member
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    def correct_member
+      @member = Member.find(params[:id])
+      redirect_to(root_url) unless current_user?(@member)
+    end
 end

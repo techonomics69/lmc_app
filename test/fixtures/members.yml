@@ -15,3 +15,19 @@ test:
   experience: Mountaineering experience
   accept_risks: true
   password_digest: <%= Member.digest('password') %>
+
+climber:
+  first_name: Tough
+  last_name: Climber
+  address_1: Base Camp
+  address_2:
+  address_3:
+  town: Everest
+  postcode: TE51 1ST
+  country: United Kingdom
+  phone: 01234567890
+  email: test@example2.com
+  dob: 1990-02-04
+  experience: Loads
+  accept_risks: true
+  password_digest: <%= Member.digest('password') %>

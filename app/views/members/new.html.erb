@@ -1,95 +1,9 @@
 <% provide(:title, 'Application Form') %>
+<% provide(:path, application_path) %>
+<% provide(:button_text, 'Submit Application') %>
 <div class="container">
 	<div class="row">
 		<h1>Application Form</h1>
-		<%= form_for(@member, url: application_path) do |f| %>
-		<div class="col-md-12">
-			<%= render 'shared/error_messages' %>
-			<div class="col-md-4">
-				<h3>You</h3>
-				<%= f.label :first_name %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :first_name) %></p>
-				<%= f.text_field :first_name, class: 'form-control' %>
-					
-				<%= f.label :last_name %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :last_name) %></p>
-				<%= f.text_field :last_name, class: 'form-control' %>
-
-				<%= f.label :dob, 'Date of Birth' %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :dob) %></p>
-				<%= f.date_field :dob, class: 'form-control' %>
-
-				<%= f.label :experience %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :experience) %></p>
-				<%= f.text_area :experience, size: "4x4", placeholder: "Please provide a brief resume of your mountaineering experience including membership of other clubs.", class: 'form-control' %>
-			</div>
-
-				<div class="col-md-4">
-				<h3>Address</h3>
-				<%= f.label :address_1 %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :address_1) %></p>
-				<%= f.text_field :address_1, class: 'form-control' %>
-						
-				<%= f.label :address_2 %>
-				<%= f.text_field :address_2, class: 'form-control' %>
-					
-				<%= f.label :address_3 %>
-				<%= f.text_field :address_3, class: 'form-control' %>
-
-				<%= f.label :town %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :town) %></p>
-				<%= f.text_field :town, class: 'form-control' %>
-
-				<%= f.label :postcode %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :postcode) %></p>
-				<%= f.text_field :postcode, class: 'form-control' %>
-
-				<%= f.label :country %>
-				<%= f.collection_select :country, Member::COUNTRIES, :to_s, :to_s %>
-			</div>
-
-			<div class="col-md-4">
-				<h3>Contact Details</h3>
-				<%= f.label :email %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :email) %></p>
-				<%= f.email_field :email, class: 'form-control' %>
-
-				<%= f.label :phone %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :phone) %></p>
-				<%= f.phone_field :phone, class: 'form-control' %>
-
-				<h3 style="margin-bottom: 18px">Password</h3>
-				<%= f.label :password %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :password) %></p>
-				<%= f.password_field :password, class: 'form-control' %>
-
-				<%= f.label :password_confirmation, "Confirmation" %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :password_confirmation) %></p>
-			  <%= f.password_field :password_confirmation, class: 'form-control' %>
-			</div>
-		</div>
-
-			<div class="col-md-12">
-				<div class="col-md-8 col-md-offset-2">
-					<br>
-					<p class="text-center"><%= Member::PARTICIPATION_STATEMENT %></p>
-					<br>
-				</div>
-				<div class="col-md-4 col-md-offset-4 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
-					<p>Please read the participation statement above</p>
-
-					<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
-						<p id='error_explanation'><%= show_errors(@member, :accept_risks, "you must accept the participation statement") %></p>
-						<%= f.check_box :accept_risks, { class: "radio-inline", style: "width: auto" } %>
-						<%= f.label :accept_risks, "I accept the risks" %>
-						
-					</span>
-					</div>
-				</div>
-
-				<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
-				  <%= f.submit "Submit Application", class: "btn btn-primary btn-lg" %>
-				</div>
-		<% end %>
+		<%= render 'form' %>
 	</div>
 </div>

@@ -5,7 +5,23 @@
 			<h1>
 				<%= @member.first_name %> <%= @member.last_name %>
 			</h1>
+
 		</section>
 	</aside>
-	<p>Member Information<p>
+	<div class=lead>
+		<p>Committee Position (if applicable)</p>
+		<p>
+			<%= @member.email %><br>
+			<%= @member.phone %>
+		</p>
+		<p>
+			<%= @member.address_1 %><br>
+			<% unless "#{@member.address_2}".empty? %><%= @member.address_2 %><br> <% end %>
+			<% unless "#{@member.address_3}".empty? %><%= @member.address_3 %><br> <% end %>
+			<%= @member.town %><br>
+			<%= @member.postcode %><br>
+		</p>
+		<%= link_to "Edit My Details", edit_member_path(@member), class: "btn btn-lg btn-primary" %>
+		<%= link_to "Add / Edit Emergency Contact", '#', class: "btn btn-lg btn-primary" %>
+	</div>
 </div>

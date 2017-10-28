@@ -1,7 +1,7 @@
 class EmergencyContact < ApplicationRecord
 	belongs_to :member
-	validates :member_id, 			presence: true
-	validates :address_1, 			presence: true, length: { maximum: 100 }
+	validates :member, 					presence: true
+	validates :address_1, 			presence: true, length: { maximum: 100 } #on: :update
 	validates :address_2, 			length: { maximum: 100 }
 	validates :address_3,				length: { maximum: 100 }
 	validates :town,      	  	presence: true, length: { maximum: 100 }

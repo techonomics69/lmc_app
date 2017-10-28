@@ -1,8 +1,8 @@
 class Member < ApplicationRecord
 	has_one :membership
 	has_one :emergency_contact
-	before_save { build_membership }
-	before_save { build_emergency_contact }
+	before_create { build_membership }
+	before_create { build_emergency_contact }
 
 	before_save { email.downcase! }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -22,7 +22,7 @@ class Member < ApplicationRecord
 	validates :experience,   presence: true, length: { maximum: 500 }
 	validates :accept_risks, inclusion: { in: [ true ] }
 	has_secure_password
-	validates :password, presence: true, length: { minimum: 6 }
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
 	def Member.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
