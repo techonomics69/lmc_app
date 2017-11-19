@@ -6,7 +6,7 @@ class EmergencyContact < ApplicationRecord
 	validates :address_2, 			length: { maximum: 100 }
 	validates :address_3,				length: { maximum: 100 }
 	validates :town,      	  	presence: true, length: { maximum: 100 }
-	validates :postcode,  			presence: true, length: { maximum: 8 }
+	validates :postcode,  			presence: true, length: { maximum: 10 }
 	validates :country,   	  	presence: true, inclusion: { in: COUNTRIES }
 	validates :primary_phone,	  presence: true #allow_nil: true
 #	validates :secondary_phone,	

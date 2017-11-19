@@ -28,7 +28,7 @@ module ApplicationHelper
 	end
 
 	def readable_boolean(value)
-		return "&#10004;" if value
+		return "&#10004;" if value ==true
 		"&#10008;"
 	end
 end

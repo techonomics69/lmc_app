@@ -14,7 +14,7 @@ class Member < ApplicationRecord
 	validates :address_2,		 length: { maximum: 100 }
 	validates :address_3,		 length: { maximum: 100 }
 	validates :town,       	 presence: true, length: { maximum: 100 }
-	validates :postcode,   	 presence: true, length: { maximum: 8 }
+	validates :postcode,   	 presence: true, length: { maximum: 10 }
 	validates :country,    	 presence: true, inclusion: { in: COUNTRIES }
 	validates :phone,	  		 length: { is: 11 }, numericality: true, allow_nil: true
 	validates :email, 			 presence: true, length: { maximum: 255 },

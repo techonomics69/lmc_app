@@ -1,7 +1,7 @@
 class Membership < ApplicationRecord
 	belongs_to :member
 	before_save :update_date_made_full, if: :membership_type_changed?
-	before_save :update_subs_paid, if: :fees_received_on_changed?
+	after_find :update_subs_paid#, if: :fees_received_on_changed?
 	before_save :update_to_honorary, if: :membership_type_changed?
 
 	include ActiveModel::Dirty
@@ -46,8 +46,8 @@ class Membership < ApplicationRecord
 		else
 			self.subs_paid = false
 		end
-
-		self.membership_type = "Provisional" if self.subs_paid = true && self.membership_type == "Provisional (unpaid)"
+		self.membership_type = "Provisional" if self.subs_paid == true && self.membership_type == "Provisional (unpaid)"
+		self.save
 	end
 
 #	def set_defaults

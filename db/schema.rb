@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20171111151859) do
   create_table "memberships", force: :cascade do |t|
     t.integer "member_id"
     t.string "bmc_number"
-    t.string "membership_type", default: "Awaiting payment"
+    t.string "membership_type", default: "Provisional (unpaid)"
     t.boolean "welcome_pack_sent", default: false
     t.date "fees_received_on"
     t.date "made_full_member"
