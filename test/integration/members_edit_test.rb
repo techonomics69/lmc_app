@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MembersEditTest < ActionDispatch::IntegrationTest
 	def setup
-		@member = members(:test)
+		@member = members(:climber)
 	end
 
 	test "unsuccessful edit" do
@@ -25,7 +25,7 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 																								  password: "foo",
 																								  password_confirmation: "bar" } }
 		assert_template 'members/edit'
-		assert_select 'div.alert', "The form contains 14 errors."
+		assert_select 'div.alert', "The form contains 15 errors."
 	end
 
 	test "successful edit with friendly forwarding" do

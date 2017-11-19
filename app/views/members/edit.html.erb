@@ -1,9 +1,8 @@
 <% provide(:title, "Change Your Details") %>
 <% provide(:path, member_path(@member)) %>
 <% provide(:button_text, "Update Information") %>
-<div class="container">
-	<div class="row">
-		<h1>Update Your Information</h1>
-		<%= render 'form' %>
-	</div>
-</div>
+
+<h1>Update Your Information</h1>
+<p><%= link_to "Back to your details (without saving)", members_path(@member) %></p>
+<%= link_to "Add/change your emergency contact", emergency_contact_member_path, class: "btn btn-primary" %> 
+<%= render 'form' %>

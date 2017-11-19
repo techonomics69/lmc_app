@@ -1,2 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+committee member:
+  member: luke
+  bmc_number: 1234
+  membership_type: Full
+  welcome_pack_sent: true
+  fees_received_on: 2017-01-01
+  made_full_member: 2015-11-17
+  notes: 
+  committee_position: Chairperson
+
+full member:
+  member: climber
+  bmc_number: 3456
+  membership_type: Full
+  welcome_pack_sent: true
+  fees_received_on: 2017-01-01
+  made_full_member: 2015-11-17
+  notes: 
+  committee_position:

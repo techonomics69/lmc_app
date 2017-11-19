@@ -1,1 +1,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+contact:
+  member: luke
+  name: em contact
+  address_1: 1 street
+  address_2:
+  address_3:
+  town: hometown
+  postcode: EM3 3CY
+  country: United Kingdom
+  primary_phone: 01234567891
+  secondary_phone: 98765432109
+  relationship: mother
+
+another:
+  member: climber
+  name: my emergency contact
+  address_1: 3 Road
+  address_2: some estate
+  address_3: some village
+  town: Big City
+  postcode: LS1 1DS
+  country: United Kingdom
+  primary_phone: 45678909887
+  secondary_phone: 78901234567
+  relationship: father

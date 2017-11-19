@@ -1,0 +1,100 @@
+<% provide(:title, "Update Member Details") %>
+<% provide(:path, committee_member_path(@member_to_edit)) %>
+<% provide(:button_text, "Update Information") %>
+<h1>Update Information for <i><b><%=@member_to_edit.first_name %> <%=@member_to_edit.last_name %></i></b></h1>
+<%= link_to "Back to database (without saving)", committee_members_path %>
+<%= form_for(@member_to_edit, url: yield(:path)) do |f| %>
+	<div class="row">	
+		<%= render 'shared/error_messages' %>
+
+		<div class="col-md-4">
+			<h3>Membership</h3>
+			<%= f.fields_for :membership do |m| %>
+				<%= m.label :membership_type %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :membership_type) %></p>
+				<%= m.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, class: 'form-control' %>
+
+				<p><b>Date made full member</b>
+				<% if @member_to_edit.membership.made_full_member? %><br>
+					<%= @member_to_edit.membership.made_full_member.strftime("%d/%m/%Y") %></p>
+				<% else %>
+					<p>N/A</p>
+				<% end %>
+					
+				<% if @member_to_edit.membership.welcome_pack_sent %>
+					<p><b>Welcome pack sent?</b><br> Yes</p>
+				<% else %>
+					<%= m.label :welcome_pack_sent, 'Welcome pack sent' %><b>?</b>
+					<%= m.check_box :welcome_pack_sent, class: 'form-control' %>
+					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :welcome_pack_sent) %></p>
+				<% end %>
+
+				<p><b>Paid for current year?</b><br> 
+				<% if @member_to_edit.membership.subs_paid %>
+					Yes
+				<% else %>
+					No
+				<% end %>
+				</p>
+
+				<%= m.label :fees_received_on %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :fees_received_on) %></p>
+				<%= m.date_field :fees_received_on, class: 'form-control' %>
+
+				<%= m.label :bmc_number, 'BMC number' %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :bmc_number) %></p>
+				<%= m.text_field :bmc_number, class: 'form-control' %>
+			<% end %>
+		</div>
+
+		<div class="col-md-4">
+			<h3>Contact Details</h3>
+			<%= f.label :email %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :email) %></p>
+			<%= f.email_field :email, class: 'form-control' %>
+
+			<%= f.label :phone %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :phone) %></p>
+			<%= f.phone_field :phone, class: 'form-control' %>
+
+			<h3>Experience</h3>
+			<p><%= @member_to_edit.experience %></p>
+
+			<%= f.fields_for :membership do |m| %>
+				<%= m.label :notes %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :notes) %></p>
+				<%= m.text_area :notes, class: 'form-control' %>
+			<% end %>
+		</div>
+
+		<div class="col-md-4">
+			<h3>Address</h3>
+			<%= f.label :address_1 %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :address_1) %></p>
+			<%= f.text_field :address_1, class: 'form-control' %>
+						
+			<%= f.label :address_2 %>
+			<%= f.text_field :address_2, class: 'form-control' %>
+					
+			<%= f.label :address_3 %>
+			<%= f.text_field :address_3, class: 'form-control' %>
+
+			<%= f.label :town %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :town) %></p>
+			<%= f.text_field :town, class: 'form-control' %>
+
+			<%= f.label :postcode %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :postcode) %></p>
+			<%= f.text_field :postcode, class: 'form-control' %>
+						
+			<%= f.label :country %>
+			<%= f.collection_select :country, Member::COUNTRIES, :to_s, :to_s %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
+		  <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg full-width" %>
+		</div>
+	</div>
+<% end %>

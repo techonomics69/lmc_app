@@ -3,7 +3,7 @@ require 'test_helper'
 class MembersLoginTest < ActionDispatch::IntegrationTest
 
 	def setup
-		@member = members(:test)
+		@member = members(:luke)
 	end
 
 test "login with valid information followed by logout" do

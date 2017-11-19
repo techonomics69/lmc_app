@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-test:
-  first_name: Test
+luke:
+  first_name: Luke
   last_name: Example
   address_1: 1 Road Street
   address_2: Some Estate

@@ -17,4 +17,18 @@ module ApplicationHelper
 			end
 		end
 	end
+
+	def sort_link(column, title = nil)
+#		title ||= column.titleize
+#		css_class = column == sort_column ? "sortable both #{sort_direction}" : nil
+		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+		icon = sort_direction == "asc" ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"
+		icon = column == sort_column ? icon : "glyphicon glyphicon-none"
+		link_to "#{title} <span class='#{icon}'></span>".html_safe, committee_members_path(sort: column, direction: direction), method: :get
+	end
+
+	def readable_boolean(value)
+		return "&#10004;" if value
+		"&#10008;"
+	end
 end

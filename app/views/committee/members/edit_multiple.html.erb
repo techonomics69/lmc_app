@@ -1,0 +1,42 @@
+<% provide(:title, "Update Multiple Members") %>
+<% provide(:path, update_multiple_committee_members_path) %>
+<% provide(:button_text, "Update Members") %>
+
+<h1>Update Multiple Members</h1>
+<p><%= link_to "Back to database (without saving)", committee_members_path %></p>
+<%=form_for(@members_to_edit, url: yield(:path)) do |ff|%>
+	<div class="row">
+		<div class="col-md-3" >
+			<%= fields_for :membership do |f| %>
+				<p>
+					<%= f.label :membership_type %>
+					<br>
+					<%= f.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, include_blank: true, class: 'form-control' %>
+					</p>
+				<p>
+					<%= f.label :welcome_pack_sent, 'Welcome pack sent' %><b>?</b>
+					<br>
+					<%= f.select :welcome_pack_sent, [["Yes", true], ["No", false]], include_blank: true, class: 'form-control' %>
+				</p>
+				<p>
+					<%= f.label :fees_received_on %>
+					<br>
+					<%= f.date_field :fees_received_on, class: 'form-control' %>
+				</p>
+				<% end %>
+			<%= ff.submit "Update Members", class: "btn btn-primary btn-lg"%>
+		</div>
+
+		<div class="col-md-6">
+			<p>
+				<b>You are updating the following <% unless @no_of_members_to_edit < 2 %><%= @no_of_members_to_edit %><% end %> <%= "member".pluralize(@no_of_members_to_edit) %>:</b>
+			</p>
+			<ul>
+				<% @members_to_edit.each do |m| %>
+					<%= hidden_field_tag 'member_ids[]', m.id %>
+					<li><b><%= m.first_name %> <%= m.last_name %></b></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+<% end %>

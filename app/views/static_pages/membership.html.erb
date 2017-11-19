@@ -2,19 +2,19 @@
 	<h2>Welcome to the Members Section</h2>
 	<% if logged_in? %>
 		<% controller.redirect_to member_path(@current_user) %>
- 	<% else %>	
+	<% else %>	
 	<p>To join the club fill out the application form by clicking the link below.</p>
 	<div class="row">
 		<div class="col-md-4">
 			<%= link_to "Application Form", application_path, class: "btn btn-lg btn-primary" %>
 		</div>
 	</div>
-	
+		
 	<div class="row">
 		<div class="col-md-4">
 	  	<% flash.each do |message_type, message| %>
-    		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-   		<% end %>
+	   		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+  		<% end %>
 	 	</div>
 	</div>   		
 	<p>If you're already a member then you can log in below.</p>
@@ -31,4 +31,3 @@
 	</div>
 	<% end %>
 </div>
-	

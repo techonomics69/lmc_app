@@ -1,6 +1,8 @@
 class MembersController < ApplicationController
-  before_action :logged_in_member, only: [:edit, :update]
-  before_action :correct_member, only: [:edit, :update]
+  before_action :logged_in_member, only: [:show, :edit, :update]
+  before_action :correct_member, only: [:show, :edit, :update]
+
+  include MembersHelper
 
 	def show
 		@member = Member.find(params[:id])
@@ -15,7 +17,7 @@ class MembersController < ApplicationController
   	if @member.save
   		log_in @member
   		flash[:success] = "Welcome to the Leeds Mountaineering Club!"
-  		redirect_to @member #update this to redirect to emergency contact form
+  		redirect_to member_path(@member)
   	else
   		render 'new'
   	end
@@ -24,7 +26,7 @@ class MembersController < ApplicationController
   def update
 #  	@member = Member.find(params[:id])
   	if @member.update_attributes(member_params)
-  		flash[:success] = "Profile updated"
+  		flash[:success] = "Details updated"
       redirect_to @member
   	else
   		render 'edit'
@@ -32,7 +34,10 @@ class MembersController < ApplicationController
   end
 
   def edit
-#  	@member = Member.find(params[:id])
+  end
+
+  def index
+    redirect_to current_user
   end
 
   private
@@ -58,16 +63,5 @@ class MembersController < ApplicationController
     #Before filters
 
     #confirms member is logged in
-    def logged_in_member
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
 
-    def correct_member
-      @member = Member.find(params[:id])
-      redirect_to(root_url) unless current_user?(@member)
-    end
 end
