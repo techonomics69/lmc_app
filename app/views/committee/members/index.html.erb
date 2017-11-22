@@ -27,7 +27,7 @@
 				<td><%= m.last_name %></td>
 				<td><%= m.membership.membership_type %></td>
 				<td><%= readable_boolean(m.membership.subs_paid).html_safe %></td>
-				<td><%= m.membership.fees_received_on.strftime("%d/%m/%Y") %></td>
+				<td><% if !m.membership.fees_received_on.nil? %><%= m.membership.fees_received_on.strftime("%d/%m/%Y") %><% end %></td>
 				<td><%= readable_boolean(m.membership.welcome_pack_sent).html_safe %></td>
 				<td><%= latest_update(m) %></td>
 				<td><%= link_to "view", committee_member_path(m) %></td>

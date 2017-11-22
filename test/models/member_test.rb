@@ -67,7 +67,7 @@ class MemberTest < ActiveSupport::TestCase
 	end
 
 	test "postcode should not be too long" do
-		@member.postcode = "a"*9
+		@member.postcode = "a"*12
 		assert_not @member.valid?
 	end
 

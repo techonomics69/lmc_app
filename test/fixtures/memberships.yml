@@ -8,14 +8,16 @@ committee member:
   fees_received_on: 2017-01-01
   made_full_member: 2015-11-17
   notes: 
-  committee_position: Chairperson
+  committee_position: Chair
+  subs_paid:
 
 full member:
   member: climber
   bmc_number: 3456
-  membership_type: Full
+  membership_type: Provisional
   welcome_pack_sent: true
   fees_received_on: 2017-01-01
-  made_full_member: 2015-11-17
+  made_full_member: 
   notes: 
   committee_position:
+  subs_paid:

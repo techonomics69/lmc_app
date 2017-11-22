@@ -2,7 +2,7 @@
 <% provide(:path, committee_member_path(@member_to_edit)) %>
 <% provide(:button_text, "Update Information") %>
 <h1>Update Information for <i><b><%=@member_to_edit.first_name %> <%=@member_to_edit.last_name %></i></b></h1>
-<%= link_to "Back to database (without saving)", committee_members_path %>
+<%= link_to "Back to database (without saving)", saved_sort_or(committee_members_path) %>
 <%= form_for(@member_to_edit, url: yield(:path)) do |f| %>
 	<div class="row">	
 		<%= render 'shared/error_messages' %>

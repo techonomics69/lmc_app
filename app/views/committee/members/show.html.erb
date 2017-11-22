@@ -1,6 +1,6 @@
 <% provide(:title, "Member Details") %>
 <h1>Information for <i><b><%=@member.first_name %> <%=@member.last_name %></i></b></h1>
-<%= link_to "Back to database", committee_members_path %>
+<%= link_to "Back to database", saved_sort_or(committee_members_path) %>
 
 <div class="row" >
 	<div class="col-md-3">

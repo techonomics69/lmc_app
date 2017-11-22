@@ -3,7 +3,7 @@
 <% provide(:button_text, "Update Members") %>
 
 <h1>Update Multiple Members</h1>
-<p><%= link_to "Back to database (without saving)", committee_members_path %></p>
+<p><%= link_to "Back to database (without saving)", saved_sort_or(committee_members_path) %></p>
 <%=form_for(@members_to_edit, url: yield(:path)) do |ff|%>
 	<div class="row">
 		<div class="col-md-3" >

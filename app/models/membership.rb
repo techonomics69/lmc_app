@@ -2,7 +2,7 @@ class Membership < ApplicationRecord
 	belongs_to :member
 	before_save :update_date_made_full, if: :membership_type_changed?
 	after_find :update_subs_paid#, if: :fees_received_on_changed?
-	before_save :update_to_honorary, if: :membership_type_changed?
+#	before_save :update_to_honorary, if: :membership_type_changed?
 
 	include ActiveModel::Dirty
 
@@ -32,10 +32,6 @@ class Membership < ApplicationRecord
 		end
 	end
 
-	def update_to_honorary
-		self.subs_paid = true if self.membership_type == "Honorary"
-	end
-
 	def update_subs_paid
 		if self.fees_received_on.nil?
 			self.subs_paid = false
@@ -47,12 +43,9 @@ class Membership < ApplicationRecord
 			self.subs_paid = false
 		end
 		self.membership_type = "Provisional" if self.subs_paid == true && self.membership_type == "Provisional (unpaid)"
+		self.subs_paid = true if self.membership_type == "Honorary"
 		self.save
 	end
-
-#	def set_defaults
-#		self.membership_type = "Awaiting payment" if self.new_record?
-#	end
 
 
 end

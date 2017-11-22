@@ -1,10 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+
+#!!!!! remember to run: rails db:fixtures:load RAILS_ENV=test after resetting the database!!!!!!!
 
 member = Member.create!(first_name: "Chris",
 							 last_name: "Bonnington",
@@ -58,7 +56,7 @@ member.membership.update(
 							 	subs_paid: true,
 							 	notes: "")
 
-Member.create!(first_name: "Luke",
+member = Member.create!(first_name: "Luke",
 							 last_name: "Example 2",
 							 address_1: "11 Street",
 							 address_2:"",
@@ -100,22 +98,29 @@ member.membership.update(
 	wps = Faker::Boolean.boolean
 	mfm = fees = Faker::Date.between(20.years.ago, Date.today).strftime
 
-	rel_gen = Faker::Number.number(5)
+	rel_gen = Faker::Number.number(1)
 	case rel_gen
-	when 0
+	when 0 || 1
 		relationship = "Father"
-	when 1
+		membership_type = "Provisional (unpaid)"
+	when 2 || 3
 		relationship = "Mother"
-	when 2
+		membership_type ="Provisional"
+	when 3 || 4
 		relationship = "Brother"
-	when 3
+		membership_type = "Full"
+	when 5 || 6
 		relationship = "Sister"
-	when 4
+		membership_type = "Full"
+	when 7
 		relationship = "Aunt"
-	when 5
+		membership_type = "Provisional"
+	when 8
 		relationship = "Uncle"
+		membership_type = "Full"
 	else
 		relationship = "Friend"
+		membership_type = "Honorary"
 	end
 
 	ec_name = Faker::Name.name
@@ -123,7 +128,7 @@ member.membership.update(
 	ec_town = Faker::Address.city
 	ec_postcode = "EC#{n+2} #{n+7}PL"
 	ec_ph_1 = Faker::Number.number(11)
-member =	Member.create!(first_name: first_name,
+	member =	Member.create!(first_name: first_name,
 							 last_name: last_name,
 							 address_1: address_1,
 							 address_2:"",
@@ -139,15 +144,15 @@ member =	Member.create!(first_name: first_name,
 							 password: "password",
 							 password_confirmation: "password")
 
-member.membership.update(
+	member.membership.update(
 							 	bmc_number: "",
-							 	membership_type: "Provisional (unpaid)",
+							 	membership_type: membership_type,
 							 	fees_received_on: fees,
 							 	welcome_pack_sent: wps,
 							 	made_full_member: mfm,
 							 	notes: "")
 
-member.emergency_contact.update(
+	member.emergency_contact.update(
 							 	name: ec_name,
 							 	address_1: ec_ad_1,
 							 	address_2:"",

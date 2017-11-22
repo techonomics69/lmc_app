@@ -19,6 +19,7 @@ module ApplicationHelper
 	end
 
 	def sort_link(column, title = nil)
+		store_sort
 #		title ||= column.titleize
 #		css_class = column == sort_column ? "sortable both #{sort_direction}" : nil
 		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
@@ -31,4 +32,13 @@ module ApplicationHelper
 		return "&#10004;" if value ==true
 		"&#10008;"
 	end
+
+	def saved_sort_or(default)
+  	session[:forwarding_url] || default
+  	session.delete(:forwarding_url)
+  end
+
+  def store_sort
+  	session[:forwarding_url] = request.original_url
+  end
 end
