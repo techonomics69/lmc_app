@@ -25,7 +25,7 @@
 					<p><b>Welcome pack sent?</b><br> Yes</p>
 				<% else %>
 					<%= m.label :welcome_pack_sent, 'Welcome pack sent' %><b>?</b>
-					<%= m.check_box :welcome_pack_sent, class: 'form-control' %>
+					<%= m.check_box :welcome_pack_sent, class: 'form-control', id: 'my-checkbox' %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :welcome_pack_sent) %></p>
 				<% end %>
 
