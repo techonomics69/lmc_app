@@ -10,7 +10,7 @@ class MembershipTest < ActiveSupport::TestCase
 		assert @committee_member.membership.valid?
 	end
 
-	test "membership_type should be Full, Provisional, Honorary, Lapsed" do
+	test "membership_type should be Full, Provisional, Honorary, Provisional (unpaid)" do
 		@committee_member.membership.membership_type = "   "
 		assert_not @committee_member.membership.valid?
 	end
@@ -64,6 +64,14 @@ class MembershipTest < ActiveSupport::TestCase
 		@normal_member.save
 		@normal_member.membership._run_find_callbacks
 		assert @normal_member.membership.subs_paid == true
+	end
+
+	test "committee_position can only be held by one member" do
+		@committee_member.membership.committee_position = "Membership Secretary"
+		@committee_member.save
+		assert @committee_member.membership.committee_position == "Membership Secretary"
+		@normal_member.membership.committee_position = "Membership Secretary"
+		assert_not @normal_member.save
 	end
 
 end

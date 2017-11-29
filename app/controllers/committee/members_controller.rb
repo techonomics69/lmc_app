@@ -64,7 +64,25 @@ class Committee::MembersController < Committee::BaseController
   		flash.now[:danger] = "Failed to update #{@failed} records. Please try again or contact the site admin."
   		render 'edit_multiple'
   	end
+  end
 
+  def edit_role
+#		@committee_members = Member.joins(:membership).where.not(memberships: { committee_position: nil}).order('committee_position ASC')
+#		@committee_members = Member.joins(:membership).find_by(memberships: { committee_position: nil})#.order('committee_position ASC')
+		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
+  end
+
+  def update_role
+  	@member_to_assign_role = Member.find(params[:id])
+  	@member_to_remove_role = Member.joins(:membership).find_by(memberships: {committee_position: params[:membership][:committee_position]})
+  	@member_to_remove_role.membership.update_attributes!(committee_position: nil) unless @member_to_remove_role.nil?
+  	if @member_to_assign_role.membership.update_attributes(roles_params)
+  		flash[:success] = "#{@member_to_assign_role.first_name} #{@member_to_assign_role.last_name} is now the #{@member_to_assign_role.membership.committee_position}"
+  	else
+  		flash.now[:danger] = "Failed to assign role. Pleae try again or contact the site admin."
+  	end
+		redirect_to saved_sort_or(committee_members_path)
+		
   end
 
   def destroy
@@ -78,9 +96,7 @@ end
 private
 
 def member_params
-	params.require(:member).permit(#:first_name,
-	  														 #:last_name,
-	  														 :address_1,
+	params.require(:member).permit(:address_1,
 	  														 :address_2,
 	  														 :address_3,
 	  														 :town,
@@ -89,15 +105,22 @@ def member_params
 	  														 :phone,
 	  														 :email,
 	  														 :dob,
-	  														# :experience,
-	  														# :accept_risks,
-	  														# :password, 
-	  														# :password_confirmation
-	  														membership_attributes: [:bmc_number, :membership_type, :welcome_pack_sent,:fees_received_on, :notes, :id])
+	  															membership_attributes: [
+	  																:bmc_number, 
+	  																:membership_type, 
+	  																:welcome_pack_sent,
+	  																:fees_received_on, 
+	  																:notes, 
+	  																:id ]
+	  														)
 	end
 
 	def membership_params
 		params.require(:membership).permit(:bmc_number, :membership_type, :welcome_pack_sent,:fees_received_on, :notes)
+	end
+
+	def roles_params
+		params.require(:membership).permit(:committee_position)
 	end
 
 def sort_column

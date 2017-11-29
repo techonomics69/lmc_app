@@ -125,6 +125,18 @@ aside {
   }
 }
 
+/*tables*/
+
+.table { tbody { tr { td {
+  padding: 2px 4px 2px 4px;
+  vertical-align: middle;
+  }}}}
+
+  .table select { margin:0px; }
+
+  #table-btn {
+    margin-bottom: 0px;
+  }
 
 
 /* mixins, variables, etc. */

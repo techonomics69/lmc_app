@@ -20,5 +20,4 @@ module MembersHelper
 	def new_member?(member)
 		membership_level(member) == "Provisional (unpaid) Member"
 	end
-
 end

@@ -1,19 +1,19 @@
 <% provide(:title, 'Membership Database') %>
 <h1>Membership Database</h1>
 <p><%= link_to "Back to my details", members_path(@member) %></p>
-	
 <%= form_tag(edit_multiple_committee_members_path, method: :post) do %>
 	<%= submit_tag "Edit Checked", class: "btn btn-primary" %>
+	<%= link_to "Export", '#', class: "btn btn-primary" %>
 	<table class="table table-hover">
 		<thead>
 			<th></th>
-			<th><%= sort_link "first_name", "First Name" %></th>
-			<th><%= sort_link "last_name", "Last Name" %></th>
-			<th><%= sort_link "membership_type", "Member Type" %></th>
-			<th><%= sort_link "subs_paid", "Subs Paid" %></th>
-			<th><%= sort_link "fees_received_on", "Last Payment Date" %></th>
-			<th><%= sort_link "welcome_pack_sent", "Welcome Pack Sent?" %></th>
-			<th><%= sort_link "updated_at", "Last Updated" %></th>
+			<th><%= sort_link "first_name", "First Name", committee_members_path %></th>
+			<th><%= sort_link "last_name", "Last Name", committee_members_path %></th>
+			<th><%= sort_link "membership_type", "Member Type", committee_members_path %></th>
+			<th><%= sort_link "subs_paid", "Subs Paid", committee_members_path %></th>
+			<th><%= sort_link "fees_received_on", "Last Payment Date", committee_members_path %></th>
+			<th><%= sort_link "welcome_pack_sent", "Welcome Pack Sent?", committee_members_path %></th>
+			<th><%= sort_link "updated_at", "Last Updated", committee_members_path %></th>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -37,6 +37,4 @@
 			<% end %>
 		</tbody>
 	</table>
-		
 <% end %>
-</div>

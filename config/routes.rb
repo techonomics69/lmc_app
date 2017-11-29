@@ -19,9 +19,12 @@ Rails.application.routes.draw do
   namespace :committee do
     resources :members do
       collection do
-#        get :edit_multiple#, to: 'members#index'
+        get :edit_multiple#, to: 'members#index'
         post :edit_multiple 
         patch :update_multiple
+        get :edit_role
+        patch :update_role
+
       end
     end
   end

@@ -4,7 +4,7 @@
 <% if committee_member?(@member) %>
 	<%= link_to "Membership Database", committee_members_path, class: "btn btn-primary" %> 
 	<%= link_to "Meets Calendar", '#', class: "btn btn-primary" %>
-	<%= link_to "Change Committee Members", '#', class: "btn btn-primary" %>
+	<%= link_to "Change Committee Members", edit_role_committee_members_path, class: "btn btn-primary" %>
 <% elsif new_member?(@member) %>
 	<%= render 'welcome' %>
 <% end %>

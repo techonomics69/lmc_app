@@ -35,4 +35,9 @@ class Committee::BaseController < ApplicationController
     members.each { |m| m.selected = false }
     session.delete(:members_to_edit)
   end
+
+  def saved_sort_or(default)
+    session[:forwarding_url] || default
+    session.delete(:forwarding_url)
+  end
 end

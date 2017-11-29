@@ -18,25 +18,20 @@ module ApplicationHelper
 		end
 	end
 
-	def sort_link(column, title = nil)
+	def readable_boolean(value)
+		return "&#10004;" if value ==true
+		"&#10008;"
+	end
+
+	def sort_link(column, title = nil, link_path)
 		store_sort
 #		title ||= column.titleize
 #		css_class = column == sort_column ? "sortable both #{sort_direction}" : nil
 		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
 		icon = sort_direction == "asc" ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"
 		icon = column == sort_column ? icon : "glyphicon glyphicon-none"
-		link_to "#{title} <span class='#{icon}'></span>".html_safe, committee_members_path(sort: column, direction: direction), method: :get
+		link_to "#{title} <span class='#{icon}'></span>".html_safe, "#{link_path}?direction=#{direction}&sort=#{column}", method: :get
 	end
-
-	def readable_boolean(value)
-		return "&#10004;" if value ==true
-		"&#10008;"
-	end
-
-	def saved_sort_or(default)
-  	session[:forwarding_url] || default
-  	session.delete(:forwarding_url)
-  end
 
   def store_sort
   	session[:forwarding_url] = request.original_url

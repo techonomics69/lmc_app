@@ -14,7 +14,8 @@ class Membership < ApplicationRecord
 												 "Social Secretary",
 												 "Climbing Co-ordinator",
 												 "Walking Co-ordinator",
-												 "Ordinary Member"]
+												 "Ordinary Member",
+												 "Member Without Portfolio"]
 
 	MEMBERSHIP_TYPES = ["Provisional","Full","Honorary","Provisional (unpaid)"]
 
@@ -22,7 +23,7 @@ class Membership < ApplicationRecord
 	validates :membership_type, inclusion: { in: MEMBERSHIP_TYPES }
 	validates :welcome_pack_sent, inclusion: { in: [ true, false ] }
 	validates :subs_paid, inclusion: { in: [ true, false ] }
-	validates :committee_position, inclusion: { in: COMMITTEE_POSITIONS }, allow_nil: true
+	validates :committee_position, inclusion: { in: COMMITTEE_POSITIONS }, uniqueness: true, allow_nil: true
 
 	private
 

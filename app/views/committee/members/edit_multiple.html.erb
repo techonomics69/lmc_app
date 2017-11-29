@@ -11,12 +11,12 @@
 				<p>
 					<%= f.label :membership_type %>
 					<br>
-					<%= f.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, include_blank: true, class: 'form-control' %>
+					<%= f.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
 					</p>
 				<p>
 					<%= f.label :welcome_pack_sent, 'Welcome pack sent' %><b>?</b>
 					<br>
-					<%= f.select :welcome_pack_sent, [["Yes", true], ["No", false]], include_blank: true, class: 'form-control' %>
+					<%= f.select :welcome_pack_sent, [["Yes", true], ["No", false]], {include_blank: true}, {class: 'form-control'} %>
 				</p>
 				<p>
 					<%= f.label :fees_received_on %>
