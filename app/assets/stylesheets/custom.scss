@@ -128,9 +128,12 @@ aside {
 /*tables*/
 
 .table { tbody { tr { td {
-  padding: 2px 4px 2px 4px;
+  padding: 2px 2px 2px 8px;
   vertical-align: middle;
   }}}}
+
+.table { thead { th {
+    padding-left: 0px; } } }
 
   .table select { margin:0px; }
 

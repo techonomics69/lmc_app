@@ -14,16 +14,19 @@ Rails:
 5.1.2
 
 Tests:
-rails default
+Minitest
 
 Database:
 Dev - SQLite3 1.3.13 x86-mingw32, 1.3.12 x86-mingw32
+
 Production - PostgreSQL 0.21.0 x86-mingw32, 0.20.0 x86-mingw32, 0.19.0 x86-mingw32
 
-SQLite3 does not support arrays. For fees_received_on field in Membership table to work as intended dev needs to use PostgreSQL.
+SQLite3 does not support arrays. For fees_received_on field in Membership table to log all past payments dev needs to use PostgreSQL.
 
 Deployment:
 Deploy to Heroku 'lmc-app'
+
+-------------------
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

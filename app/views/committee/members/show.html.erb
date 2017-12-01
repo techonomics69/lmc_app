@@ -37,7 +37,8 @@
 	</div>
 	<div class="col-md-3">
 		<h3>Membership</h3>
-		<p><b><%= @member.membership.membership_type %> Member
+		<p><% if @member.membership.committee_position.present? %><b>Committee Role: <%= @member.membership.committee_position %></b><br><% end %>
+			<b><%= @member.membership.membership_type %> Member
 				<% if @member.membership.made_full_member? %>
 					since <%= @member.membership.made_full_member.strftime("%d/%m/%Y") %>
 				<% end %></b></p>
