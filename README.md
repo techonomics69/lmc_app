@@ -14,7 +14,8 @@ Rails:
 5.1.2
 
 Tests:
-Minitest
+minitest
+run rails db:fixtures:load RAILS_ENV=test if fixtures have been changed
 
 Database:
 Dev - SQLite3 1.3.13 x86-mingw32, 1.3.12 x86-mingw32

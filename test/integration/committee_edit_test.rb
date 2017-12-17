@@ -62,8 +62,6 @@ class CommitteeEditTest < ActionDispatch::IntegrationTest
 																											fees_received_on: fees_received_on,
 																											bmc_number: "01235456",
 																											notes: "sgs"} } }
-
-
 		assert_not flash.empty?
 		assert_redirected_to committee_members_path
 		@normal_member.reload

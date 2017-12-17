@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-
 	root 'static_pages#home'
   get '/home', to: 'static_pages#home'
   get '/membership', to: 'static_pages#membership'
@@ -9,14 +8,18 @@ Rails.application.routes.draw do
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  
   resources :members do
     member do
       get 'emergency_contact', to: 'emergency_contact#edit'
       patch 'emergency_contact', to: 'emergency_contact#update'
+      get 'meets', to: 'meets#edit'
+      patch 'meets', to: 'meets#update'
     end
-
   end
   namespace :committee do
+    get 'past_meets', to: 'meets#past'
+    resources :meets
     resources :members do
       collection do
         get :edit_multiple#, to: 'members#index'
@@ -24,7 +27,6 @@ Rails.application.routes.draw do
         patch :update_multiple
         get :edit_role
         patch :update_role
-
       end
     end
   end

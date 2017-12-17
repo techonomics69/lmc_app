@@ -1,0 +1,34 @@
+<table class="table table-hover">
+		<thead>
+			<th>Date</th>
+			<th>Nights</th>
+			<th>Leader</th>
+			<th>Location</th>
+			<th>Type</th>
+			<th>Places</th>
+			<th>Activity</th>
+			<th>Notes</th>
+			<th>Bulletin Board URL</th>
+			<th></th>
+			<th></th>
+		</thead>
+
+		<tbody class="table-striped narrow">
+
+			<% meets.each do |m| %>
+			<tr>
+				<td><%= m.meet_date.strftime("%d/%m/%Y") %></td>
+				<td><%= m.number_of_nights %></td>
+				<td><% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %><% end %></td>
+				<td><%= m.location %></td>
+				<td><%= m.meet_type %></td>
+				<td><%= m.places %></td>
+				<td><%= m.activity %></td>
+				<td><%= m.notes %></td>
+				<td><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">click here</a><% end %></td>
+				<td><%= link_to "edit", edit_committee_meet_path(m) %></td>
+				<td><%= link_to "delete", committee_meet_path(m), method: :delete, data: { confirm: "You are about to delete #{m.location} meet."} %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>

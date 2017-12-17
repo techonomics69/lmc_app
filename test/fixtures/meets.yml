@@ -1,0 +1,34 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+assigned_meet:
+  member: luke
+  meet_date: 2018-03-06
+  meet_type: Hut
+  number_of_nights: 2
+  places: 10
+  location: Dales
+  bb_url: www.bburl2.com
+  notes: 
+  activity: walk
+
+non_assigned_meet:
+  member:
+  meet_date: 2018-01-01
+  meet_type: Hut
+  number_of_nights: 2
+  places: 12
+  location: Wales
+  bb_url: www.bburl.com
+  notes:
+  activity:
+
+past_meet:
+  member: luke
+  meet_date: 2017-03-06
+  meet_type: Camping
+  number_of_nights: 2
+  places: 
+  location: Dales
+  bb_url: www.bburl3.com
+  notes: 
+  activity: 

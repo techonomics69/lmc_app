@@ -2,7 +2,8 @@ class Member < ApplicationRecord
 	attr_accessor :selected
 	has_one :membership, dependent: :destroy
 	has_one :emergency_contact, dependent: :destroy
-	accepts_nested_attributes_for :membership, :emergency_contact
+	has_many :meets
+	accepts_nested_attributes_for :membership, :emergency_contact, :meets
 	before_create { build_membership }
 	before_create { build_emergency_contact }
 
@@ -30,6 +31,10 @@ class Member < ApplicationRecord
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
 																									BCrypt::Engine.cost
 		BCrypt::Password.create(string, cost: cost)
+	end
+
+	def full_name
+		"#{first_name} #{last_name}"
 	end
 
 	PARTICIPATION_STATEMENT = "I accept that climbing and mountaineering are activities with a danger of personal injury or death. I am aware of and shall accept these risks and wish to participate in these activities voluntarily and shall be responsible for my own actions and involvement."

@@ -19,21 +19,14 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 		assert_select "a[href=?]", '#'
 	end
 
-	test "member links" do
-		log_in_as(@other_member)
-		get member_path(@other_member)
-		assert_select "a[href=?]", edit_member_path(@other_member)
-		assert_select "a[href=?]", emergency_contact_member_path(@other_member)
-		assert_select "a[href=?]", committee_members_path, count: 0
-#		assert_select "a[href=?]", 'meets_path', count: 0
-	end
-
-		test "committee member links" do
-			log_in_as(@member)
-			get member_path(@member)
-			assert_select "a[href=?]", edit_member_path(@member)
-			assert_select "a[href=?]", emergency_contact_member_path(@member)
-			assert_select "a[href=?]", committee_members_path
-#			assert_select "a[href=?]", 'meets_path', count: 0
+	test "meets calendar is displayed on home page" do
+		get root_path
+		future_meets = Meet.where('meet_date >= ?', Date.today).all.order(:meet_date)
+		number = future_meets.count
+		assert_select 'tr', count: number+1
+		future_meets.each do |m|
+			css = m.meet_type.downcase
+			assert_select 'tr.'"#{css}"'-meet'
 		end
+	end
 end

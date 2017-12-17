@@ -3,7 +3,7 @@
 <h4><%= membership_level(@member) %></h4>
 <% if committee_member?(@member) %>
 	<%= link_to "Membership Database", committee_members_path, class: "btn btn-primary" %> 
-	<%= link_to "Meets Calendar", '#', class: "btn btn-primary" %>
+	<%= link_to "Meets Calendar", committee_meets_path, class: "btn btn-primary" %>
 	<%= link_to "Change Committee Members", edit_role_committee_members_path, class: "btn btn-primary" %>
 <% elsif new_member?(@member) %>
 	<%= render 'welcome' %>
@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="lead col-md-4">
-		<h3>Emergency Contact</h3><%= link_to "Add / Edit Emergency Contact", emergency_contact_member_path, class: "btn btn-primary" %>
+		<h3>My Emergency Contact</h3><%= link_to "Add / Edit Emergency Contact", emergency_contact_member_path, class: "btn btn-primary" %>
 		<p>
 			<%= @member.emergency_contact.relationship %></br>
 			<%= @member.emergency_contact.name %><br>
@@ -40,5 +40,27 @@
 			<%= @member.emergency_contact.town %></br>
 			<%= @member.emergency_contact.postcode %></br>
 		</p>
+	</div>
+
+	<div class="col-md-4">		
+		<h3>My Meets</h3>
+		<% if @member.meets.any? %>
+		<p>You're down to lead these meets:</p>
+		<table class="table table-hover" id="mini">
+			<tbody class="table-striped">
+				<% @member.meets.each do |m| %>
+					<% if m.meet_date >= Date.today %>
+					<tr>
+						<td><%= m.location %></td>
+						<td><%= m.meet_date.strftime("%d/%m/%Y") %></td>
+						<td><%= link_to 'details', meets_member_path(@member, {:meet => {:id => m.id}}) %></td>
+					</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+		<% else %>
+			<p class="lead">You're not down to lead any meets. </p>
+		<% end %>
 	</div>
 </div>

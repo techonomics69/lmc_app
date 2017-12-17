@@ -82,6 +82,55 @@ member.membership.update(
 							 	subs_paid: true,
 							 	notes: "")
 
+Meet.create!( member_id: 3,
+							meet_date: DateTime.new(2018,8,10),
+							meet_type: "Hut",
+							number_of_nights: 2,
+							places: 12,
+							location: "Dales",
+							bb_url: "www.bburl2.com",)
+
+Meet.create!( member_id: 3,
+							meet_date: DateTime.new(2018,7,22),
+							meet_type: "Camping",
+							number_of_nights: 2,
+							location: "Snowdonia",
+							bb_url: "www.bburl12.com",
+							notes: "some notes")
+
+Meet.create!( member_id: 1,
+							meet_date: DateTime.new(2018,5,3),
+							meet_type: "Camping",
+							number_of_nights: 2,
+							location: "Wales",
+							bb_url: "www.bburl.com")
+
+Meet.create!( member_id: 2,
+							meet_date: DateTime.new(2018,6,4),
+							meet_type: "Evening",
+							location: "Leeds Wall",
+  						activity: "climb")
+
+Meet.create!( member_id: 2,
+							meet_date: DateTime.new(2018,6,4),
+							meet_type: "Day",
+							location: "Pen y Ghent",
+							bb_url: "www.bburl4.com",
+							notes: "some notes",
+  						activity: "walk")
+
+Meet.create!( meet_date: DateTime.new(2018,11,9),
+							meet_type: "Hut",
+							number_of_nights: 2,
+							places: 16,
+							location: "Borrowdale")
+
+Meet.create!( meet_date: DateTime.new(2018,6,9),
+							meet_type: "Hut",
+							number_of_nights: 4,
+							places: 10,
+							location: "Scotland")
+
 60.times do |n|
 	first_name = Faker::Name.first_name
 	last_name = Faker::Name.last_name
@@ -98,18 +147,18 @@ member.membership.update(
 	wps = Faker::Boolean.boolean
 	mfm = fees = Faker::Date.between(20.years.ago, Date.today).strftime
 
-	rel_gen = Faker::Number.number(1)
+	rel_gen = Faker::Number.number(1).to_i
 	case rel_gen
-	when 0 || 1
+	when 0, 1
 		relationship = "Father"
 		membership_type = "Provisional (unpaid)"
-	when 2 || 3
+	when 2, 3
 		relationship = "Mother"
 		membership_type ="Provisional"
-	when 3 || 4
+	when 4, 5
 		relationship = "Brother"
 		membership_type = "Full"
-	when 5 || 6
+	when 6
 		relationship = "Sister"
 		membership_type = "Full"
 	when 7
