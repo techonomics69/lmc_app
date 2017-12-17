@@ -1,0 +1,6 @@
+<% provide(:title, 'Add New Meet') %>
+<% provide(:path, committee_meets_path) %>
+<% provide(:button_text, 'Add Meet') %>
+<h1>Add New Meet</h1>
+<p><%= link_to "Back to meets list", committee_meets_path %></p>
+<%= render 'form' %>

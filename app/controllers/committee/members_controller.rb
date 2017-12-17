@@ -28,7 +28,7 @@ class Committee::MembersController < Committee::BaseController
 
   def edit_multiple
   	remember_selected
-  	if params[:selected].nil? == true
+  	if params[:selected].nil?
 	  	flash.now[:danger] = "No members selected."
 	  	@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
 	  	return render 'index'

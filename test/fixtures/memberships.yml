@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-committee member:
+committee_member:
   member: luke
   bmc_number: 1234
   membership_type: Full
@@ -11,7 +11,7 @@ committee member:
   committee_position: Chair
   subs_paid:
 
-full member:
+full_member:
   member: climber
   bmc_number: 3456
   membership_type: Provisional

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111151859) do
+ActiveRecord::Schema.define(version: 20171216154013) do
 
   create_table "emergency_contacts", force: :cascade do |t|
     t.integer "member_id"
@@ -33,14 +33,15 @@ ActiveRecord::Schema.define(version: 20171111151859) do
     t.integer "member_id"
     t.date "meet_date"
     t.string "meet_type"
-    t.string "number_of_nights"
-    t.string "hut_capacity"
+    t.integer "number_of_nights"
+    t.integer "places"
     t.string "location"
+    t.string "activity"
     t.string "bb_url"
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_meets_on_member_id", unique: true
+    t.index ["member_id"], name: "index_meets_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
