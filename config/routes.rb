@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  
+
   resources :members do
     member do
       get 'emergency_contact', to: 'emergency_contact#edit'
@@ -19,14 +19,17 @@ Rails.application.routes.draw do
   end
   namespace :committee do
     get 'past_meets', to: 'meets#past'
+
     resources :meets
     resources :members do
       collection do
-        get :edit_multiple#, to: 'members#index'
-        post :edit_multiple 
+        post :multiple 
         patch :update_multiple
         get :edit_role
         patch :update_role
+        get :export_all, to: 'members#all'
+        post :export_checked, to: 'members#checked'
+        get :download_file, to: 'members#download_file'
       end
     end
   end

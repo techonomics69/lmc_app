@@ -19,8 +19,14 @@ module SessionsHelper
 	end
 
 	def log_out
+		remove_exports if !session[:file].nil?
 		reset_session
 		@current_user = nil
+	end
+
+	def remove_exports
+		path = session[:file]
+		File.unlink(path)
 	end
 
 	#redirects to stored location (or to the default)

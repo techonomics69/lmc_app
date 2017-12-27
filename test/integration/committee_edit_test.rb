@@ -74,11 +74,13 @@ class CommitteeEditTest < ActionDispatch::IntegrationTest
 
 	test "unsuccessful multiple edit" do
 		log_in_as(@committee_member)
-		post edit_multiple_committee_members_path, params: { selected: [] }
+		post multiple_committee_members_path, params: { selected: [], route_to: {'edit'=>''} }
+		assert_redirected_to committee_members_path
+		follow_redirect!
 		assert_template 'committee/members/index'
 		assert_not flash.empty?
-		post edit_multiple_committee_members_path, params: { selected: [@normal_member.id,@committee_member.id] }
-		assert_template 'committee/members/edit_multiple'
+		post multiple_committee_members_path, params: { selected: [@normal_member.id,@committee_member.id], route_to: {'edit'=>''} }
+		assert_template 'committee/members/multiple'
 		patch update_multiple_committee_members_path, params: { member_ids: [@normal_member.id,@committee_member.id],
 																								  	  membership: {
 																								  	  membership_type: "Unknown",
@@ -91,8 +93,8 @@ class CommitteeEditTest < ActionDispatch::IntegrationTest
 
 	test "successful multiple edit" do
 		log_in_as(@committee_member)
-		post edit_multiple_committee_members_path, params: { selected: [@normal_member.id,@committee_member.id] }
-		assert_template 'committee/members/edit_multiple'
+		post multiple_committee_members_path, params: { selected: [@normal_member.id,@committee_member.id], route_to: {'edit'=>''} }
+		assert_template 'committee/members/multiple'
 		membership_type = "Full"
 		welcome_pack_sent = true
 		fees_received_on = "01/01/2017"

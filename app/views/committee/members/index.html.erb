@@ -1,9 +1,11 @@
 <% provide(:title, 'Membership Database') %>
 <h1>Membership Database</h1>
 <p><%= link_to "Back to my details", members_path(@member) %></p>
-<%= form_tag(edit_multiple_committee_members_path, method: :post) do %>
-	<%= submit_tag "Edit Checked", class: "btn btn-primary" %>
-	<%= link_to "Export", '#', class: "btn btn-primary" %>
+<%= form_tag(multiple_committee_members_path, multipart: true)  do %>
+	<%= button_tag "Edit Checked", name: 'route_to[edit]', class: "btn btn-primary" %>
+	<%= link_to "Export Database", export_all_committee_members_path(format: "csv"), class: "btn btn-primary" %>
+	<%= button_tag "Export Checked", name: 'route_to[export]', class: "btn btn-primary" %>
+	
 	<table class="table table-hover">
 		<thead>
 			<th></th>
