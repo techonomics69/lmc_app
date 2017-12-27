@@ -26,7 +26,7 @@ module SessionsHelper
 
 	def remove_exports
 		path = session[:file]
-		File.unlink(path)
+		File.unlink(path) if File.exist?(path)
 	end
 
 	#redirects to stored location (or to the default)
