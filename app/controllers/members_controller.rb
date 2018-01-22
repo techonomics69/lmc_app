@@ -35,6 +35,7 @@ class MembersController < ApplicationController
   end
 
   def edit
+    @member = Member.find(params[:id])
   end
 
   def index
@@ -48,21 +49,27 @@ class MembersController < ApplicationController
   private
 
 	  def member_params
-	  	params.require(:member).permit(:first_name,
+	  	params.require(:member).permit(:title,
+                                   :first_name,
 	  															 :last_name,
 	  															 :address_1,
 	  															 :address_2,
 	  															 :address_3,
 	  															 :town,
+                                   :county,
 	  															 :postcode,
 	  															 :country,
-	  															 :phone,
+	  															 :mob_phone,
+                                   :home_phone,
 	  															 :email,
 	  															 :dob,
 	  															 :experience,
 	  															 :accept_risks,
 	  															 :password, 
-	  															 :password_confirmation)
+	  															 :password_confirmation,
+                                   membership_attributes: [
+                                    :bmc_number,
+                                    :id ])
 	  end
 
     #Before filters

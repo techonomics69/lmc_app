@@ -5,7 +5,7 @@ committee_member:
   bmc_number: 1234
   membership_type: Full
   welcome_pack_sent: true
-  fees_received_on: 2017-01-01
+  fees_received_on: 2018-02-02
   made_full_member: 2015-11-17
   notes: 
   committee_position: Chair
@@ -16,7 +16,7 @@ full_member:
   bmc_number: 3456
   membership_type: Provisional
   welcome_pack_sent: true
-  fees_received_on: 2017-01-01
+  fees_received_on: 2018-02-02
   made_full_member: 
   notes: 
   committee_position:

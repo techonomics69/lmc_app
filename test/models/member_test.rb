@@ -2,15 +2,19 @@ require 'test_helper'
 
 class MemberTest < ActiveSupport::TestCase
 	def setup
-		@member = Member.new(first_name: "name", 
+		@member = Member.new(
+												 title: "Mr",
+												 first_name: "name", 
 												 last_name: "surname",
 												 address_1: "House Name",
 												 address_2: "1 My Road", 
 												 address_3: "My Estate",
 												 town: "Test Town",
+												 county: "West Yorkshire",
 												 postcode: "TE51 1AA",
 												 country: "United Kingdom",
-												 phone: "07798976256",
+												 home_phone: "07798976256",
+												 mob_phone: "01234567898",
 												 email: "user@example.com", 
 												 dob:"09-05-1990",
 												 experience:"I've done some mountaineering and rock climbing before.",
@@ -22,6 +26,11 @@ class MemberTest < ActiveSupport::TestCase
 
 	test "should be valid" do
 		assert @member.valid?
+	end
+
+	test "title should be present" do
+		@member.title = "    "
+		assert_not @member.valid?
 	end
 
 #first_name
@@ -60,6 +69,17 @@ class MemberTest < ActiveSupport::TestCase
 		assert_not @member.valid?
 	end
 
+#county
+	test "county should be present" do
+		@member.county = "   "
+		assert_not @member.valid?
+	end
+
+	test "county should not be too long" do
+		@member.county = "a"*101
+		assert_not @member.valid?
+	end
+
 #postcode
 	test "postcode should be present" do
 		@member.postcode = "   "
@@ -79,7 +99,9 @@ class MemberTest < ActiveSupport::TestCase
 
 #phone
 	test "phone should be 11 digits" do
-		@member.phone = /\d{11}/
+		@member.home_phone = /\d{11}/
+		assert_not @member.valid?
+		@member.mob_phone = /\d{11}/
 		assert_not @member.valid?
 	end
 

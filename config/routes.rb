@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         get :edit_role
         patch :update_role
         get :export_all, to: 'members#all'
+        get :export_bmc, to: 'members#for_bmc'
         post :export_checked, to: 'members#checked'
         get :download_file, to: 'members#download_file'
       end

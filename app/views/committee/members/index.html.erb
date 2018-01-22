@@ -2,10 +2,25 @@
 <h1>Membership Database</h1>
 <p><%= link_to "Back to my details", members_path(@member) %></p>
 <%= form_tag(multiple_committee_members_path, multipart: true)  do %>
-	<%= button_tag "Edit Checked", name: 'route_to[edit]', class: "btn btn-primary" %>
-	<%= link_to "Export Database", export_all_committee_members_path(format: "csv"), class: "btn btn-primary" %>
-	<%= button_tag "Export Checked", name: 'route_to[export]', class: "btn btn-primary" %>
-	
+<%= button_tag "Edit Selected Members", name: 'route_to[edit]', class: "btn btn-primary" %>	
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export <span class="caret"></span></button>
+		<ul class="dropdown-menu">
+			<li id="dd-btn"><%= link_to "Entire Database", export_all_committee_members_path(format: "csv"), class: "btn btn-default dd-btn" %></li>
+			<li><%= link_to "For BMC - all paid members", export_bmc_committee_members_path(format: "csv"), class: "btn btn-default dd-btn" %></li>
+		</ul>
+	</div>
+	<div class="btn-group">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export Selected <span class="caret"></span></button>
+		<ul class="dropdown-menu">
+			<li><%= button_tag "Entire Database", name: 'route_to[export_all]', class: "btn btn-default dd-btn" %></li>
+			<li><%= button_tag "Member Data", name: 'route_to[members]', class: "btn btn-default dd-btn" %></li>
+			<li><%= button_tag "Membership Data", name: 'route_to[membership]', class: "btn btn-default dd-btn" %></li>
+			<li><%= button_tag "Emergency Contact", name: 'route_to[em_cont]', class: "btn btn-default dd-btn" %></li>
+			<li><%= button_tag "BMC Data", name: 'route_to[bmc]',data: { confirm: "Note: Members whose fees have not been marked as received will not be exported."}, class: "btn btn-default dd-btn" %></li>
+		</ul>
+	</div>
+
 	<table class="table table-hover">
 		<thead>
 			<th></th>

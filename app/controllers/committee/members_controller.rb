@@ -31,12 +31,18 @@ class Committee::MembersController < Committee::BaseController
 
   def multiple
   	remember_selected
-  	case route_to params
-  	when :edit
-  		edit_multiple
-  	when :export
-  		export_checked
-  	end
+  	if params[:selected].nil?
+	  	flash[:danger] = "No members selected."
+	  	@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
+	  	return redirect_to committee_members_path
+	  else
+	  	case route_to params
+	  	when :edit
+	  		edit_multiple
+	  	else
+	  		export
+	  	end
+	  end
   end
 
   def edit_role

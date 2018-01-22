@@ -1,13 +1,7 @@
 module MembersMultiple
 	def edit_multiple
-  	if params[:selected].nil?
-	  	flash[:danger] = "No members selected."
-	  	@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
-	  	return redirect_to committee_members_path
-	  else
-			@members_to_edit = Member.find(params[:selected])
-			@no_of_members_to_edit = @members_to_edit.count
-  	end
+		@members_to_edit = Member.find(params[:selected])
+		@no_of_members_to_edit = @members_to_edit.count
   end
 
   def update_multiple

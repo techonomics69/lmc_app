@@ -1,21 +1,23 @@
 <% provide(:title, "Member Details") %>
-<h1>Information for <i><b><%=@member.first_name %> <%=@member.last_name %></i></b></h1>
+<h1>Information for <i><b><%=@member.title %> <%=@member.first_name %> <%=@member.last_name %></i></b></h1>
 <%= link_to "Back to database", saved_sort_or(committee_members_path) %>
 
 <div class="row" >
 	<div class="col-md-3">
 		<h3>Address</h3>
 		<p>
-			<%=@member.first_name %> <%=@member.last_name %><br>
+			<%=@member.title %> <%=@member.first_name %> <%=@member.last_name %><br>
 			<%= @member.address_1 %><br>
 			<% if @member.address_2.present? %><%= @member.address_2 %><br><% end %>
 			<% if @member.address_3.present? %><%= @member.address_3 %><br><% end %>
 			<%= @member.town %><br>
+			<%= @member.county %><br>
 			<%= @member.postcode %><br>
 		</p>
 		<p>
 			<%= @member.email %><br>
-			<%= @member.phone %>
+			<% if @member.home_phone.present? %><%= @member.home_phone %><br><% end %>
+			<% if @member.mob_phone.present? %><%= @member.mob_phone %><% end %>
 		</p>
 	</div>
 

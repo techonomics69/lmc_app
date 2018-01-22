@@ -53,9 +53,13 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :email) %></p>
 			<%= f.email_field :email, class: 'form-control' %>
 
-			<%= f.label :phone %>
-			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :phone) %></p>
-			<%= f.phone_field :phone, class: 'form-control' %>
+			<%= f.label :home_phone %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :home_phone) %></p>
+			<%= f.phone_field :home_phone, class: 'form-control' %>
+
+			<%= f.label :mob_phone %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :mob_phone) %></p>
+			<%= f.phone_field :mob_phone, class: 'form-control' %>
 
 			<h3>Experience</h3>
 			<p><%= @member_to_edit.experience %></p>
@@ -82,6 +86,10 @@
 			<%= f.label :town %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :town) %></p>
 			<%= f.text_field :town, class: 'form-control' %>
+
+			<%= f.label :county %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :county) %></p>
+			<%= f.text_field :county, class: 'form-control' %>
 
 			<%= f.label :postcode %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :postcode) %></p>

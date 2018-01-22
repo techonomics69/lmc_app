@@ -5,16 +5,19 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 	test "valid application information" do
 		get application_path
 		assert_difference 'Member.count', 1 do
-			post members_path, params: { member: { first_name: "Example",
+			post members_path, params: { member: { title: "Mr",
+																					 first_name: "Example",
 																					 last_name: "User",
 																					 dob: "01/01/1990",
 																					 experience: "some mountaineering",
 																					 address_1: "1 Test Road",
 																					 town: "testville",
+																					 county: "English County",
 																					 postcode: "TE51 1AA",
 																					 country: "United Kingdom",
 																					 email: "testuser@test.com",
-																					 phone: "12345678901",
+																					 home_phone: "12345678901",
+																					 mob_phone: "98765432341",
 																					 accept_risks: true,
 																					 password: "password",
 																					 password_confirmation: "password" } }

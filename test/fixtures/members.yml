@@ -1,15 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 luke:
+  title: Mr
   first_name: Luke
   last_name: Example
   address_1: 1 Road Street
   address_2: Some Estate
   address_3: Some Area
   town: Test Town
+  county: English County
   postcode: TE51 1ST
   country: United Kingdom
-  phone: 09876543212
+  home_phone: 09876543212
+  mob_phone: 01234556789
   email: test@example.com
   dob: 1990-08-07
   experience: Mountaineering experience
@@ -17,15 +20,18 @@ luke:
   password_digest: <%= Member.digest('password') %>
 
 climber:
+  title: Mr
   first_name: Tough
   last_name: Climber
   address_1: Base Camp
   address_2:
   address_3:
   town: Everest
+  county: Himalayas
   postcode: TE51 1ST
   country: United Kingdom
-  phone: 01234567890
+  home_phone: 01234567890
+  mob_phone: 05738292746
   email: test@example2.com
   dob: 1990-02-04
   experience: Loads

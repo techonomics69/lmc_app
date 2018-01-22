@@ -12,15 +12,18 @@ class CommitteeEditTest < ActionDispatch::IntegrationTest
 		get edit_committee_member_path(@normal_member)
 		assert_template 'committee/members/edit'
 		patch committee_member_path(@normal_member), params: { member: { 
+																									title: "",
 																									first_name: "",
 																								  last_name: "",
 																								  address_1: "",
 																								  address_2: "",
 																								  address_3: "",
 																								  town: "",
+																								  county: "",
 																								  postcode: "",
 																								  country: "",
-																								  phone: "",
+																								  home_phone: "",
+																								  mob_phone: "",
 																								  email: "invalidexample",
 																								  dob: "",
 																								  } }
@@ -51,17 +54,19 @@ class CommitteeEditTest < ActionDispatch::IntegrationTest
 																								  address_2: "jgd",
 																								  address_3: "jfudyd",
 																								  town: town,
+																								  county: "English County",
 																								  postcode: "BD1 6PR",
 																								  country: "United Kingdom",
-																								  phone: "01234567890",
+																								  home_phone: "01234567890",
+																								  mob_phone: "67890012345",
 																								  email: email,
 																								  dob: "08/07/2001",
 																								  membership_attributes: {
-																								  	  membership_type: membership_type,
-																											welcome_pack_sent: "True",
-																											fees_received_on: fees_received_on,
-																											bmc_number: "01235456",
-																											notes: "sgs"} } }
+																								  	membership_type: membership_type,
+																										welcome_pack_sent: "True",
+																										fees_received_on: fees_received_on,
+																										bmc_number: "01235456",
+																										notes: "sgs"} } }
 		assert_not flash.empty?
 		assert_redirected_to committee_members_path
 		@normal_member.reload

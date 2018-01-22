@@ -14,13 +14,15 @@
 		<h3>My Details</h3><%= link_to "Edit My Details", edit_member_path(@member), class: "btn btn-primary" %>
 		<p>
 			<%= @member.email %><br>
-			<%= @member.phone %>
+			<% if @member.home_phone.present? %><%= @member.home_phone %><br><% end %>
+			<% if @member.mob_phone.present? %><%= @member.mob_phone %><% end %>
 		</p>
 		<p>
 			<%= @member.address_1 %><br>
 			<% if @member.address_2.present? %><%= @member.address_2 %><br><% end %>
 			<% if @member.address_3.present? %><%= @member.address_3 %><br><% end %>
 			<%= @member.town %><br>
+			<%= @member.county %><br>
 			<%= @member.postcode %><br>
 		</p>
 	</div>

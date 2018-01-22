@@ -51,7 +51,7 @@ class MembershipTest < ActiveSupport::TestCase
 	test "update subs paid when subs paid in Oct, Nov or Dec" do
 		@normal_member.membership.subs_paid = false
 		assert @normal_member.membership.subs_paid == false
-		@normal_member.membership.fees_received_on = DateTime.new(2016,11,11)
+		@normal_member.membership.fees_received_on = DateTime.new(2017,11,11)
 		@normal_member.save
 		@normal_member.membership._run_find_callbacks
 		assert @normal_member.membership.subs_paid == true

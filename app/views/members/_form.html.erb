@@ -3,6 +3,10 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h3>You</h3>
+			<%= f.label :title %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :title) %></p>
+			<%= f.collection_select :title, Member::TITLES, :to_s, :to_s %>
+			<br>
 			<%= f.label :first_name %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :first_name) %></p>
 			<%= f.text_field :first_name, class: 'form-control' %>
@@ -18,6 +22,12 @@
 			<%= f.label :experience %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :experience) %></p>
 			<%= f.text_area :experience, size: "4x4", placeholder: "Please provide a brief resume of your mountaineering experience including membership of other clubs.", class: 'form-control' %>
+
+			<%= f.fields_for :membership do |m| %>
+				<%= m.label :bmc_number, 'BMC number' %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :bmc_number) %></p>
+				<%= m.text_field :bmc_number, class: 'form-control' %>
+			<% end %>
 		</div>
 
 		<div class="col-md-4">
@@ -36,6 +46,10 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :town) %></p>
 			<%= f.text_field :town, class: 'form-control' %>
 
+			<%= f.label :county %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :county) %></p>
+			<%= f.text_field :county, class: 'form-control' %>
+
 			<%= f.label :postcode %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :postcode) %></p>
 			<%= f.text_field :postcode, class: 'form-control' %>
@@ -50,9 +64,13 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :email) %></p>
 			<%= f.email_field :email, class: 'form-control' %>
 
-			<%= f.label :phone %>
-			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :phone) %></p>
-			<%= f.phone_field :phone, class: 'form-control' %>
+			<%= f.label :home_phone %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :home_phone) %></p>
+			<%= f.phone_field :home_phone, class: 'form-control' %>
+
+			<%= f.label :mob_phone %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :mob_phone) %></p>
+			<%= f.phone_field :mob_phone, class: 'form-control' %>
 
 			<h3 style="margin-bottom: 18px">Password</h3>
 			<%= f.label :password %>

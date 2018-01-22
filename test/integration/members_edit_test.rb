@@ -9,15 +9,18 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		log_in_as(@member)
 		get edit_member_path(@member)
 		assert_template 'members/edit'
-		patch member_path(@member), params: { member: { first_name: "",
+		patch member_path(@member), params: { member: { title: "",
+																									first_name: "",
 																								  last_name: "",
 																								  address_1: "",
 																								  address_2: "",
 																								  address_3: "",
 																								  town: "",
+																								  county: "",
 																								  postcode: "",
 																								  country: "",
-																								  phone: "",
+																								  home_phone: "",
+																								  mob_phone: "",
 																								  email: "invalidexample",
 																								  dob: "",
 																								  experience: "",
@@ -36,26 +39,33 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		first_name = "Foo"
 		last_name = "Bar"
 		email = "foo@bar.com"
-		patch member_path(@member), params: { member: { first_name: first_name,
+		bmc_no = "A12345"
+		patch member_path(@member), params: { member: { title: "Mrs",
+																									first_name: first_name,
 																								  last_name: last_name,
 																								  address_1: "1 Test",
 																								  address_2: "",
 																								  address_3: "",
 																								  town: "Testown",
+																								  county: "English County",
 																								  postcode: "TE5 1ST",
 																								  country: "United Kingdom",
-																								  phone: "01234567891",
+																								  home_phone: "01234567891",
+																								  mob_phone: "09877646543",
 																								  email: email,
 																								  dob: "1990-01-01",
 																								  experience: "More experience",
 																								  accept_risks: true,
 																								  password: "",
-																								  password_confirmation: "" } }
+																								  password_confirmation: "",
+																								  membership_attributes: {
+																									  bmc_number: bmc_no } } }
 		assert_not flash.empty?
 		assert_redirected_to @member
 		@member.reload
 		assert_equal first_name, @member.first_name
 		assert_equal last_name, @member.last_name
+		assert_equal bmc_no, @member.membership.bmc_number
 		assert_equal email, @member.email
 	end
 end
