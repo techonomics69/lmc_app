@@ -15,7 +15,7 @@ class Committee::MeetsController < Committee::BaseController
   end
 
   def index
-  	@future_meets = future_meets
+  	@future_meets = all_future_meets
   end
 
   def past

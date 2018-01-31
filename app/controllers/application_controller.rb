@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
       redirect_to(root_url) unless current_user?(@member)
     end
     
-    def future_meets
-      @future_meets = Meet.where('meet_date >= ?', Date.today).all.order(:meet_date)
+    def all_future_meets
+      @meets = Meet.where('meet_date >= ?', Date.today).all.order(:meet_date)
+    end
+
+    def next_meets
+      @meets = Meet.where('meet_date >= ?', Date.today).order(:meet_date).first(6)
     end
 end

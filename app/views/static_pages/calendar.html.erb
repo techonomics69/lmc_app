@@ -1,0 +1,16 @@
+<div class="center">
+	<h2>Meets Calendar</h2>
+	<%= render partial: 'meets_calendar', locals: {meets: @meets} %>
+	<h4>iCalendar Feed</h4>
+	<p>For those of you who use Google Calendar (or anything else that accepts iCalendar format) you can subscribe to the meets list using the following url: </br><strong><%= ical_feed_url + ".ics"%></strong></p>
+	<p>Eg. If you use Google Calendar</p>
+	<ul>
+		<li>Open your "Calendar"</li>
+		<li>Click the "+" next to Add a friend's calendar</li>
+		<li>Click "from URL"</li>
+		<li>In the "URL of calendar" field paste <strong><%= ical_feed_url + ".ics"%></strong></li>
+	</ul>
+	<p>Calendar times in the iCal feed are set only as a guide. Refer to the Bulletin Board for accurate start and finish times.</p>
+	<br>
+	<br>
+</div>

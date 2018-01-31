@@ -1,0 +1,28 @@
+<span class="key eve">Evening Meet</span><span class="key day">Day Meet</span><span class="key camp">Camping Meet</span><span class="key hut">Hut Meet</span>
+	<table class="table table-condensed" id="calendar">
+		<thead id="cal-head">
+			<tr>
+				<th id="table-calendar">Date</th>
+				<th id="table-calendar">Activity</th>
+				<th id="table-calendar">Location</th>
+				<th id="table-calendar">Leader</th>
+				<th id="table-calendar">Places</th>
+				<th id="table-calendar">Board Link</th>
+				<th id="table-calendar">Notes</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @meets.each do |m| %>
+				<tr class="<%= m.meet_type.downcase %>-meet">
+					<td><%= date_display(m.meet_date, m.number_of_nights) %></td>
+					<td><%= m.activity %></td>
+					<td><%= m.location %></td>
+					<td><% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %><% end %></td>
+					<td><%= m.places %></td>
+					<td><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">click here</a><% end %></td>
+					<td><%= m.notes %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>

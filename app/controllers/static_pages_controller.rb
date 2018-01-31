@@ -1,7 +1,9 @@
 class StaticPagesController < ApplicationController
+	require 'icalendar/tzinfo'
 	include StaticPagesHelper
+
   def home
-  	@future_meets = future_meets
+  	@meets = next_meets
   end
 
   def help
@@ -9,5 +11,10 @@ class StaticPagesController < ApplicationController
 
   def membership
   end
-  
+
+  def calendar
+  	@meets = all_future_meets
+  end
+
+
 end

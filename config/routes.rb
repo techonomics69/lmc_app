@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/membership', to: 'static_pages#membership'
   get '/application', to: 'members#new'
   post '/application', to: 'members#create'
+  get '/calendar', to: 'static_pages#calendar'
+  get '/ical_feed', to: 'static_pages#ical_feed'
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

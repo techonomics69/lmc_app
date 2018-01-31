@@ -6,7 +6,7 @@ class MembersController < ApplicationController
 
 	def show
 		@member = Member.find(params[:id])
-    @future_meets = future_meets
+    @future_meets = all_future_meets
 	end
 
   def new
