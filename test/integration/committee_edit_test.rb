@@ -79,7 +79,7 @@ class CommitteeEditTest < ActionDispatch::IntegrationTest
 
 	test "unsuccessful multiple edit" do
 		log_in_as(@committee_member)
-		post multiple_committee_members_path, params: { selected: [], route_to: {'edit'=>''} }
+		post multiple_committee_members_path, params: { route_to: {'edit'=>''} }
 		assert_redirected_to committee_members_path
 		follow_redirect!
 		assert_template 'committee/members/index'

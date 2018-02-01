@@ -34,7 +34,8 @@ class Committee::MembersController < Committee::BaseController
   	if params[:selected].nil?
 	  	flash[:danger] = "No members selected."
 	  	@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
-	  	return redirect_to committee_members_path
+	  	redirect_to committee_members_path
+	  	return
 	  else
 	  	case route_to params
 	  	when :edit
