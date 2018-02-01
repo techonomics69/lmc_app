@@ -26,33 +26,55 @@ module StaticPagesHelper
 
 		  	meets.each do |m|
 
+					description = "LMC #{m.meet_type.downcase} meet, #{m.location}."
+		  		
 		  		case m.meet_type
 		  		when "Hut"
 		  			start_time = "T200000"
+		  			description += " #{m.number_of_nights} nights, #{m.places} places."
 		  		when "Camping"
 		  			start_time = "T200000"
+		  			description += " #{m.number_of_nights} nights."
 		  		when "Evening"
 		  			start_time = "T180000"
+		  			description += " #{m.activity}ing meet." if m.activity.present?
 		  		when "Day"
 		  			start_time = "T080000"
+		  			description += " #{m.activity}ing meet." if m.activity.present?
 		  		end
+
+		  		description += " The meet leader is #{m.member.first_name + ' ' + m.member.last_name}." if m.member.present?
+		  		description += " Notes: #{m.notes}." if m.notes.present?
+		  		description += " More information at #{m.bb_url}." if m.bb_url.present?
+						
+					summary = "LMC #{m.meet_type.downcase} meet, #{m.location}."
+					summary += " #{m.activity}ing meet." if m.activity.present?
 
 		  		end_time = "T220000"
 		  		start_date = m.meet_date.strftime("%Y%m%d") + start_time
-		  		end_date = (m.meet_date + m.number_of_nights.to_i.days).strftime("%Y%m%d") + end_time
+		  		end_date = (m.meet_date + m.number_of_nights.to_i-1.days).strftime("%Y%m%d") + end_time
 
-		  		meet_start = Icalendar::Values::DateTime.new(start_date)
-		  		meet_end = Icalendar::Values::DateTime.new(end_date)
+		  		tzid = "Europe/London"
+		  		tz = TZInfo::Timezone.get tzid
+
+		  		meet_start = Icalendar::Values::DateTime.new start_date, 'tzid' => tzid
+		  		meet_end = Icalendar::Values::DateTime.new end_date, 'tzid' => tzid
+					
+					timezone = tz.ical_timezone meet_start
+		  		cal.add_timezone timezone
 
 		  		event = Icalendar::Event.new
 		  		event.dtstart = meet_start
 		  		event.dtend = meet_end
-
-		  		event.summary = "LMC #{m.meet_type.downcase} meet, #{m.location}. #{m.activity}."
+		  		event.description = description
+		  		event.summary = summary
 		  		event.location = m.location
 		  		event.organizer = @organiser
+
+		  		
 		  		if m.member.present?
-		  			event.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: "Meet Leader: #{m.member.first_name} #{m.member.last_name}")
+		  			meet_leader = m.member.first_name + ' ' + m.member.last_name
+		  			event.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: "Meet Leader: " + meet_leader)
 		  		else
 		  			event.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: "Meet Leader: TBC")
 		  		end

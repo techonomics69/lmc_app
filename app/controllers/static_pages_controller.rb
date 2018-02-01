@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 	require 'icalendar/tzinfo'
+	require 'tzinfo'
+	
 	include StaticPagesHelper
 
   def home
