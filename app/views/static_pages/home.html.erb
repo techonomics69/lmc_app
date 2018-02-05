@@ -1,26 +1,38 @@
 <div class ="center">
-	<h2>Welcome to the Leeds Mountaineering Club</h2>
-
+	
 	<div class="row">
-		<div class="col-md-10 home border-r">
-			<p>The LMC is open to anyone who enjoys the mountains for walking, climbing, running, mountain biking, skiing or whatever other adventurous activities you can think of!</p>
-			<p>We meet every fortnight for the weekend somewhere mountainous in the uk (and occasionally abroad). The climbers amongst us meet every week at Leeds Wall (Tuesday) or CityBloc or The Depot (Thursday) on a regular basis over winter or when it's raining.</p>
-			<p>We have a new members Tuesday social meeting once a month, which is a great way to meet a few members and find out a bit more about the club before signing up. Details on when and where we'll be are below, though it's best to drop us an email to double check there aren't any last minute changes.</p>
-			<p>From mid September to mid April we meet on the first Tuesday of every month at The Midnight Bell (here on google maps) from 9:00pm to have a natter, catch up on the gossip and make plans. ( And a lot of us climb at Leeds Wall beforehand if you fancy.)</p>
-			<p>So come along and say hello!</p>
-			<p>There are no prerequisites in terms of ability for membership and amongst the members we have a wide range of ability, experience and age. As long as you act responsibly regarding safety you can enjoy your chosen activity at the level you want.</p>
+		<div class="col-md-9">
+			<div class="home">
+				<h2>Welcome to the Leeds Mountaineering Club</h2>
+				<p>The LMC is open to anyone who enjoys the mountains for walking, climbing, running, mountain biking, skiing or whatever other adventurous activities you can think of!</p>
+				<p>We meet every fortnight for the weekend somewhere mountainous in the uk (and occasionally abroad). The climbers amongst us meet every week at Leeds Wall (Tuesday) or CityBloc or The Depot (Thursday) on a regular basis over winter or when it's raining.</p>
+				<p>We have a new members Tuesday social meeting once a month, which is a great way to meet a few members and find out a bit more about the club before signing up. Details on when and where we'll be are below, though it's best to drop us an email to double check there aren't any last minute changes.</p>
+				<p>From mid September to mid April we meet on the first Tuesday of every month at The Midnight Bell (here on google maps) from 9:00pm to have a natter, catch up on the gossip and make plans. ( And a lot of us climb at Leeds Wall beforehand if you fancy.)</p>
+				<p>So come along and say hello!</p>
+				<p>There are no prerequisites in terms of ability for membership and amongst the members we have a wide range of ability, experience and age. As long as you act responsibly regarding safety you can enjoy your chosen activity at the level you want.</p>
+			</div>
 		</div>
-		<div class="col-md-2 home">
-			<aside>
-			<p>Latest bulletin board posts:</p>
-		</aside>
+		<div class="col-md-3">
+			<div class="home side-box">
+				<h4>Latest bulletin board posts:</h4>
+				<p>BB Feed</p>
+			</div>
+		</div>
+		<div class="col-md-3 home">
+			<div class="home side-box">
+				<h4>Recent Facebook posts:</h4>
+				
+				<p>FB Feed</p>
+			</div>
 		</div>
 	</div>
 	<div class = "row" >
-		<div class="col-md-10">
-			<h2>Meets Calendar</h2>
-			<%= render partial: 'meets_calendar', locals: {meets: @meets} %>
-			<p class="lead text-center"><%= link_to "View full calendar", calendar_path %></p>
+		<div class="col-md-12">
+
+				<h2>Meets Calendar</h2>
+				<%= render partial: 'meets_calendar', locals: {meets: @meets} %>
+				<p class="lead text-center"><%= link_to "View full calendar", calendar_path %></p>
+
 		</div>
 	</div>
 </div>

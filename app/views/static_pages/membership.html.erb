@@ -1,33 +1,40 @@
-<div class ="center jumbotron">
-	<h2>Welcome to the Members Section</h2>
-	<% if logged_in? %>
-		<% controller.redirect_to member_path(@current_user) %>
-	<% else %>	
-	<p>To join the club fill out the application form by clicking the link below.</p>
-	<div class="row">
-		<div class="col-md-4">
+<div class="row">
+	<div class="col-md-6">
+		<div class="membership main-box left">
+			<h2>Welcome to the Members Section</h2>
+			<% if logged_in? %>
+				<% controller.redirect_to member_path(@current_user) %>
+			<% else %>	
+
+			<p>To join the club fill out the application form by clicking the link below.</p>
 			<%= link_to "Application Form", application_path, class: "btn btn-lg btn-primary" %>
+				
+			<% flash.each do |message_type, message| %>
+			   		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+		  <% end %>
+		  <br>		
+			<p>If you're already a member then you can log in below.</p>
+					<%= form_for(:session, url: login_path) do |f| %>
+						<%= f.label :email %>
+						<%= f.email_field :email, class: 'form-control' %>
+						<%= f.label :password %>
+						<%= f.password_field :password, class: 'form-control' %>
+						<%= f.submit "Log in", class: 'btn btn-lg btn-primary', style: 'width:inherit' %>
+					<% end %>
+			<% end %>
 		</div>
 	</div>
-		
-	<div class="row">
-		<div class="col-md-4">
-	  	<% flash.each do |message_type, message| %>
-	   		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-  		<% end %>
-	 	</div>
-	</div>   		
-	<p>If you're already a member then you can log in below.</p>
-	<div class = "row">
-		<div class="col-md-4">
-			<%= form_for(:session, url: login_path) do |f| %>
-				<%= f.label :email %>
-				<%= f.email_field :email, class: 'form-control' %>
-				<%= f.label :password %>
-				<%= f.password_field :password, class: 'form-control' %>
-				<%= f.submit "Log in", class: 'btn btn-lg btn-primary', style: 'width:inherit' %>
-			<% end %>
-		</div>	
+	<div class="col-md-6">
+		<div class="main-box right">
+			<h2>Looking for more information?</h2>
+			<h4>Who can join?</h4>
+			<p>Anyone... blah blah blah. For more details go to <%= link_to "Who can join?", '#' %></p>
+			<h4>How do I find you?</h4>
+			<p>The <%= link_to "When and Where We Meet", '#' %> page can help you there.</p>
+			<h4>How much does it cost?</h4>
+			<p>Membership is currently £19 per year. For more details on membership fees see <%= link_to "Membership Fees", '#' %>.</p>
+			<h4>Can I talk to someone about joining?</h4>
+			<p>Sure, just drop us an email - details are on the <%= link_to "Contact Us", '#' %> page.</p>
+		</div>
 	</div>
-	<% end %>
 </div>

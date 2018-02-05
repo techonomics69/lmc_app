@@ -93,18 +93,19 @@
 	
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
-			<p>Please read the participation statement above</p>
+			<p>Please read the participation statement above.</p>
 
 			<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
 				<p id='error_explanation'><%= show_errors(@member, :accept_risks, "you must accept the participation statement") %></p>
 				<%= f.check_box :accept_risks, { class: "radio-inline", style: "width: auto" } %>
-				<%= f.label :accept_risks, "I accept the risks" %>
+				<%= f.label :accept_risks, "I accept the risks." %>
 						
 			</span>
 		</div>
 	</div>
-
-	<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
-	  <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg full-width" %>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
+		  <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg full-width" %>
+		</div>
 	</div>
 <% end %>

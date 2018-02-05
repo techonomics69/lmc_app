@@ -1,63 +1,144 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$lmc-green: #59ab47;
+$primary-color: #e7e7e7;
+$secondary-color: #c1ced8;
+$text-color: #333333;
+
 html {
   position: relative;
   min-height: 100%;
+  background-color: $primary-color;
 }
 
 body {
   margin-bottom: 30px;
+  height: 100%;
 }
 
 #main {
-	background-color: #fff;
+/*	background: radial-gradient(#333333, #59ab47); */
+  background-color: $primary-color;
 	padding-top: 20px;
+
 }
 
 /*header*/
 
 .navbar {
-	background-color: #59ab47;
+	background-color: $lmc-green;
+  border-top-style: solid;
+  border-top-width: thin;
+  border-top-color: $text-color;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: $text-color;
 	font-size: 18px;
-	color: #333333;
+	color: $text-color;
 	padding: 0;
 	margin: 0;
-	a {
-		color: #333333;
+  z-index: 3;
+}
+
+.navbar-default .navbar-nav > li > a {
+		color: $text-color;
+    border-radius: 10px;
 	}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  background-color: $secondary-color;
+  border-radius: 10px;
+}
+.navbar-default .navbar-toggle {
+  border-color: $text-color;
+}
+.navbar-toggle {
+  border: 2px solid;
+}
+/*
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $lmc-green;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: $secondary-color;
+}
+*/
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $text-color;
+}
+.navbar-collapse {
+  padding-left: 0;
+}
+
+.dropdown-menu {
+  background-color: $primary-color;
+  border-radius: 10px;
+  box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: $text-color;
+  color: $primary-color;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: $primary-color;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  border-radius: 10px;
+  margin-top: 2px;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: $secondary-color;
 }
 
 #header {
 	background-image: url(lmc-background6.jpg);
-	background-repeat: repeat-x;
+	background-repeat: no-repeat;
 	background-position: center center;
   height: 111px;
   position: absolute;
   min-width: 100%;
   left: 0;
   top: 0;
-  z-index: -1;
-  opacity: 0.4;
-  filter: alpha(opacity=40);
+  z-index: 1;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
 
+@media screen and (max-width: 576px) {
+  #logo {
+  font-size: 1em;    
+  }
 }
 
 #logo {
 	float: left;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+  margin-bottom: 0;
+  margin-top: 0;
+  display : flex;
+  align-items : center;
+  height: 110px;
+  vertical-align: middle;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 3em;
-	color:inherit;
+  font-size: 1.5em; 
+	color: $text-color; 
+  z-index: 2;}
 	img {
 			padding-right: 10px;
 		}
 		a {
 		white-space: nowrap;
 	}
-}
 
 
 /* footer */
@@ -89,14 +170,52 @@ footer {
 
 /* homepage */
 
+.main-box {
+  background-color: $secondary-color;
+  border-radius: 10px;
+  padding: 0 20px 20px 20px;
+  border-style: solid;
+  border-width: thin;
+  border-color: #a3a7a9;
+  margin-bottom: 20px;
+}
+
+.main-box .left {
+  margin-right: 5px;
+}
+
+.main-box .right {
+  margin-left: 5px;
+}
+
+.side-box {
+  background-color: $secondary-color;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+  border-style: solid;
+  border-width: thin;
+  border-color: #a3a7a9;
+  margin-top: 20px;
+  
+}
+
+.bottom {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 982px) {
+.set-h {
+  min-height: 381px;
+  } }
+
 .home p { font-size: 16px;
         }
 
-
+/*
 .border-r { border-right-color: #6b6b6b;
         border-right-width: thin;
         border-right-style: solid; }
-
+*/
 /* sidebar */
 
 aside {
@@ -178,8 +297,8 @@ aside {
 }
 
 #cal-head {
-  background-color: #cccccc6b;
-  border-top: 1px solid #777777 !important;
+  background-color: $secondary-color;
+  border-top: 1px solid $text-color !important;
 }
 
 .key {
@@ -190,7 +309,7 @@ aside {
   font-weight: bold;
   font-size: 16px;
   margin: 2px 2px 4px 2px;
-  float: right;
+  float: left;
 }
 
 .hut {
@@ -226,6 +345,14 @@ aside {
 
 /* forms */
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    }
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px $primary-color inset;
+    }
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   margin-bottom: 15px;
@@ -234,6 +361,16 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+
+.radio-inline, .checkbox-inline {
+  background-color: white;
+  border-radius: 4px;
+  padding-top: 5px;
+}
+
+.membersip .form-control {
+  width: 50%;
 }
 
 #error_explanation {
