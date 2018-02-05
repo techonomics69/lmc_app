@@ -27,7 +27,7 @@
 				<td><%= m.notes %></td>
 				<td><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">click here</a><% end %></td>
 				<td><%= link_to "edit", edit_committee_meet_path(m) %></td>
-				<td><%= link_to "delete", committee_meet_path(m), method: :delete, data: { confirm: "You are about to delete #{m.location} meet."} %></td>
+				<td><%= link_to "delete", committee_meet_path(m), method: :delete, data: { confirm: "Delete the #{m.meet_date.strftime("%d/%m/%Y")} meet to #{m.location}?"} %></td>
 			</tr>
 			<% end %>
 		</tbody>
