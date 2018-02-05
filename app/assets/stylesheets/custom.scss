@@ -213,11 +213,6 @@ footer {
 .home p { font-size: 16px;
         }
 
-/*
-.border-r { border-right-color: #6b6b6b;
-        border-right-width: thin;
-        border-right-style: solid; }
-*/
 /* sidebar */
 
 aside {
@@ -396,6 +391,14 @@ input {
     margin: 0px 0px 10px 2px;
   }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+    outline: none;
+}
+
 /*buttons*/
 
 .btn-primary {
@@ -404,13 +407,47 @@ input {
 
 .dd-btn {
   padding: 6px 12px !important;
-  border-color: white;
+  border: none;
   width: 100%;
+  background-color: $primary-color;
 }
+
+.dd-btn:hover {
+  background-color: $text-color;
+  color: $primary-color;
+  border: none;
+  }
+
+.dd-btn:focus {
+  background-color: $text-color;
+  border-color: $text-color;
+  color: $primary-color;
+  outline: none;
+}
+
+.dd-btn:hover:focus {
+  background-color: $text-color;
+  border-color: $text-color;
+  color: $primary-color;
+  outline: none;
+}
+
+.dd-btn:active {
+  background-color: $text-color;
+  border-color: $text-color;
+  color: $primary-color;
+
+}
+/*
+.dd-btn { button:focus {
+    outline: none;
+    border-radius: 0;
+} }
 
  ul #dd-btn > li > a:hover {
     background-color: black !important;
   }
+*/
 
 /* bootstrap adjustments */
 
