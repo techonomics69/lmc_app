@@ -112,9 +112,9 @@ body {
   filter: alpha(opacity=50);
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 340px) {
   #logo {
-  font-size: 1em;    
+    word-break: break-all;
   }
 }
 
@@ -137,7 +137,9 @@ body {
 			padding-right: 10px;
 		}
 		a {
-		white-space: nowrap;
+		line-height: 1em;
+    
+    word-wrap: break-word;
 	}
 
 
