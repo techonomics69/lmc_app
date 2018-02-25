@@ -30,7 +30,6 @@ member.membership.update(
 							 	fees_received_on: DateTime.new(2017,1,1).strftime,
 							 	welcome_pack_sent: true,
 							 	made_full_member: DateTime.new(1967,7,9).strftime,
-							 	committee_position: "Treasurer",
 							 	subs_paid: true,
 							 	notes: "Pretty good mountaineer")
 
@@ -59,7 +58,7 @@ member.membership.update(
 							 	fees_received_on: DateTime.new(2017,1,8).strftime,
 							 	welcome_pack_sent: true,
 							 	made_full_member: DateTime.new(2014,3,12).strftime,
-							 	committee_position: "Chair",
+							 	committee_position: "Social Secretary",
 							 	subs_paid: true,
 							 	notes: "")
 
@@ -235,4 +234,22 @@ Meet.create!( meet_date: DateTime.new(2018,6,9),
 							 	primary_phone: ec_ph_1,
 							 	secondary_phone: "",
 							 	relationship: relationship)
+end
+members = []
+8.times do |n|
+	members << Member.find_by(email:"member-#{n+1}@example.com")
+end
+
+remaining_committee = ["Chair",
+						 					 "Treasurer",
+						  				 "Meets Secretary",
+						 					 "Communications Secretary",
+						 					 "Climbing Co-ordinator",
+						 					 "Walking Co-ordinator",
+						 					 "Ordinary Member",
+						 					 "Member Without Portfolio"]
+n = 0
+members.each do |member|
+	member.membership.update(committee_position: remaining_committee[n])
+	n += 1
 end
