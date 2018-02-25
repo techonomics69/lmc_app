@@ -1,13 +1,22 @@
 <% provide(:title, @member.first_name + " " + @member.last_name) %>
 <h1><%= @member.first_name %> <%= @member.last_name %></h1>
 <h4><%= membership_level(@member) %></h4>
+<% unless @member.receive_emails %>
+	<p>You do not currently receive newsletters from the club. <%= link_to "Change this.", edit_member_path(@member) %></p>
+	<% else %>
+	<p>You receive newsletters from the club. <%= link_to "Change this.", edit_member_path(@member) %></p>
+<% end %>
 <% if committee_member?(@member) %>
 	<%= link_to "Membership Database", committee_members_path, class: "btn btn-primary" %> 
 	<%= link_to "Meets Calendar", committee_meets_path, class: "btn btn-primary" %>
 	<%= link_to "News Feed", '#', class: "btn btn-primary" %>
 	<%= link_to "Change Committee Members", edit_role_committee_members_path, class: "btn btn-primary" %>
-<% elsif new_member?(@member) %>
+<% end %>
+
+<% if new_member?(@member) %>
 	<%= render 'welcome' %>
+<% elsif em_contact?(@member) %>
+	<%= render 'no_emergency_contact' %>
 <% end %>
 
 <div class="row" >

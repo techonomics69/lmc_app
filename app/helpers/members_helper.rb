@@ -20,4 +20,8 @@ module MembersHelper
 	def new_member?(member)
 		membership_level(member) == "Provisional (unpaid) Member"
 	end
+
+	def em_contact?(member)
+		true if member.emergency_contact.primary_phone.nil?
+	end
 end

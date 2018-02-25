@@ -96,14 +96,14 @@ Meet.create!( member_id: 3,
 							meet_type: "Hut",
 							number_of_nights: 2,
 							places: 12,
-							location: "Dales",
+							location: "Ingledon, Yorkshire Dales",
 							bb_url: "www.bburl2.com",)
 
 Meet.create!( member_id: 3,
 							meet_date: DateTime.new(2018,7,22),
 							meet_type: "Camping",
 							number_of_nights: 2,
-							location: "Snowdonia",
+							location: "Ty'n Lon, Nant Peris, Snowdonia",
 							bb_url: "www.bburl12.com",
 							notes: "some notes")
 
@@ -111,7 +111,7 @@ Meet.create!( member_id: 1,
 							meet_date: DateTime.new(2018,5,3),
 							meet_type: "Camping",
 							number_of_nights: 2,
-							location: "Wales",
+							location: "Gwern Gof Uchaf Campsite, Ogwen, Wales",
 							bb_url: "www.bburl.com")
 
 Meet.create!( member_id: 2,
@@ -123,22 +123,22 @@ Meet.create!( member_id: 2,
 Meet.create!( member_id: 2,
 							meet_date: DateTime.new(2018,6,4),
 							meet_type: "Day",
-							location: "Pen y Ghent",
+							location: "Pen y Ghent, Yorkshire Dates",
 							bb_url: "www.bburl4.com",
-							notes: "some notes",
+							notes: "Meet at Horton in Ribblesdale at 10am",
   						activity: "walk")
 
 Meet.create!( meet_date: DateTime.new(2018,11,9),
 							meet_type: "Hut",
 							number_of_nights: 2,
 							places: 16,
-							location: "Borrowdale")
+							location: "K Shoes, Borrowdale")
 
 Meet.create!( meet_date: DateTime.new(2018,6,9),
 							meet_type: "Hut",
 							number_of_nights: 4,
 							places: 10,
-							location: "Scotland")
+							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland")
 
 60.times do |n|
 	title = Faker::Name.prefix
