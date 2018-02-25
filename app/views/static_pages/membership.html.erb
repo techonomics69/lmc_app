@@ -1,23 +1,21 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="membership main-box left">
-			<h2>Welcome to the Members Section</h2>
+			<h2>Join the Club or Log In</h2>
 			<% if logged_in? %>
 				<% controller.redirect_to member_path(@current_user) %>
 			<% else %>	
 
 			<p>To join the club fill out the application form by clicking the link below.</p>
 			<%= link_to "Application Form", application_path, class: "btn btn-lg btn-primary" %>
-				
-			<% flash.each do |message_type, message| %>
-			   		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-		  <% end %>
+
 		  <br>		
 			<p>If you're already a member then you can log in below.</p>
 					<%= form_for(:session, url: login_path) do |f| %>
 						<%= f.label :email %>
 						<%= f.email_field :email, class: 'form-control' %>
 						<%= f.label :password %>
+						<%= link_to "(forgotten password)", new_password_reset_path %>
 						<%= f.password_field :password, class: 'form-control' %>
 						<%= f.submit "Log in", class: 'btn btn-lg btn-primary', style: 'width:inherit' %>
 					<% end %>

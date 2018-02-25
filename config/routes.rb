@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   get 'sessions/new'
 	root 'static_pages#home'
   get '/home', to: 'static_pages#home'
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
   resources :members do
     member do
       get 'emergency_contact', to: 'emergency_contact#edit'
@@ -19,6 +25,7 @@ Rails.application.routes.draw do
       patch 'meets', to: 'meets#update'
     end
   end
+
   namespace :committee do
     get 'past_meets', to: 'meets#past'
 

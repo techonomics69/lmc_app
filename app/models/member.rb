@@ -1,5 +1,5 @@
 class Member < ApplicationRecord
-	attr_accessor :selected
+	attr_accessor :selected, :reset_token
 	has_one :membership, dependent: :destroy
 	has_one :emergency_contact, dependent: :destroy
 	has_many :meets
@@ -30,6 +30,7 @@ class Member < ApplicationRecord
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+	#export functions - all information
 	def self.to_csv(options = {})
 		CSV.generate(options) do |csv|
 			csv.add_row column_names
@@ -40,6 +41,7 @@ class Member < ApplicationRecord
 		end
 	end
 
+	#export functions - all member information
 	def self.to_csv_members(member_atts = DEFAULT_MEMBER_ATTS, options = {})
 		CSV.generate(options) do |csv|
 			csv << member_atts
@@ -51,6 +53,7 @@ class Member < ApplicationRecord
 		end
 	end
 
+	#export functions - for BMC
 	def self.to_csv_for_bmc(member_atts = BMC_MEMBER_ATTS, membership_atts = BMC_MEMBERSHIP_ATTS, options = {})
 		CSV.generate(options) do |csv|
 			csv << membership_atts + member_atts
@@ -63,6 +66,7 @@ class Member < ApplicationRecord
 		end
 	end
 
+	#export functions - all membership information
 	def self.to_csv_membership(member_atts = ["first_name", "last_name"], membership_atts = DEFAULT_MEMBERSHIP_ATTS, options = {})
 		CSV.generate(options) do |csv|
 			csv << member_atts + membership_atts
@@ -75,6 +79,7 @@ class Member < ApplicationRecord
 		end
 	end
 
+	#export functions - all emergency contact information
 	def self.to_csv_emergency_contact(member_atts = ["first_name", "last_name"], em_contact_atts = DEFAULT_EM_CONT_ATTS, options = {})
 		CSV.generate(options) do |csv|
 			csv << ["MEMBER", "", "EMERGENCY CONTACT"]
@@ -88,6 +93,7 @@ class Member < ApplicationRecord
 		end
 	end
 
+	#export functions - all membership and emergency contact information
 	def self.to_csv_with_membership_and_emergency_contact(member_atts = DEFAULT_MEMBER_ATTS,
 																												membership_atts = DEFAULT_MEMBERSHIP_ATTS, 
 																												em_contact_atts = DEFAULT_EM_CONT_ATTS,
@@ -104,6 +110,33 @@ class Member < ApplicationRecord
 			end
 		end
 	end
+
+	#Password Resets
+
+	def create_reset_digest
+		self.reset_token = Member.new_token
+		update_columns(reset_digest: Member.digest(reset_token), reset_sent_at: Time.zone.now)
+	end
+
+	def send_password_reset_email
+		MemberMailer.password_reset(self).deliver_now
+	end
+
+	def Member.new_token
+		SecureRandom.urlsafe_base64
+	end
+
+	def password_reset_expired?
+		reset_sent_at < 2.hours.ago
+	end
+
+	def authenticated?(attribute, token)
+		digest = send("#{attribute}_digest")
+		return false if digest.nil?
+		BCrypt::Password.new(digest).is_password?(token)
+	end
+
+	#Digest creation
 
 	def Member.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

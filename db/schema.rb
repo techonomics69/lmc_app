@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216154013) do
+ActiveRecord::Schema.define(version: 20180223215508) do
 
   create_table "emergency_contacts", force: :cascade do |t|
     t.integer "member_id"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 20171216154013) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
+    t.boolean "receive_emails"
     t.index ["email"], name: "index_members_on_email", unique: true
   end
 
