@@ -21,6 +21,7 @@ member = Member.create!(
 							 dob: DateTime.new(1934,8,06).strftime,
 							 experience: "I've climbed a few mountains in my time",
 							 accept_risks: true,
+							 receive_emails: true,
 							 password: "password",
 							 password_confirmation: "password")
 
@@ -49,6 +50,7 @@ member = Member.create!(
 							 dob: DateTime.new(1980,4,2).strftime,
 							 experience: "Done some climbing",
 							 accept_risks: true,
+							 receive_emails: true,
 							 password: "password",
 							 password_confirmation: "password")
 
@@ -78,6 +80,7 @@ member = Member.create!(
 							 dob: DateTime.new(1987,12,8).strftime,
 							 experience: "Climbing stuff",
 							 accept_risks: true,
+							 receive_emails: true,
 							 password: "password",
 							 password_confirmation: "password")
 
@@ -212,6 +215,7 @@ Meet.create!( meet_date: DateTime.new(2018,6,9),
 							 dob: dob,
 							 experience: experience,
 							 accept_risks: true,
+							 receive_emails: false,
 							 password: "password",
 							 password_confirmation: "password")
 
@@ -253,3 +257,19 @@ members.each do |member|
 	member.membership.update(committee_position: remaining_committee[n])
 	n += 1
 end
+
+Email.create!(template: "newsfeed",
+							subject: "Newsfeed Template",
+							body: "<p>This is the newsfeed template</p>",
+							default_template: true)
+
+Email.create!(template: "subs reminder",
+							subject: "Subs Reminder Template",
+							body: "<p>This is the subs reminder template</p>",
+							default_template: true)
+
+Email.create!(member_id: 3,
+							template: "welcome",
+							subject: "Welcome to the Leeds Mountaineering Club",
+							body: "<p>This is the welcome email</p>",
+							default_template: true)

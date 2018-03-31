@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20180302131221) do
     t.datetime "updated_at", null: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.boolean "receive_emails"
+    t.boolean "receive_emails", default: true
     t.index ["email"], name: "index_members_on_email", unique: true
   end
 
