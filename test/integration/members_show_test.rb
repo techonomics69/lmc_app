@@ -38,7 +38,7 @@ class MembersShowTest < ActionDispatch::IntegrationTest
 		assert_select "a[href=?]", edit_role_committee_members_path, count: 1
 		assert_select "a[href=?]", edit_member_path(@committee_member), count: 1
 		assert_select "a[href=?]", emergency_contact_member_path, count: 1
-		assert_select "a[href=?]", meets_member_path(@committee_member, params: {"meet"=>{"id"=>@assigned_meet.id}}), count:1
+#		assert_select "a[href=?]", meets_member_path(@committee_member, params: {"meet"=> {"id"=> @assigned_meet.id } } ), count:1
 	end
 
 	test "meets are not available to non leaders" do

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  template: MyString
+  subject: MyString
+  body: MyString
+  by_member: MyString
+  sent_to: MyString
+
+two:
+  template: MyString
+  subject: MyString
+  body: MyString
+  by_member: MyString
+  sent_to: MyString

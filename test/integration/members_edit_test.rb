@@ -56,6 +56,7 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 																								  dob: "1990-01-01",
 																								  experience: "More experience",
 																								  accept_risks: true,
+																								  receive_emails: false,
 																								  password: "",
 																								  password_confirmation: "",
 																								  membership_attributes: {
@@ -67,5 +68,14 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		assert_equal last_name, @member.last_name
 		assert_equal bmc_no, @member.membership.bmc_number
 		assert_equal email, @member.email
+	end
+
+	test "email subscribe/unsubscribe" do
+		log_in_as(@member)
+		get member_path(@member)
+		assert_equal true, @member.receive_emails
+		patch email_subscribe_member_path(@member)
+		@member.reload
+		assert_equal false, @member.receive_emails
 	end
 end

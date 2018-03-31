@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/gdpr', to: 'static_pages#gdpr'
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 
@@ -23,12 +26,20 @@ Rails.application.routes.draw do
       patch 'emergency_contact', to: 'emergency_contact#update'
       get 'meets', to: 'meets#edit'
       patch 'meets', to: 'meets#update'
+      patch 'email_subscribe', to: 'members#email_subscribe'
     end
   end
 
   namespace :committee do
-    get 'past_meets', to: 'meets#past'
+    resources :emails do
+      get 'info', to: 'emails#info'
+    end
 
+    get '/mailer(/email_preview(/:id(.:format)))', to: 'emails#email_preview', as: "email_preview"
+    get '/mailer(/send_email(/:id(.:format)))', to: 'emails#send_email', as: 'send_email'
+
+
+    get 'past_meets', to: 'meets#past'      
     resources :meets
     resources :members do
       collection do
@@ -40,6 +51,7 @@ Rails.application.routes.draw do
         get :export_bmc, to: 'members#for_bmc'
         post :export_checked, to: 'members#checked'
         get :download_file, to: 'members#download_file'
+
       end
     end
   end

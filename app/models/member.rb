@@ -3,6 +3,7 @@ class Member < ApplicationRecord
 	has_one :membership, dependent: :destroy
 	has_one :emergency_contact, dependent: :destroy
 	has_many :meets
+	has_many :emails
 	accepts_nested_attributes_for :membership, :emergency_contact, :meets
 	before_create { build_membership }
 	before_create { build_emergency_contact }
@@ -109,6 +110,10 @@ class Member < ApplicationRecord
 				csv << values
 			end
 		end
+	end
+
+	def send_welcome_email
+		MemberMailer.welcome_message(self).deliver_now
 	end
 
 	#Password Resets

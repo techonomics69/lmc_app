@@ -15,9 +15,17 @@ class MemberMailer < ApplicationMailer
   #
   #   en.member_mailer.welcome_message.subject
   #
-  def welcome_message
-    @greeting = "Hi"
+  def welcome_message(member)
+    @member = member
+    mail to: member.email, subject: "Your Leeds Mountaineering Club Application"
+  end
 
-    mail to: "to@example.org"
+  def new_application
+  end
+
+  def newsfeed(member, content)
+    @recipient = member
+    @email = content
+    mail to: member.email, subject: "#{content.subject}"
   end
 end

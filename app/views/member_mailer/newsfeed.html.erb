@@ -1,0 +1,14 @@
+<% content_for :style do %>
+  <title><%= @email.subject %></title>
+  <%# style goes here %>
+<% end %>
+
+<p id="logo"><a href=<%= root_url %> target= "_blank" ><img src="/assets/LMC_logo-cdaa838d970224d415d23e42c5456cce8796bc1965911f8439673f2628b78df0.gif" alt="Lmc logo" />Leeds Mountaineering Club</a></p>
+
+<h4>Hi <%= @recipient.first_name %>,</h4>
+
+<p><%= sanitize @email.body %></p>
+
+<p><%= @email.member.full_name %></p>
+
+<p><%= @email.member.membership.committee_position %></p>

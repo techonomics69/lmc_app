@@ -2,14 +2,14 @@
 <h1><%= @member.first_name %> <%= @member.last_name %></h1>
 <h4><%= membership_level(@member) %></h4>
 <% unless @member.receive_emails %>
-	<p>You do not currently receive newsletters from the club. <%= link_to "Change this.", edit_member_path(@member) %></p>
+	<p>You are not currently on the club newsletter mailing list. <%= link_to "Change this", email_subscribe_member_path(@member), :method => :patch %>.</p>
 	<% else %>
-	<p>You receive newsletters from the club. <%= link_to "Change this.", edit_member_path(@member) %></p>
+	<p>You are on the club newsletter mailing list. <%= link_to "Change this", email_subscribe_member_path(@member), :method => :patch %>.</p>
 <% end %>
 <% if committee_member?(@member) %>
 	<%= link_to "Membership Database", committee_members_path, class: "btn btn-primary" %> 
 	<%= link_to "Meets Calendar", committee_meets_path, class: "btn btn-primary" %>
-	<%= link_to "News Feed", '#', class: "btn btn-primary" %>
+	<%= link_to "Send Emails", committee_emails_path, class: "btn btn-primary" %>
 	<%= link_to "Change Committee Members", edit_role_committee_members_path, class: "btn btn-primary" %>
 <% end %>
 

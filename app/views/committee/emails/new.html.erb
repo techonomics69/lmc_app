@@ -1,0 +1,27 @@
+<% provide(:title, 'Create Email') %>
+<% provide(:path, committee_emails_path) %>
+<%= tinymce %>
+<h1>New <%= @template.template %></h1>
+<p><%= link_to "Back to Email Members", committee_emails_path %></p>
+<div class="main-box">
+	<h3>Your Email</h3>
+	<%= form_for(@email, url: yield(:path)) do |f| %>
+		<div class="row">
+			<div class="col-md-12">
+
+				<%= f.hidden_field :member_id, value: @member.id %>
+				<%= f.hidden_field :template, value: @template.template %>
+
+				<%= f.label :subject %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@email, :subject) %></p>
+				<%= f.text_field :subject, :value => @template.subject, class: 'form-control' %>
+
+				<%= f.label :body %>
+				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@email, :body) %></p>
+				<%= f.text_area :body, :value => @template.body, :class => "tinymce", :rows => 20, :cols => 120 %>
+
+				<%= f.submit "Save New Email", class: "btn btn-primary btn-lg" %>
+			</div>
+		</div>
+	<% end %>
+</div>

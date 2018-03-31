@@ -104,6 +104,18 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
+			<p>By clicking submit below you accept the terms and conditions of the club. Please read our GDPR compliance statement. <%= link_to "GDPR Statement", gdpr_path %></p>
+			<p>The club sends out newsfeeds, usually once a month, with information about past and present meets. We may also send out subs reminders at the start of the year if you haven't paid your subs.</p>
+
+			<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
+				<%= f.check_box :receive_emails, { class: "radio-inline", style: "width: auto" } %>
+				<%= f.label :receive_emails, "I want to receive emails from the club." %>
+						
+			</span>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
 		  <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg full-width" %>
 		</div>

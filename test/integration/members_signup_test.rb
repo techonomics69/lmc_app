@@ -2,7 +2,11 @@ require 'test_helper'
 
 class MembersSignupTest < ActionDispatch::IntegrationTest
 
-	test "valid application information" do
+	def setup
+		ActionMailer::Base.deliveries.clear
+	end
+
+	test "valid application information and welcome message sent" do
 		get application_path
 		assert_difference 'Member.count', 1 do
 			post members_path, params: { member: { title: "Mr",
@@ -22,7 +26,7 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 																					 password: "password",
 																					 password_confirmation: "password" } }
 		end
-
+		assert_equal 1, ActionMailer::Base.deliveries.size
 		follow_redirect!
 		assert_template 'members/show'
 		assert_not flash.empty?

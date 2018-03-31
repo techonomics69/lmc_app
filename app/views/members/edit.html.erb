@@ -5,6 +5,11 @@
 <h1>Update Your Information</h1>
 <p><%= link_to "Back to your details (without saving)", members_path(@member) %></p>
 <%= link_to "Add/change your emergency contact", emergency_contact_member_path, class: "btn btn-primary" %>
+<% unless @member.receive_emails %>
+	<%= link_to "Subscribe to all club emails", email_subscribe_member_path(@member), :method => :patch, class: "btn btn-primary" %>
+<% else %>
+	<%= link_to "Unsubscribe from all club emails", email_subscribe_member_path(@member), :method => :patch, class: "btn btn-primary" %>
+<% end %>
 <div class="main-box">
 	<%= render 'form' %>
 </div>

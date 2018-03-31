@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223215508) do
+ActiveRecord::Schema.define(version: 20180302131221) do
+
+  create_table "emails", force: :cascade do |t|
+    t.integer "member_id"
+    t.string "template"
+    t.string "subject"
+    t.string "body"
+    t.string "sent_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "default_template", default: false
+    t.datetime "sent_on"
+    t.index ["member_id"], name: "index_emails_on_member_id"
+  end
 
   create_table "emergency_contacts", force: :cascade do |t|
     t.integer "member_id"

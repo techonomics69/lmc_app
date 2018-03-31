@@ -11,6 +11,7 @@ gem 'rails', '~> 5.1.2'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'bootstrap-sass'
 gem 'faker', '1.7.3'
+gem 'tinymce-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

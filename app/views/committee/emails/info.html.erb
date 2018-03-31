@@ -1,0 +1,24 @@
+<% provide(:title, 'Email Info') %>
+<h1>Email Information</h1>
+<p><%= link_to "Back to Email Members", committee_emails_path %></p>
+<h4>Template:</h4>
+<p><%= @email.template %></p>
+<h4>Subject:</h4>
+<p><%= @email.subject %></p>
+<h4>Created On:</h4>
+<p><%= @email.created_at.strftime("%d/%m/%Y") %></p>
+<h4>Created By:</h4>
+<p><%= @email.member.full_name %></p>
+<h4>Last Edited On:</h4>
+<p><%= @email.updated_at.strftime("%d/%m/%Y") %></p>
+<h4>Sent On:</h4>
+<% if @email.sent_on.nil? %>
+	<p>Not sent</p>
+<% else %>
+	<p><%= @email.sent_on.strftime("%d/%m/%Y at %H:%M") %></p>
+<% end %>
+<h4>HTML Content:</h4>
+<p><%= @email.body %></p>
+<h4>Sent To:</h4>
+<p><%= @email.sent_to %></p>
+

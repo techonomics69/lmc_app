@@ -7,17 +7,18 @@ class MemberMailerTest < ActionMailer::TestCase
     mail = MemberMailer.password_reset(member)
     assert_equal "Password reset", mail.subject
     assert_equal [member.email], mail.to
-    assert_equal ["noreply@example.com"], mail.from
+    assert_equal ["leedsmc@gmail.com"], mail.from
     assert_match member.reset_token,        mail.body.encoded
     assert_match CGI.escape(member.email),  mail.body.encoded
   end
 
-#  test "welcome_message" do
-#    mail = MemberMailer.welcome_message
-#    assert_equal "Welcome message", mail.subject
-#    assert_equal ["to@example.org"], mail.to
-#    assert_equal ["from@example.com"], mail.from
-#    assert_match "Hi", mail.body.encoded
-#  end
+  test "welcome_message" do
+    member = members(:luke)
+    mail = MemberMailer.welcome_message(member)
+    assert_equal "Your Leeds Mountaineering Club Application", mail.subject
+    assert_equal [member.email], mail.to
+    assert_equal ["leedsmc@gmail.com"], mail.from
+    assert_match "Hi", mail.body.encoded
+  end
 
 end

@@ -16,6 +16,7 @@ class MembersController < ApplicationController
   def create
   	@member = Member.new(member_params)
   	if @member.save
+      @member.send_welcome_email
   		log_in @member
   		flash[:success] = "Welcome to the Leeds Mountaineering Club!"
   		redirect_to member_path(@member)
@@ -46,6 +47,11 @@ class MembersController < ApplicationController
     end
   end
 
+  def email_subscribe
+    @member = Member.find(params[:id])
+    redirect_to @member if @member.toggle!(:receive_emails)
+  end
+
   private
 
 	  def member_params
@@ -65,6 +71,7 @@ class MembersController < ApplicationController
 	  															 :dob,
 	  															 :experience,
 	  															 :accept_risks,
+                                   :receive_emails,
 	  															 :password, 
 	  															 :password_confirmation,
                                    membership_attributes: [

@@ -16,6 +16,7 @@ luke:
   email: test@example.com
   dob: 1990-08-07
   experience: Mountaineering experience
+  receive_emails: true
   accept_risks: true
   password_digest: <%= Member.digest('password') %>
 
@@ -35,5 +36,6 @@ climber:
   email: test@example2.com
   dob: 1990-02-04
   experience: Loads
+  receive_emails: true
   accept_risks: true
   password_digest: <%= Member.digest('password') %>
