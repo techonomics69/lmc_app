@@ -17,7 +17,6 @@ class MembersController < ApplicationController
   	@member = Member.new(member_params)
   	if @member.save
       @member.send_welcome_email
-#      MemberMailer.newsfeed(rec, @email).deliver_now
   		log_in @member
   		flash[:success] = "Welcome to the Leeds Mountaineering Club!"
   		redirect_to member_path(@member)

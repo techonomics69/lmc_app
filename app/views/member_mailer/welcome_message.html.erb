@@ -1,10 +1,10 @@
-<h1>Leeds MC</h1>
+<p id="logo"><a href=<%= root_url %> target= "_blank" ><img src="https://lmc-app.herokuapp.com/assets/LMC_logo-cdaa838d970224d415d23e42c5456cce8796bc1965911f8439673f2628b78df0.gif" alt="Lmc logo" />Leeds Mountaineering Club</a></p>
 
 <p>Hi <%= @member.first_name %>,</p>
 
 <p>Welcome to the LMC.</p>
 
-<p><%= sanitize @email.body %></p>
+<%= sanitize @email.body %>
 
 <p>Kind regards,</p>
 
