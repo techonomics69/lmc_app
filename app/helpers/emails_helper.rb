@@ -14,7 +14,7 @@ module EmailsHelper
   	when "newsfeed"
   		@recipients = Member.where('receive_emails = ?', true)
   	when "subs reminder"
-  		@recipients = Member.joins(:membership).where("receive_emails = ? AND subs_paid = ?", true, true)
+  		@recipients = Member.joins(:membership).where("receive_emails = ? AND subs_paid = ?", true, false)
   	end
   end
 
