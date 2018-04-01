@@ -113,7 +113,8 @@ class Member < ApplicationRecord
 	end
 
 	def send_welcome_email
-		MemberMailer.welcome_message(self).deliver_now
+		content = Email.find_by_default_template_and_template(true, "welcome")
+		MemberMailer.welcome_message(self, content).deliver_now
 	end
 
 	#Password Resets
