@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/gdpr', to: 'static_pages#gdpr'
+  get '/pay', to: 'static_pages#pay'
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 

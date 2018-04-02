@@ -18,5 +18,8 @@ class StaticPagesController < ApplicationController
   	@meets = all_future_meets
   end
 
+  def pay
+  end
+
 
 end
