@@ -1,5 +1,14 @@
 module StaticPagesHelper
 
+	def bb_feed
+		page = Nokogiri::HTML(open('http://leedsmc.org/bbfeed.php'))
+  	links = page.css('a')
+		page.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each_with_index do |node,i|
+	    node.replace(Nokogiri.make("<p>#{links[i]}<br>#{node.to_html}</p>"))
+	  end
+  	page.css('p').to_s
+	end
+
 	def date_display(date, nights = 0)
 		final_night = (date + nights.days)-1.days if !nights.nil?
 		if nights.nil?
