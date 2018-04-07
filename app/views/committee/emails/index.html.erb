@@ -3,8 +3,8 @@
 <p><%= link_to "Back to my details", members_path(@member) %></p>
 <h4>Choose a template:</h4>
 <%= link_to "Newsfeed", new_committee_email_path(:template => "newsfeed"), :"data-turbolinks" => false, class: "btn btn-primary" %>
-<%= link_to "Subs Reminder", new_committee_email_path(:template => "reminder"), :"data-turbolinks" => false,class: "btn btn-primary" %>
-<%= #link_to "Custom Email", new_committee_email_path(:template => "custom"), :"data-turbolinks" => false,class: "btn btn-primary" %>
+<%= link_to "Subs Reminder", new_committee_email_path(:template => "reminder"), :"data-turbolinks" => false, class: "btn btn-primary" %>
+
 <h4>Welcome Message:</h4>
 <%= link_to "Edit the Welcome Message", edit_committee_email_path(@welcome_email), :"data-turbolinks" => false, class: "btn btn-primary" %>
 <%= link_to "Welcome Message Info", committee_email_info_path(@welcome_email), class: "btn btn-primary" %>
