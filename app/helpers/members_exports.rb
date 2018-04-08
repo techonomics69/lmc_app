@@ -10,7 +10,11 @@ module MembersExports
 
 	def for_bmc
 		year = Date.today.year - 1
-		members = Member.joins(:membership).where(memberships: {fees_received_on: Date.new(year,10,1)..Date.today}).order(:last_name)
+#		members = Member.joins(:membership).where(memberships: {fees_received_on: Date.new(year,10,1)..Date.today}).or(memberships: {membership_type: "Honorary"}
+		members = Member.joins(:membership).where("memberships.membership_type = ? OR memberships.fees_received_on between ? and ?", "Honorary", Date.new(year,10,1) ,Date.today)
+#		members = Member.joins(:membership).where(memberships: {fees_received_on: Date.new(year,10,1)..Date.today})
+#		honorary = Member.joins(:membership).where(memberships: {membership_type: "Honorary"})
+#		all_members = members.or(honorary).order(:last_name)
 		respond_to do |format|
 			format.html
 			format.csv { send_data members.to_csv_for_bmc }

@@ -25,6 +25,8 @@ class Membership < ApplicationRecord
 	validates :subs_paid, inclusion: { in: [ true, false ] }
 	validates :committee_position, inclusion: { in: COMMITTEE_POSITIONS }, uniqueness: true, allow_nil: true
 
+	scope :honorary, -> { where(membership_type: "Honorary" ) }
+
 	private
 
 	def update_date_made_full
