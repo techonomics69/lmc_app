@@ -16,9 +16,9 @@ class MembersController < ApplicationController
   def create
   	@member = Member.new(member_params)
   	if @member.save
-      @member.send_welcome_email
   		log_in @member
   		flash[:success] = "Welcome to the Leeds Mountaineering Club!"
+      @member.send_welcome_email
   		redirect_to member_path(@member)
   	else
   		render 'new'
@@ -45,6 +45,12 @@ class MembersController < ApplicationController
     else
       redirect_to login_url
     end
+  end
+
+  def destroy
+    Member.find(params[:id]).destroy
+    flash[:success] = "Your information has been removed."
+    redirect_to root_url
   end
 
   def email_subscribe

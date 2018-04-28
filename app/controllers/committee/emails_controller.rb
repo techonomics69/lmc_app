@@ -27,6 +27,10 @@ class Committee::EmailsController < Committee::BaseController
     @template = @email
   end
 
+  def show
+    @email = Email.find(params[:id])
+  end
+
   def update
     @email = Email.find(params[:id])
     @template = @email
@@ -51,21 +55,19 @@ class Committee::EmailsController < Committee::BaseController
   end
 
   def send_email
-    sent_to = []
+    sent_to = 0
     @email = Email.find(params[:id])
     recipients
     @recipients.each do |rec|
       MemberMailer.newsfeed(rec, @email).deliver_now
-      sent_to << rec.email
+      sent_to += 1
     end
-    @email.update_columns(sent_to: sent_to.to_s, sent_on: DateTime.now)
+    @email.update_columns(sent_to: sent_to, sent_on: DateTime.now)
     flash[:success] = "Sending Emails..."
     redirect_to committee_emails_path
   end
 
-  def info
-    @email = Email.find(params[:email_id])
-  end
+
 
   def destroy
   end

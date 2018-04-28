@@ -1,16 +1,22 @@
 <% provide(:title, "Forgot password") %>
+<div class="row row-btm top-border">
+	<div class="container">
+		<h1>Forgotten password</h1>
+		<div class="row">
+		  <div class="col-md-6 membership main-box">
+		  	<% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
+		  	<h3>Enter your email address</h3>
+		    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+		      <% f.label :email %>
+		      <%= f.email_field :email, class: 'form-control' %>
+		      
 
-<h1>Forgotten password</h1>
-<div class="row">
-  <div class="col-md-6 membership main-box">
-  	<h3>Enter your email address</h3>
-    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <% f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-      
-
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
-    <p>Please allow 2-3 minutes for a forgotten password email to be received.</p>
-  </div>
+		      <%= f.submit "Submit", class: "btn sub-btn" %>
+		    <% end %>
+		    <p>Please allow 2-3 minutes for a forgotten password email to be received.</p>
+		  </div>
+		</div>
+	</div>
 </div>

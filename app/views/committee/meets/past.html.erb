@@ -1,5 +1,11 @@
 <% provide(:title, 'Meets') %>
-<h1>Meets List</h1>
-<p><%= link_to "Back to my details", members_path(@member) %></p>
-<%= link_to "View Future Meets", committee_meets_path, class: "btn btn-primary" %>
-<%= render partial: 'meets_table', locals: {meets: @past_meets} %>
+<div class="top-border"></div>
+<div class="row row-top">
+	<div class="container">
+		<h1>Past Meets</h1>
+		<p><%= link_to "Back to my details", members_path(@member) %></p>
+		<p>This serves as a record for LMC meets. Please don't edit or delete meets without good reason. If the wrong meets are being displayed on the calendar please speak to the web admin rather than changing the meet records.</p>
+		<%= link_to "View Future Meets", committee_meets_path, class: "btn member-btn" %>
+		<%= render partial: 'meets_table', locals: {meets: @past_meets} %>
+	</div>
+</div>

@@ -10,7 +10,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 	test "layout links" do
 		get root_path
 		assert_template 'static_pages/home'
-		assert_select "a[href=?]", root_path, count:2
+		assert_select "a[href=?]", root_path, count:1
 		assert_select "a[href=?]", 'http://leedsmc.org/bulletinboard/'
 		assert_select "a[href=?]", membership_path
 		assert_select "a[href=?]", '#'
@@ -23,10 +23,5 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 		get root_path
 		future_meets = Meet.where('meet_date >= ?', Date.today).all.order(:meet_date)
 		number = future_meets.count
-		assert_select 'tr', count: number+1
-		future_meets.each do |m|
-			css = m.meet_type.downcase
-			assert_select 'tr.'"#{css}"'-meet'
-		end
 	end
 end

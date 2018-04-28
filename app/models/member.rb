@@ -26,7 +26,7 @@ class Member < ApplicationRecord
 	validates :email, 			 presence: true, length: { maximum: 255 },
 													 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
 	validates :dob,        	 presence: true
-	validates :experience,   presence: true, length: { maximum: 500 }
+	validates :experience,   length: { maximum: 500 }
 	validates :accept_risks, inclusion: { in: [ true ] }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
@@ -113,7 +113,7 @@ class Member < ApplicationRecord
 	end
 
 	def send_welcome_email
-		content = Email.find_by_default_template_and_template(true, "welcome")
+		content = Email.find_by(default_template: true, template: "welcome")
 		MemberMailer.welcome_message(self, content).deliver_now
 	end
 
@@ -207,4 +207,5 @@ class Member < ApplicationRecord
 
 	PARTICIPATION_STATEMENT = "I accept that climbing and mountaineering are activities with a danger of personal injury or death. I am aware of and shall accept these risks and wish to participate in these activities voluntarily and shall be responsible for my own actions and involvement."
 	
+	PRIVACY_POLICY = "Leeds Mountaineering Club takes the privacy of our member’s data seriously and will only use your personal information for club administration purposes and for communicating with you about your membership. All of the members of the LMC Committee will be able to access your details. As a BMC-affiliated club we will provide your name, contact details and date of birth to the BMC to administer your membership of the BMC including your combined liability insurance cover. The BMC will use your data to communicate with you about your membership. The BMC will contact you to invite you to create a ‘Member Profile’ which, amongst other things, allows you to set and amend your privacy settings. More information about how the BMC uses data can be found at www.thebmc.co.uk/privacy. Leeds Mountaineering Club will never share or sell your data without your prior permission."
 end

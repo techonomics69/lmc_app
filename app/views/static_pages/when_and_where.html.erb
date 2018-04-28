@@ -1,0 +1,82 @@
+<div id="carousel-container">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag("lmc-img-1.jpg") %>
+    </div>
+  </div>
+</div>
+
+<div id="main" class="home">
+	<div class="row row-top">
+		<div class="container">
+			<h2 id="title">When and Where We Meet</h2>
+				<div class="col-md-6 col-xs-12">
+					<div class="home-main-description">
+						<h3>Summer</h3>
+						<h4>Evenings</h4>
+						<p>From April to October we meet every Tuesday evening at a local crag, if it's raining then many of us us will head to the Leeds Wall or The Depot. On the first Tuesday of every month the meet is always to Almscliff crag. After climbing we usually go to a nearby pub, for the first Tuesday at Almscliff this is dedicated a new members social and is held in the Hunters Inn near Pool in Wharfedale (unless it's raining).</p>
+
+						<h4>Weekends</h4>
+						<p>From May to October we have one or two camping meets per month to somewhere mountainous in the UK with walking, climbing and scrambling being the main activities undertaken by members. We also have regular walking and climbing meets on Saturdays or Sundays, often to the Peak District or the Yorkshire Dales. There are also occaisional hut meets during the summer months.</p>
+					</div>
+					<%= link_to "More About Joining", '#', class: "btn btn-lg btn-default user-btn" %>
+				</div>
+			
+				<div class="col-md-6 col-xs-12">
+					<div class="home-main-description">
+						<h3>Winter</h3>
+						<h4>Evenings</h4>
+						<p>From October to April we meet every Tuesday evening at the Leeds Wall. On the first Tuesday of every month we head to the Midnight Bell in Leeds from 9pm for our new members social.</p>
+
+						<h4>Weekends</h4>
+						<p>From October to May we have one or two hut meets per month to somewhere mountainous in the UK with climbing and scrambling being the main activities undertaken by members. We also have regular walking meets Saturdays or Sundays, often to the Peak District or the Yorkshire Dales.</p>
+						<p>Meet cancellations and changes (usually due to the weather) are always advertised on the relevant Bulletin Board thread.</p>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-mid"><a name="top"></a> 
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-12">
+					<h2>Upcoming Meets</h2>
+					<p>We have a <a href="#icalfeed">calendar feed</a> for most calendar apps on Apple and Android.</p>
+					<%= render partial: 'meets_calendar', locals: {meets: @future_meets} %>
+					<%= link_to "Full Calendar", calendar_path, class: "btn btn-lg btn-default user-btn" %>
+					<br>
+					<br>
+					<p><a href="#top">back to top</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row row-btm">
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-6 col-xs-12">
+					<div class="home-main-description">
+						<h2>iCalendar Feed</h2><a name="icalfeed"></a>
+						<p><a href="#top">back to top</a></p>
+						<p>For those of you who use Google Calendar (or anything else that accepts iCalendar format) you can subscribe to the meets list using the following url: </br><strong><%= ical_feed_url + ".ics"%></strong></p>
+						<p>Eg. If you use Google Calendar</p>
+						<ul>
+							<li>Open your "Calendar"</li>
+							<li>Click the "+" next to Add a friend's calendar</li>
+							<li>Click "from URL"</li>
+							<li>In the "URL of calendar" field paste <strong><%= ical_feed_url + ".ics"%></strong></li>
+						</ul>
+						<p>Calendar times in the iCal feed are set only as a guide. Refer to the Bulletin Board for accurate start and finish times.</p>
+					</div>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<div class="side-img">
+						<%= image_tag("why-join.jpg") %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

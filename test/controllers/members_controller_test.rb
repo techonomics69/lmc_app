@@ -55,6 +55,16 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  test "should delete user" do
+    log_in_as(@other_member)
+    get edit_member_path(@member)
+    assert_difference 'Member.count', -1 do
+      delete member_path(@other_member)
+    end
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
+
   test "should not allow the committee_position attribute to be edited via the web" do
     log_in_as(@other_member)
     assert_not @other_member.membership.committee_position?

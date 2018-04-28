@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   get '/membership', to: 'static_pages#membership'
   get '/application', to: 'members#new'
   post '/application', to: 'members#create'
+  get '/when_and_where', to: 'static_pages#when_and_where'
   get '/calendar', to: 'static_pages#calendar'
   get '/ical_feed', to: 'static_pages#ical_feed'
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/gdpr', to: 'static_pages#gdpr'
+  get '/privacy_policy', to: 'static_pages#privacy_policy'
   get '/pay', to: 'static_pages#pay'
 
   resources :password_resets, only: [:new, :create, :edit, :update]
@@ -32,14 +33,9 @@ Rails.application.routes.draw do
   end
 
   namespace :committee do
-    resources :emails do
-      get 'info', to: 'emails#info'
-    end
-
-    get '/mailer(/email_preview(/:id(.:format)))', to: 'emails#email_preview', as: "email_preview"
-    get '/mailer(/send_email(/:id(.:format)))', to: 'emails#send_email', as: 'send_email'
-
-
+    resources :emails
+    get '/mailer/email_preview(/:id(.:format))', to: 'emails#email_preview', as: "email_preview"
+    get '/mailer/send_email(/:id(.:format))', to: 'emails#send_email', as: 'send_email'
     get 'past_meets', to: 'meets#past'      
     resources :meets
     resources :members do
@@ -52,7 +48,6 @@ Rails.application.routes.draw do
         get :export_bmc, to: 'members#for_bmc'
         post :export_checked, to: 'members#checked'
         get :download_file, to: 'members#download_file'
-
       end
     end
   end

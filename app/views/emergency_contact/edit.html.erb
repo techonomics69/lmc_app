@@ -1,61 +1,58 @@
 <% provide(:title, "Change Your Details") %>
 <% provide(:path, emergency_contact_member_path(@member)) %>
-<h1>Add/Update Emergency Contact</h1>
-<p><%= link_to "Back to your details (without saving)", member_path(@member) %></p>
-<div class="main-box">
-	<%= form_for(@member, url: yield(:path)) do |f| %>
-		<%= f.fields_for :emergency_contact do |m| %>
-			<div class="row">	
-				<div class="col-md-4">
+<div class="top-border"></div>
+<div class="row-top">
+	<div class="row">	
+		<div class="col-md-8 col col-md-offset-2 no-padding">
+			<h1>Add/Update Emergency Contact</h1>
+			<p><%= link_to "Back to your details (without saving)", member_path(@member) %></p>
+		</div>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col col-md-offset-2">
+			<%= form_for(@member, url: yield(:path)) do |f| %>
+				<%= f.fields_for :emergency_contact do |m| %>
 					<h3>Personal Details</h3>
 					<%= render 'shared/error_messages' %>
 					<%= m.label :name %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :name) %></p>
 					<%= m.text_field :name, class: 'form-control' %>
-
 					<%= m.label :primary_phone %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :primary_phone) %></p>
 					<%= m.text_field :primary_phone, class: 'form-control' %>	
-
 					<%= m.label :secondary_phone %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :secondary_phone) %></p>
-					<%= m.text_field :secondary_phone, class: 'form-control' %>	
-
+					<%= m.text_field :secondary_phone, class: 'form-control' %>
 					<%= m.label :relationship %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :relationship) %></p>
 					<%= m.text_field :relationship, class: 'form-control' %>	
-				</div>
-
-				<div class="col-md-4">
-					<h3>Address</h3>	
+		</div>
+		<div class="col-md-4">
+			<h3>Address</h3>	
 					<%= m.label :address_1 %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :address_1) %></p>
 					<%= m.text_field :address_1, class: 'form-control' %>
-
 					<%= m.label :address_2 %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :address_2) %></p>
 					<%= m.text_field :address_2, class: 'form-control' %>
-
 					<%= m.label :address_3 %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :address_3) %></p>
 					<%= m.text_field :address_3, class: 'form-control' %>					
-
 					<%= m.label :town %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :town) %></p>
 					<%= m.text_field :town, class: 'form-control' %>
-
 					<%= m.label :postcode %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :postcode) %></p>
 					<%= m.text_field :postcode, class: 'form-control' %>
-
-					<%= m.label :country %>
+					<%= m.label :country %><br>
 					<%= m.collection_select :country, EmergencyContact::COUNTRIES, :to_s, :to_s %>
-				</div>
+		</div>
 
-				<div class="col-md-6 col-md-offset-1" style="margin-top: 20px;">
-					<%= m.submit "Add/Update Emergency Contact", class: "btn btn-primary btn-lg full-width" %>
-				</div>
-			</div>
+		<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
+			<%= m.submit "Add/Update Emergency Contact", class: "btn btn-lg user-btn full-width" %>
+		</div>
+			
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 </div>

@@ -30,7 +30,7 @@ module ApplicationHelper
 		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
 		icon = sort_direction == "asc" ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"
 		icon = column == sort_column ? icon : "glyphicon glyphicon-none"
-		link_to "#{title} <span class='#{icon}'></span>".html_safe, "#{link_path}?direction=#{direction}&sort=#{column}", method: :get
+		link_to "#{title} <span class='#{icon}'</span> ".html_safe, "#{link_path}?direction=#{direction}&sort=#{column}", method: :get
 	end
 
   def store_sort

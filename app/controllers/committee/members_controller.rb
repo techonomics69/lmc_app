@@ -11,7 +11,7 @@ class Committee::MembersController < Committee::BaseController
 
 	def show
 		remember_selected
-		@member = Member.find(params[:id])
+		#@member = Member.find(params[:id])
 	end
 
 	def edit

@@ -1,64 +1,71 @@
 <% provide(:title, "Member Details") %>
-<h1>Information for <i><b><%=@member.title %> <%=@member.first_name %> <%=@member.last_name %></i></b></h1>
-<%= link_to "Back to database", saved_sort_or(committee_members_path) %>
-
-<div class="row" >
-	<div class="col-md-3">
-		<h3>Address</h3>
-		<p>
-			<%=@member.title %> <%=@member.first_name %> <%=@member.last_name %><br>
-			<%= @member.address_1 %><br>
-			<% if @member.address_2.present? %><%= @member.address_2 %><br><% end %>
-			<% if @member.address_3.present? %><%= @member.address_3 %><br><% end %>
-			<%= @member.town %><br>
-			<%= @member.county %><br>
-			<%= @member.postcode %><br>
-		</p>
-		<p>
-			<%= @member.email %><br>
-			<% if @member.home_phone.present? %><%= @member.home_phone %><br><% end %>
-			<% if @member.mob_phone.present? %><%= @member.mob_phone %><% end %>
-		</p>
+<div class="top-border"></div>
+<div class="row-top">
+	<div class="row">	
+		<div class="col-md-8 col col-md-offset-2">
+			<h1>Information for <i><b><%=@member.title %> <%=@member.first_name %> <%=@member.last_name %></i></b></h1>
+			<p><%= link_to "Back to database", committee_members_path %></p>
+		</div>
 	</div>
+	<div class="row">	
+		<div class="col-md-3 col-md-offset-2">
+			<h3>Address</h3>
+			<p>
+				<%=@member.title %> <%=@member.first_name %> <%=@member.last_name %><br>
+				<%= @member.address_1 %><br>
+				<% if @member.address_2.present? %><%= @member.address_2 %><br><% end %>
+				<% if @member.address_3.present? %><%= @member.address_3 %><br><% end %>
+				<%= @member.town %><br>
+				<%= @member.county %><br>
+				<%= @member.postcode %><br>
+			</p>
+			<p>
+				<%= @member.email %><br>
+				<% if @member.home_phone.present? %><%= @member.home_phone %><br><% end %>
+				<% if @member.mob_phone.present? %><%= @member.mob_phone %><% end %>
+			</p>
+		</div>
+		<div class="col-md-3">
+			<h3>Emergency Contact</h3>
+			<p>Relationship: 
+				<%= @member.emergency_contact.relationship %></br>
+				<%= @member.emergency_contact.name %><br>
+				<%= @member.emergency_contact.primary_phone %></br>
+				<% if @member.emergency_contact.secondary_phone %><%= @member.emergency_contact.secondary_phone %><% end %>
+			</p>
+			<p>
+				<%= @member.emergency_contact.address_1 %></br>
+				<% if @member.emergency_contact.address_2.present? %><%= @member.emergency_contact.address_2 %><br><% end %>
+				<% if @member.emergency_contact.address_3.present? %><%= @member.emergency_contact.address_3 %><br><% end %>
+				<%= @member.emergency_contact.town %></br>
+				<%= @member.emergency_contact.postcode %></br>
+			</p>
+		</div>
+		<div class="col-md-3">
+			<h3>Membership</h3>
+			<p>
+				<% if @member.membership.committee_position.present? %><b>Committee Role:</b><br><%= @member.membership.committee_position %><br><% end %>
+			</p>
+				
+			<p><b><%= @member.membership.membership_type %> Member
+				<% if @member.membership.made_full_member? %>since:</b><br>
+				<%= @member.membership.made_full_member.strftime("%d/%m/%Y") %><% end %>
+			</p>			
+							
+			<% if @member.membership.welcome_pack_sent %>
+				<p><b>Welcome pack sent?</b><br> Yes</p>
+			<% end %>
 
-	<div class="col-md-3">
-		<h3>Emergency Contact</h3>
-		<p>Relationship: 
-			<%= @member.emergency_contact.relationship %></br>
-			<%= @member.emergency_contact.name %><br>
-			<%= @member.emergency_contact.primary_phone %></br>
-			<% if @member.emergency_contact.secondary_phone %><%= @member.emergency_contact.secondary_phone %><% end %>
-		</p>
-		<p>
-			<%= @member.emergency_contact.address_1 %></br>
-			<% if @member.emergency_contact.address_2.present? %><%= @member.emergency_contact.address_2 %><br><% end %>
-			<% if @member.emergency_contact.address_3.present? %><%= @member.emergency_contact.address_3 %><br><% end %>
-			<%= @member.emergency_contact.town %></br>
-			<%= @member.emergency_contact.postcode %></br>
-		</p>
-	</div>
-	<div class="col-md-3">
-		<h3>Membership</h3>
-		<p><% if @member.membership.committee_position.present? %><b>Committee Role: <%= @member.membership.committee_position %></b><br><% end %>
-			<b><%= @member.membership.membership_type %> Member
-				<% if @member.membership.made_full_member? %>
-					since <%= @member.membership.made_full_member.strftime("%d/%m/%Y") %>
-				<% end %></b></p>
-					
-				<% if @member.membership.welcome_pack_sent %>
-					<p><b>Welcome pack sent?</b><br> Yes</p>
-				<% end %>
-
-				<p><b>Paid for current year?</b><br> 
-				<% if @member.membership.subs_paid %>
-					Yes. Fees received on: <%= @member.membership.fees_received_on.strftime("%d/%m/%Y") %>
+			<p><b>Paid for current year?</b><br> 
+				<% if @member.membership.subs_paid %>Yes. Fees received on: 
+				<%= @member.membership.fees_received_on.strftime("%d/%m/%Y") %>
 				<% else %>
 					No
 				<% end %>
-				</p>
-				
-				<% if @member.membership.bmc_number %>
-					<p><b>BMC number</b><br> <%= @member.membership.bmc_number %></p>
-				<% end %>
+			</p>
+			<% if @member.membership.bmc_number %>
+				<p><b>BMC number</b><br> <%= @member.membership.bmc_number %></p>
+			<% end %>
+		</div>
 	</div>
 </div>

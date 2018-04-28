@@ -1,36 +1,28 @@
 <% provide(:title, "Update Multiple Members") %>
 <% provide(:path, update_multiple_committee_members_path) %>
 <% provide(:button_text, "Update Members") %>
-
-<h1>Update Multiple Members</h1>
-<p><%= link_to "Back to database (without saving)", saved_sort_or(committee_members_path) %></p>
-<%=form_for(@members_to_edit, url: yield(:path)) do |ff|%>
-	<div class="row">
-		<div class="col-md-3" >
-			<%= fields_for :membership do |f| %>
-				<p>
-					<%= f.label :membership_type %>
-					<br>
-					<%= f.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
-				</p>
-				<p>
-					<%= f.label :welcome_pack_sent, 'Welcome pack sent' %><b>?</b>
-					<br>
-					<%= f.select :welcome_pack_sent, [["Yes", true], ["No", false]], {include_blank: true}, {class: 'form-control'} %>
-				</p>
-				<p>
-					<%= f.label :fees_received_on %>
-					<br>
-					<%= f.date_field :fees_received_on, class: 'form-control' %>
-				</p>
-				<% end %>
-			<%= ff.submit "Update Members", class: "btn btn-primary btn-lg"%>
+<div class="top-border"></div>
+<div class="row-top">
+	<div class="row">	
+		<div class="col-md-4 col col-md-offset-2 no-padding">
+			<h1>Update Multiple Members</h1>
+			<p><%= link_to "Back to database (without saving)", saved_sort_or(committee_members_path) %></p>
 		</div>
-
-		<div class="col-md-6">
-			<p>
-				<b>You are updating the following <% unless @no_of_members_to_edit < 2 %><%= @no_of_members_to_edit %><% end %> <%= "member".pluralize(@no_of_members_to_edit) %>:</b>
-			</p>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col col-md-offset-2">
+			<%=form_for(@members_to_edit, url: yield(:path)) do |ff|%>
+				<%= fields_for :membership do |f| %>
+					<%= f.label :membership_type %>
+					<%= f.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
+					<%= f.label :welcome_pack_sent, 'Welcome pack sent' %><b>?</b>
+					<%= f.select :welcome_pack_sent, [["Yes", true], ["No", false]], {include_blank: true}, {class: 'form-control'} %>
+					<%= f.label :fees_received_on %>
+					<%= f.date_field :fees_received_on, class: 'form-control' %>
+				<% end %>
+		</div>
+		<div class="col-md-4">
+			<p><b>You are updating the following <% unless @no_of_members_to_edit < 2 %><%= @no_of_members_to_edit %><% end %> <%= "member".pluralize(@no_of_members_to_edit) %>:</b></p>
 			<ul>
 				<% @members_to_edit.each do |m| %>
 					<%= hidden_field_tag 'member_ids[]', m.id %>
@@ -39,4 +31,11 @@
 			</ul>
 		</div>
 	</div>
-<% end %>
+	<div class="row">
+		<div class="col-md-4 col col-md-offset-2" style="margin-top: 20px;">
+			<%= ff.submit "Update Members", class: "btn btn-lg user-btn full-width"%>
+		</div>
+	</div>
+			<% end %>
+	</div>
+</div>			

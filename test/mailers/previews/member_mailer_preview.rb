@@ -11,7 +11,8 @@ class MemberMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/member_mailer/welcome_message
   def welcome_message
     member = Member.first
-    MemberMailer.welcome_message(member)
+    content = Email.first
+    MemberMailer.welcome_message(member, content)
   end
 
   # Preview this email at http://localhost:3000/rails/mailers/member_mailer/newsfeed

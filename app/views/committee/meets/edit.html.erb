@@ -1,6 +1,12 @@
 <% provide(:title, 'Edit Meet') %>
 <% provide(:path, committee_meet_path) %>
 <% provide(:button_text, 'Update Meet') %>
-<h1>Edit Meet</h1>
-<p><%= link_to "Back to meets list", committee_meets_path %></p>
+<div class="top-border"></div>
+<div class="row-top">
+	<div class="row">	
+		<div class="col-md-8 col col-md-offset-2 no-padding">
+		<h1>Edit Meet</h1>
+		<p><%= link_to "Back to meets list", committee_meets_path %></p>
+	</div>
+</div>
 <%= render 'form' %>

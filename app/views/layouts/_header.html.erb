@@ -1,27 +1,24 @@
-<div class="container" >
-  <p id="logo"><%= link_to (image_tag('LMC_logo.gif'))+"Leeds Mountaineering Club", root_path, id: "logo" %></p>
-  <div id="header"></div>
-</div>
-
-<nav class="navbar navbar-default">
-  <div class="container">
+<div class="container-fluid">
+  <nav class="navbar navbar-default">
     <div class="navbar-header">
+
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-
+      <ul class="nav navbar-nav navbar-left">
+        <li id="logo"><%= image_tag('LMC_logo.gif')+"Leeds Mountaineering Club" %></li>
+      </ul>
+      
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
+      <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Bulletin Board", 'http://leedsmc.org/bulletinboard/' %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Membership <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -30,44 +27,37 @@
               <% else %>
             <li><%= link_to "Join or Log In", membership_path %></li>
               <% end %>
+            <li><%= link_to "Why Join?", '#' %></li>
             <li><%= link_to "Pay Your Subs", pay_path %></li>
             <li><%= link_to "Members Handbook", '#' %></li>
           </ul>
         </li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Meets <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><%= link_to "When and Where we Meet", '#' %></li>
-            <li><%= link_to "Booking on a Meet", '#' %></li>
+            <li><%= link_to "When and Where we Meet", when_and_where_path %></li>
             <li><%= link_to "Meets Calendar", calendar_path %></li>
+            <li><%= link_to "Booking on a Meet", '#' %></li>
             <li><%= link_to "Galleries", '#' %></li>
           </ul>
         </li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
-          <a href='#' class="dropdown-toggle" data-toggle="dropdown">About Us <b class="caret"></b></a>
+          <a href='#' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">About<b class="caret"></b></a>
           <ul class="dropdown-menu">
+            <li><%= link_to "How Do I?", '#' %></li>
             <li><%= link_to "The Committee", '#' %></li>
-            <li><%= link_to "Gear Shopping", '#' %></li>
             <li><%= link_to "Club History", '#' %></li>
             <li><%= link_to "Contact Us", '#' %></li>
             <li><%= link_to "Links", '#' %></li>
+            <li><%= link_to "Privacy Policy", '#' %></li>
           </ul>
         </li>
-      </ul>
-    
-      <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
-		</div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+</div>

@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
 
   def home
   	@meets = next_meets
-    @bb_feed = bb_feed
+    @bb_feed = bb_feed if @bb_feed.nil?
   end
 
   def help
@@ -17,8 +17,13 @@ class StaticPagesController < ApplicationController
   def membership
   end
 
+  def when_and_where
+  	@future_meets = all_future_meets
+  end
+
   def calendar
-  	@meets = all_future_meets
+    @future_meets = all_future_meets
+    @past_meets = past_meets
   end
 
   def pay

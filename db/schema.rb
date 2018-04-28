@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180302131221) do
     t.string "template"
     t.string "subject"
     t.string "body"
-    t.string "sent_to"
+    t.integer "sent_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "default_template", default: false

@@ -18,7 +18,7 @@ class MemberMailer < ApplicationMailer
   def welcome_message(member, content)
     @member = member
     @email = content
-    mail to: member.email, subject: "Your Leeds Mountaineering Club Application"
+    mail to: member.email, subject: "#{content.subject}"
   end
 
   def new_application

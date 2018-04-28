@@ -22,6 +22,7 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 																					 email: "testuser@test.com",
 																					 home_phone: "12345678901",
 																					 mob_phone: "98765432341",
+																					 receive_emails: true,
 																					 accept_risks: true,
 																					 password: "password",
 																					 password_confirmation: "password" } }

@@ -136,12 +136,6 @@ class MemberTest < ActiveSupport::TestCase
 		assert_not @member.valid?
 	end
 
-#experience
-	test "experence should be present" do
-		@member.experience = "    "
-		assert_not @member.valid?
-	end
-
 	test "experience should not be too long" do
 		@member.experience = "a"*501
 		assert_not @member.valid?

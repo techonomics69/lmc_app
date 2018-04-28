@@ -1,6 +1,14 @@
 <% provide(:title, 'Meets') %>
-<h1>Meets List</h1>
-<p><%= link_to "Back to my details", members_path(@member) %></p>
-<%= link_to "Add New Meet", new_committee_meet_path, class: "btn btn-primary" %>
-<%= link_to "View Past Meets", committee_past_meets_path, class: "btn btn-primary" %>
-<%= render partial: 'meets_table', locals: {meets: @future_meets} %>
+<div class="top-border"></div>
+<div class="row row-top">
+	<div class="container">
+		<h1>Meets List</h1>
+		<p><%= link_to "Back to my details", members_path(@member) %></p>
+		<%= link_to "Add New Meet", new_committee_meet_path, class: "btn member-btn" %>
+		<%= link_to "View Past Meets", committee_past_meets_path, class: "btn member-btn" %>
+		<% flash.each do |message_type, message| %>
+		 	<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+		<% end %>
+		<%= render partial: 'meets_table', locals: {meets: @future_meets} %>
+	</div>
+</div>

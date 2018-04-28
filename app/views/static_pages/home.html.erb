@@ -1,38 +1,142 @@
-<div class ="center">
-	
-	<div class="row">
-		<div class="col-md-9">
-			<div class="home">
-				<h2>Welcome to the Leeds Mountaineering Club</h2>
-				<p>The LMC is open to anyone who enjoys the mountains for walking, climbing, running, mountain biking, skiing or whatever other adventurous activities you can think of!</p>
-				<p>We meet every fortnight for the weekend somewhere mountainous in the uk (and occasionally abroad). The climbers amongst us meet every week at Leeds Wall (Tuesday) or CityBloc or The Depot (Thursday) on a regular basis over winter or when it's raining.</p>
-				<p>We have a new members Tuesday social meeting once a month, which is a great way to meet a few members and find out a bit more about the club before signing up. Details on when and where we'll be are below, though it's best to drop us an email to double check there aren't any last minute changes.</p>
-				<p>From mid September to mid April we meet on the first Tuesday of every month at The Midnight Bell (here on google maps) from 9:00pm to have a natter, catch up on the gossip and make plans. ( And a lot of us climb at Leeds Wall beforehand if you fancy.)</p>
-				<p>So come along and say hello!</p>
-				<p>There are no prerequisites in terms of ability for membership and amongst the members we have a wide range of ability, experience and age. As long as you act responsibly regarding safety you can enjoy your chosen activity at the level you want.</p>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="side-box">
-				<h4>Latest bulletin board posts:</h4>
-				<%= sanitize @bb_feed %>
-			</div>
-		</div>
-		<div class="col-md-3 home">
-			<div class="home side-box">
-				<h4>Recent Facebook posts:</h4>
-				
-				<p>FB Feed</p>
+<div id="carousel-container">
+<!-- Carousel -->
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag("lmc-img-1.jpg") %>
+    </div>
+
+    <div class="item">
+      <%= image_tag("lmc-img-2.jpg") %>
+    </div>
+
+    <div class="item">
+      <%= image_tag("lmc-img-3.jpg") %>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+	  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
+</div>
+<!-- End Carousel -->
+
+<div id="main" class="home">
+	<div class="row row-top">
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-7 col-xs-12">
+					<div class="home-main-description">
+					<h2>Leeds Mountaineering Club</h2>
+						<p>The Leeds Mountaineering Club (LMC) is an inclusive club for 
+						anyone who enjoys the mountains for walking, climbing, running, 
+						mountain biking, skiing or any other adventurous activity you can think of.</p>
+
+						<p>The LMC welcomes all abilities, from complete novice hikers, 
+						to highly experienced climbers. Our members come from all walks of life, with 
+						varying levels of experience in the mountains.</p>
+
+						<p>Hut or camping meets in mountainous regions of the UK (and occasionally 
+						abroad) happen every other weekend. They are great, social events where hikers, 
+						climbers, mountain bikers and the like can join up and enjoy the great outdoors
+						together.</p>
+
+						<p>There is an active group of climbers in the club who meet every Tuesday at The 
+						Leeds Wall (winter/rainy days) or every Thursday at The Depot (all year round). When the summer months come along, there is a weekly outdoor climbing meet 
+						at a chosen climbing spot on Tuesday evenings and includes a pub visit afterwards
+						- locations can be found on the meets calendar.</p>
+
+						<p>One Tuesday a month is dedicated to new members, and is a great way to meet 
+						people and find out a bit more about the club before joining.</p>
+					</div>
+					<%= link_to "Members Log In", login_path, class: "btn btn-lg btn-default user-btn" %>
+				</div>
+			
+				<div class="col-md-5 col-xs-12">
+					<div class="side-box">
+						<h4>Latest bulletin board posts:</h4>
+						<%= sanitize @bb_feed %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class = "row" >
-		<div class="col-md-12">
+	<div class="row row-mid">
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-6 col-xs-12">
+					<div class="side-img">
+						<%= image_tag("why-join.jpg") %>
+					</div>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<div class="home-main-description">
+						<h2>Why Join the LMC?</h2>
+						<p>Joining the LMC is easy and comes with a whole bunch of benefits:</p>
+						<ul>
+							<li>Discounts at a number of UK outdoor equipment shops</li>
+							<li>Frequent trips and meets - UK and International</li>
+							<li>Meet like-minded people who enjoy the outdoors</li>
+							<li>Access to a large network of affliated club huts at a reasonable cost, in fantastic locations</li>
+							<li>BMC affiliate membership</li>
+							<li>Something for everyone - hiking, climbing and more.</li>
+						</ul>
+						<p>There are no prerequisites in terms of ability for membership, we only ask that all members act responsibly regarding safety so you can enjoy your chosen activity at the level you want.</p>
+					</div>
+					<%= link_to "More About Joining", '#', class: "btn btn-lg btn-default user-btn" %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-btm">
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-6 col-xs-12">
+					<div class="home-main-description">
+						<h2>Meets</h2>
+						<p>During the Summer months, there are Tuesday outdoor climbing meets at local crags and weekend camping meets in a variety of UK locations. During the winter months there are hut meets in affiliate club huts.<!-- Take a look at what members got up to on some of our past meets <b><%= link_to "here", '#' %></b>.--></p>
+						<p>In addition to this, there are a variety of day walks and day climbs 
+						throughout the year. The LMC also puts on talks and social events 
+						which members are free to come along to and are very popular.</p>
+						<p>You can find more information about our future meets and social 
+						events by clicking below or visiting the bulletin board for more info.</p>
+					</div>
+					<%= link_to "When and Where we Meet", when_and_where_path, class: "btn btn-lg btn-default user-btn" %>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<div class="mini-meets-cal">
+						<h2>Upcoming Meets</h2>
+						<div class="table-responsive">
+							<table class="table table-condensed" id="calendar">
+								<tbody>
+									<% @meets.first(4).each do |m| %>
+										<tr>
+											<td><%= date_display(m.meet_date, m.number_of_nights) %></td>
+											<td id="col-two"><%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>Meet Leader: <% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %><% else %>TBC<% end %></td>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
 
-				<h2>Meets Calendar</h2>
-				<%= render partial: 'meets_calendar', locals: {meets: @meets} %>
-				<p class="lead text-center"><%= link_to "View full calendar", calendar_path %></p>
-
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

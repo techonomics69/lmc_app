@@ -1,4 +1,5 @@
-<table class="table table-hover">
+<div class="table-responsive">
+	<table class="table table-hover">
 		<thead>
 			<th>Subject</th>
 			<th>Template</th>
@@ -11,7 +12,6 @@
 		</thead>
 
 		<tbody class="table-striped narrow">
-
 			<% @emails.take(10).each do |e| %>
 			<tr>
 				<td><%= e.subject %></td>
@@ -21,8 +21,9 @@
 				<td><% unless e.sent_on.nil? %><%= e.sent_on.strftime("%d/%m/%Y at %H:%M") %><% end %></td>
 				<td><%= link_to "Preview", committee_email_preview_path(e), :target => '_blank' %></td>
 				<td><%= link_to "Edit", edit_committee_email_path(e), :"data-turbolinks" => false %></td>
-				<td><%= link_to "Info", committee_email_info_path(e) %></td>
+				<td><%= link_to "Info", committee_email_path(e) %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
+</div>

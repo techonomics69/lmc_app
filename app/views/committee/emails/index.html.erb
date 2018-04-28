@@ -1,12 +1,22 @@
 <% provide(:title, 'Email Members') %>
-<h1>Email Members</h1>
-<p><%= link_to "Back to my details", members_path(@member) %></p>
-<h4>Choose a template:</h4>
-<%= link_to "Newsfeed", new_committee_email_path(:template => "newsfeed"), :"data-turbolinks" => false, class: "btn btn-primary" %>
-<%= link_to "Subs Reminder", new_committee_email_path(:template => "reminder"), :"data-turbolinks" => false, class: "btn btn-primary" %>
+<div class="top-border"></div>
+<div class="row row-top">
+	<div class="container">
+		<h1>Email Members</h1>
+		<p><%= link_to "Back to my details", members_path(@member) %></p>
+		<% flash.each do |message_type, message| %>
+	    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+	 	<% end %>
+		<h4>Create New Email - choose a template:</h4>
+		<p>The Newsfeed is sent to all members. The subs reminder is sent to all members who are not marked as paid for the current year on the database. Neither template is sent to members who have opted out of receiving emails from the club.</p>
+		<%= link_to "Newsfeed", new_committee_email_path(:template => "newsfeed"), :"data-turbolinks" => false, class: "btn member-btn" %>
+		<%= link_to "Subs Reminder", new_committee_email_path(:template => "reminder"), :"data-turbolinks" => false, class: "btn member-btn" %>
 
-<h4>Welcome Message:</h4>
-<%= link_to "Edit the Welcome Message", edit_committee_email_path(@welcome_email), :"data-turbolinks" => false, class: "btn btn-primary" %>
-<%= link_to "Welcome Message Info", committee_email_info_path(@welcome_email), class: "btn btn-primary" %>
-<h4>Previous Emails:</h4>
-<%= render partial: 'emails_table' %>
+		<h4>Welcome Message:</h4>
+		<p>The welcome message gets automatically sent when the application form is completed.</p>
+		<%= link_to "Edit the Welcome Message", edit_committee_email_path(@welcome_email), :"data-turbolinks" => false, class: "btn member-btn" %>
+		<%= link_to "Welcome Message Info", committee_email_path(@welcome_email), class: "btn member-btn" %>
+		<h4>Previous Emails:</h4>
+		<%= render partial: 'emails_table' %>
+	</div>
+</div>

@@ -1,32 +1,29 @@
 <% provide(:title, 'Edit Email') %>
 <% provide(:path, committee_email_path) %>
 <%= tinymce %>
-<h1>Edit Email</h1>
-<p><%= link_to "Back to Email Members (without saving)", committee_emails_path %></p>
-<div class="main-box">
-	<h3>Your Email</h3>
-	<%= form_for(@email, url: yield(:path)) do |f| %>
-		<div class="row">
-			<div class="col-md-12">
+<div class="top-border"></div>
+<div class="row row-top">
+	<div class="container">
+		<h1>Edit Email</h1>
+		<p><%= link_to "Back to Email Members (without saving)", committee_emails_path %></p>
+		<h3>Your Email</h3>
+		<%= form_for(@email, url: yield(:path)) do |f| %>
+			<%= f.label :subject %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@email, :subject) %></p>
+			<%= f.text_field :subject, :value => @template.subject, class: 'form-control' %>
 
-				<%= f.label :subject %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@email, :subject) %></p>
-				<%= f.text_field :subject, :value => @template.subject, class: 'form-control' %>
-
-				<%= f.label :body %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@email, :body) %></p>
-				<%= f.text_area :body, :value => @template.body, :class => "tinymce", :rows => 20, :cols => 120 %>
-
-				<%= f.submit "Save", class: "btn btn-primary btn-lg" %>
-				
-				<%= link_to "Preview", committee_email_preview_path(@email), :target => '_blank', class: "btn btn-primary btn-lg" %>
-				<% unless no_send %>
-					<%= link_to "Send", committee_send_email_path(@email), class: "btn btn-primary btn-lg pull-right" %>
-					<% else %>
-					<p>This email is sent automatically when an application form is completed. It cannot be sent manually.</p>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
+			<%= f.label :body %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@email, :body) %></p>
+			<%= f.text_area :body, :value => @template.body, :class => "tinymce", :rows => 20, :cols => 120 %>
+			<%= f.submit "Save", class: "btn member-btn btn-lg form-btn" %>
+					
+			<%= link_to "Preview", committee_email_preview_path(@email), :target => '_blank', class: "btn member-btn btn-lg form-btn" %>
+			<% unless no_send %>
+				<%= link_to "Send", committee_send_email_path(@email), class: "btn member-btn btn-lg form-btn pull-right" %>
+			<% else %>
+				<p>This email is sent automatically when an application form is completed. It cannot be sent manually.</p>
+			<% end %>
+		<% end %>	
+	</div>
 </div>
 

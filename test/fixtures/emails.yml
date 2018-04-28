@@ -1,1 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+welcome_message:
+  member: luke
+  template: welcome
+  subject: Welcome to the Leeds Mountaineering Club 
+  body: This is the welcome message.
+  default_template: true

@@ -1,4 +1,5 @@
-<table class="table table-hover">
+<div class="table-responsive">
+	<table class="table table-hover">
 		<thead>
 			<th>Date</th>
 			<th>Nights</th>
@@ -13,8 +14,7 @@
 			<th></th>
 		</thead>
 
-		<tbody class="table-striped narrow">
-
+		<tbody>
 			<% meets.each do |m| %>
 			<tr>
 				<td><%= m.meet_date.strftime("%d/%m/%Y") %></td>
@@ -32,3 +32,4 @@
 			<% end %>
 		</tbody>
 	</table>
+</div>

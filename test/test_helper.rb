@@ -4,7 +4,7 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :members, :memberships, :meets
+  fixtures :members, :memberships, :meets, :emails, :emergency_contacts
   include ApplicationHelper
   
   def is_logged_in?
@@ -17,7 +17,7 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-  fixtures :members, :memberships
+  fixtures :members, :memberships, :meets, :emails, :emergency_contacts
 	def log_in_as(member, password: 'password')
 		post login_path, params: { session: { email: member.email,
 																					password: password, } }

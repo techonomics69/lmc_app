@@ -1,36 +1,44 @@
 <% provide(:title, @member.first_name + " " + @member.last_name) %>
-<h1>Assign Committee Roles</h1>
-<p><%= link_to "Back to my details", members_path(@member) %></p>
+<div class="top-border"></div>
+<div class="row row-top">
+	<div class="container">
+		<h1>Assign Committee Roles</h1>
+		<p><%= link_to "Back to my details", members_path(@member) %></p>
+		<% flash.each do |message_type, message| %>
+			  <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+		<% end %>
 
-	<table class="table table-hover table-narrow">
-		<thead>
-			<th><%= sort_link "first_name", "First Name", edit_role_committee_members_path %></th>
-			<th><%= sort_link "last_name", "Last Name", edit_role_committee_members_path %></th>
-			<th><%= sort_link "address_1", "Address", edit_role_committee_members_path %></th>
-			<th><%= sort_link "email", "Email", edit_role_committee_members_path %></th>
-			<th><%= sort_link "committee_position", "Current Role", edit_role_committee_members_path %></th>
-			<th>New Role</th>
-			<th></th>
-		</thead>
+		<table class="table table-hover table-narrow">
+			<thead>
+				<th><%= sort_link "first_name", "First Name", edit_role_committee_members_path %></th>
+				<th><%= sort_link "last_name", "Last Name", edit_role_committee_members_path %></th>
+				<th><%= sort_link "address_1", "Address", edit_role_committee_members_path %></th>
+				<th><%= sort_link "email", "Email", edit_role_committee_members_path %></th>
+				<th><%= sort_link "committee_position", "Current Role", edit_role_committee_members_path %></th>
+				<th>New Role</th>
+				<th></th>
+			</thead>
 
-		<tbody class="table-striped narrow">
-			<% @members.each do |m| %>
-			<tr>
-				<td><%= m.first_name %></td>
-				<td><%= m.last_name %></td>
-				<td><%= m.address_1 %></td>
-				<td><%= m.email %></td>
-				<td><%= m.membership.committee_position %></td>
-				<%= form_for(m, url: update_role_committee_members_path) do |ff| %>
-					<%= fields_for :membership do |f| %>
-						<%= hidden_field_tag 'id', m.id %>
-						<td>
-						<%= f.collection_select :committee_position, Membership::COMMITTEE_POSITIONS, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
-						</td>
-					<% end %>
-						<td><%= ff.submit "Assign Role", id: "table-btn", class: "btn btn-primary" %></td>
+			<tbody class="table-striped narrow">
+				<% @members.each do |m| %>
+					<tr>
+						<td><%= m.first_name %></td>
+						<td><%= m.last_name %></td>
+						<td><%= m.address_1 %></td>
+						<td><%= m.email %></td>
+						<td><%= m.membership.committee_position %></td>
+						<%= form_for(m, url: update_role_committee_members_path) do |ff| %>
+							<%= fields_for :membership do |f| %>
+								<%= hidden_field_tag 'id', m.id %>
+								<td>
+								<%= f.collection_select :committee_position, Membership::COMMITTEE_POSITIONS, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
+								</td>
+							<% end %>
+								<td><%= ff.submit "Assign Role", id: "table-btn", class: "btn member-btn" %></td>
+						<% end %>
+					</tr>
 				<% end %>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
+</div>

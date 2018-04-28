@@ -1,59 +1,69 @@
 <% provide(:title, 'Membership Database') %>
-<h1>Membership Database</h1>
-<p><%= link_to "Back to my details", members_path(@member) %></p>
-<%= form_tag(multiple_committee_members_path, multipart: true)  do %>
-<%= button_tag "Edit Selected Members", name: 'route_to[edit]', class: "btn btn-primary" %>	
-	<div class="btn-group">
-		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export <span class="caret"></span></button>
-		<ul class="dropdown-menu">
-			<li id="dd-btn"><%= link_to "Entire Database", export_all_committee_members_path(format: "csv"), class: "dd-btn btn btn-default " %></li>
-			<li><%= link_to "For BMC - all paid members", export_bmc_committee_members_path(format: "csv"), class: "dd-btn btn btn-default " %></li>
-		</ul>
-	</div>
-	<div class="btn-group">
-		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export Selected <span class="caret"></span></button>
-		<ul class="dropdown-menu">
-			<li><%= button_tag "Entire Database", name: 'route_to[export_all]', class: "dd-btn btn btn-default" %></li>
-			<li><%= button_tag "Member Data", name: 'route_to[members]', class: "dd-btn btn btn-default" %></li>
-			<li><%= button_tag "Membership Data", name: 'route_to[membership]', class: "dd-btn btn btn-default" %></li>
-			<li><%= button_tag "Emergency Contact", name: 'route_to[em_cont]', class: "dd-btn btn btn-default" %></li>
-			<li><%= button_tag "BMC Data", name: 'route_to[bmc]',data: { confirm: "Note: Members whose fees have not been marked as received will not be exported."}, class: "dd-btn btn btn-default" %></li>
-		</ul>
-	</div>
+<div class="top-border"></div>
+	<div class="row row-top">
+		<div class="container">
+			<h1>Membership Database</h1>
+			<p><%= link_to "Back to my details", members_path(@member) %></p>
+			<% flash.each do |message_type, message| %>
+	    	<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+	 		<% end %>
+			<%= form_tag(multiple_committee_members_path, multipart: true)  do %>
+			<%= button_tag "Edit Selected Members", name: 'route_to[edit]', class: "btn member-btn" %>	
+				<div class="btn-group">
+					<button type="button" class="btn member-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><%= link_to "Entire Database", export_all_committee_members_path(format: "csv"), class: "dd-btn btn member-btn" %></li>
+						<li><%= link_to "For BMC - all paid members", export_bmc_committee_members_path(format: "csv"), class: "dd-btn btn member-btn" %></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn member-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export Selected <span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><%= button_tag "Entire Database", name: 'route_to[export_all]', class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "Member Data", name: 'route_to[members]', class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "Membership Data", name: 'route_to[membership]', class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "Emergency Contact", name: 'route_to[em_cont]', class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "BMC Data", name: 'route_to[bmc]',data: { confirm: "Note: Members whose fees have not been marked as received will not be exported."}, class: "dd-btn btn member-btn" %></li>
+					</ul>
+				</div>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<th></th>
+						<th><%= sort_link "first_name", "First Name", committee_members_path %></th>
+						<th><%= sort_link "last_name", "Last Name", committee_members_path %></th>
+						<th><%= sort_link "membership_type", "Type", committee_members_path %></th>
+						<th><%= sort_link "subs_paid", "Subs Paid?", committee_members_path %></th>
+						<th><%= sort_link "fees_received_on", "Last Payment", committee_members_path %></th>
+						<th><%= sort_link "welcome_pack_sent", "Welcome Pack?", committee_members_path %></th>
+						<th><%= sort_link "receive_emails", "Mailing List?", committee_members_path %></th>
+						<th><%= sort_link "updated_at", "Updated", committee_members_path %></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</thead>
 
-	<table class="table table-hover">
-		<thead>
-			<th></th>
-			<th><%= sort_link "first_name", "First Name", committee_members_path %></th>
-			<th><%= sort_link "last_name", "Last Name", committee_members_path %></th>
-			<th><%= sort_link "membership_type", "Member Type", committee_members_path %></th>
-			<th><%= sort_link "subs_paid", "Subs Paid?", committee_members_path %></th>
-			<th><%= sort_link "fees_received_on", "Last Payment", committee_members_path %></th>
-			<th><%= sort_link "welcome_pack_sent", "Welcome Pack?", committee_members_path %></th>
-			<th><%= sort_link "receive_emails", "Mailing List?", committee_members_path %></th>
-			<th><%= sort_link "updated_at", "Last Updated", committee_members_path %></th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</thead>
-
-		<tbody class="table-striped">
-			<% @members.each do |m| %>
-			<tr>
-				<td><%= check_box_tag "selected[]", m.id, checked=m.selected, class: 'check-box' %></td>
-				<td><%= m.first_name %></td>
-				<td><%= m.last_name %></td>
-				<td><%= m.membership.membership_type %></td>
-				<td><%= readable_boolean(m.membership.subs_paid).html_safe %></td>
-				<td><% if !m.membership.fees_received_on.nil? %><%= m.membership.fees_received_on.strftime("%d/%m/%Y") %><% end %></td>
-				<td><%= readable_boolean(m.membership.welcome_pack_sent).html_safe %></td>
-				<th><%= readable_boolean(m.receive_emails).html_safe %></td>
-				<td><%= latest_update(m) %></td>
-				<td><%= link_to "view", committee_member_path(m) %></td>
-				<td><%= link_to "edit", edit_committee_member_path(m) %></td>
-				<td><%= link_to "delete", committee_member_path(m), method: :delete, data: { confirm: "You are about to delete #{m.first_name} #{m.last_name} from the database."} %></td>
-			</tr>
+					<tbody>
+						<% @members.each do |m| %>
+						<tr>
+							<td><%= check_box_tag "selected[]", m.id, checked=m.selected, class: 'check-box' %></td>
+							<td><%= m.first_name %></td>
+							<td><%= m.last_name %></td>
+							<td><%= m.membership.membership_type %></td>
+							<td><%= readable_boolean(m.membership.subs_paid).html_safe %></td>
+							<td><% if !m.membership.fees_received_on.nil? %><%= m.membership.fees_received_on.strftime("%d/%m/%Y") %><% end %></td>
+							<td><%= readable_boolean(m.membership.welcome_pack_sent).html_safe %></td>
+							<td><%= readable_boolean(m.receive_emails).html_safe %></td>
+							<td><%= latest_update(m) %></td>
+							<td><%= link_to "view", committee_member_path(m) %></td>
+							<td><%= link_to "edit", edit_committee_member_path(m) %></td>
+							<td><%= link_to "delete", committee_member_path(m), method: :delete, data: { confirm: "You are about to delete #{m.full_name} from the database."} %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
 			<% end %>
-		</tbody>
-	</table>
-<% end %>
+			</div>
+		</div>
+	</div>
+</div>

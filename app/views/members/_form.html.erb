@@ -10,7 +10,7 @@
 			<%= f.label :first_name %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :first_name) %></p>
 			<%= f.text_field :first_name, class: 'form-control' %>
-					
+						
 			<%= f.label :last_name %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :last_name) %></p>
 			<%= f.text_field :last_name, class: 'form-control' %>
@@ -35,10 +35,10 @@
 			<%= f.label :address_1 %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :address_1) %></p>
 			<%= f.text_field :address_1, class: 'form-control' %>
-						
+							
 			<%= f.label :address_2 %>
 			<%= f.text_field :address_2, class: 'form-control' %>
-					
+						
 			<%= f.label :address_3 %>
 			<%= f.text_field :address_3, class: 'form-control' %>
 
@@ -82,42 +82,38 @@
 		  <%= f.password_field :password_confirmation, class: 'form-control' %>
 		</div>
 	</div>
-
+		
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<br>
+		<div class="col-md-12 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
 			<p class="text-center"><%= Member::PARTICIPATION_STATEMENT %></p>
-			<br>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
-			<p>Please read the participation statement above.</p>
 
 			<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
 				<p id='error_explanation'><%= show_errors(@member, :accept_risks, "you must accept the participation statement") %></p>
 				<%= f.check_box :accept_risks, { class: "radio-inline", style: "width: auto" } %>
 				<%= f.label :accept_risks, "I accept the risks." %>
-						
+							
 			</span>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
-			<p>Please read our GDPR compliance statement to see how we use your data. <%= link_to "GDPR Statement", gdpr_path %>.</p>
+		<div class="col-md-12 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
 			<p>The club sends out newsfeeds, usually once a month, with information about past and up coming meets. We may also send out subs reminders at the start of the year if you haven't paid your subs. You can opt in or out of receiving these emails at any point after completing this application.</p>
+
 
 			<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
 				<%= f.check_box :receive_emails, { class: "radio-inline", style: "width: auto" } %>
 				<%= f.label :receive_emails, "I want to receive emails from the club." %>
-						
 			</span>
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-12 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
+			<p class="text-center">By completing your application below you are accepting the terms of our <%= link_to "Privacy Policy", privacy_policy_path %>.</p>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
-		  <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg full-width" %>
+		  <%= f.submit yield(:button_text), class: "btn btn-lg user-btn full-width" %>
 		</div>
 	</div>
 <% end %>
