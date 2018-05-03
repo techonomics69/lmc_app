@@ -1,0 +1,69 @@
+<div id="carousel-container">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag("lmc-img-1.jpg") %>
+    </div>
+  </div>
+</div>
+
+<div id="main" class="home">
+	<div class="row row-top">
+		<div class="container">
+			<div class="col-md-6 col-xs-12">
+				<h3>Booking on Meets</h3>
+				<p>You don't need to book on camping meets, evening meets or day meets unless there is an organised event which forms part of the meet (eg: the end of season curry). Where a camping, evening or day meet does have an event attached which requires booking then the details of how to do this will be on the bulletin boards.</p>
+				<p>Most social events don't require booking but if there are limited places available then information on booking will be on the bulletin board.</p>
+				<p>To attend a hut meet you do need to book in advance. See how to do this below.</p>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="side-img">
+					<%= image_tag("why-join.jpg") %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-mid">
+		<div class="container">
+			<div style="margin-left: 15px">
+				<h3>Hut Booking Rules</h3>
+				<p>The hut booking rules have been carefully built up over the years to give the fairest way for all members to book on hut meets. They may seem complicated or over the top but they are in place to provide fairness to all members.</p>
+				<p>Hut booking rules are explained in detail in the LMC handbook. The main points are summarised below.</p>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<ol>
+					<li>Booking opens one calendar month before the first night of the meet.</li>
+					<li>A cheque payable to “Leeds Mountaineering Club” for the correct booking fee* should be delivered in person or by post to the Meet Leader.</li>
+	 				<li>The Meet Leader is named on the Meets Card and online calendar and their contact details will be in the private section** of the club bulletin board.</li>
+	 			</ol>
+
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<ol start="4">
+					<li>Places are allocated in the order cheques are received. Cheques delivered before the opening date are given lower priority than those arriving on the opening date.</li>
+					<li>Members must have paid the current year’s subscription fee (“subs”) to be eligible to book. Prospective members must have filled out the membership application form in addition to paying their subs.</li>
+					<li>Members may book a place for themselves plus one other full or prospective member.</li>
+				</ol>
+			</div>
+				<br>
+	 			<%= link_to "LMC Handbook", handbook_path, class: "btn btn-lg user-btn", style: "margin-left: 15px" %>
+		</div>
+	</div>
+	<div class="row row-btm">
+		<div class="container" style="margin-top: 20px">
+			<div class="col-md-6 col-xs-12">
+				<p>In the event that you cannot attend a hut meet after booking:</p>
+				<ol>
+					<li>The fee is not normally returnable unless another member attends in your place. The Meet Leader will operate a “reserves list” and fill the place on your behalf. You should not offer the place to someone else unless the Meet Leader gives you permission to do so.</li>
+					<li>In mitigating circumstances, the booking fee may be waived. This is at the discretion of the Committee and cannot be decided by the Meet Leader.</li>
+				</ol>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<p>*The current fee is £10 per person per night</p>
+				<p>**You must be a full or prospective member of the LMC and be registered on the bulletin board to access this information.</p>
+				<p>The Meet Leader will post information about the meet, including a list of people who have successfully booked places or been added to the reserves list, on the club bulletin board.</p>
+			</div>
+		</div>
+	</div>
+</div>

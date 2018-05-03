@@ -1,15 +1,12 @@
 <% provide(:title, 'Email Info') %>
 <div class="top-border"></div>
-<div class="row-top">
-	<div class="row">	
-		<div class="col-md-8 col col-md-offset-2">
+<div class="row row-top">
+	<div class="container">
+		<div style="margin-left: 15px">
 			<h1>Email Information</h1>
 			<p><%= link_to "Back to Email Members", committee_emails_path %></p>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3 col-xs-12 col-md-offset-2">
-
+		<div class="col-md-4 col-xs-12">
 			<h4>Template:</h4>
 			<p><%= @email.template %></p>
 			<h4>Subject:</h4>
@@ -35,7 +32,7 @@
 				<% end %>
 			</p>
 		</div>
-		<div class="col-md-7 col-xs-12">
+		<div class="col-md-8 col-xs-12">
 			<h4>HTML Content:</h4>
 			<p><%= @email.body %></p>
 		</div>

@@ -1,25 +1,31 @@
 Rails.application.routes.draw do
-
-
+  root 'static_pages#home'
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'sessions/new'
-	root 'static_pages#home'
   get '/home', to: 'static_pages#home'
   get '/membership', to: 'static_pages#membership'
   get '/application', to: 'members#new'
   post '/application', to: 'members#create'
-  get '/when_and_where', to: 'static_pages#when_and_where'
+  get '/benefits', to: 'static_pages#benefits'
+  get '/pay', to: 'static_pages#pay'
+  get '/handbook', to: 'static_pages#handbook'
+  get '/handbook_download', to: 'static_pages#handbook_download'
+  get '/meets', to: 'static_pages#meets'
   get '/calendar', to: 'static_pages#calendar'
   get '/ical_feed', to: 'static_pages#ical_feed'
+  get '/booking', to: 'static_pages#booking'
+  get '/galleries', to: 'static_pages#galleries'
+  get '/help', to: 'static_pages#help'
+  get '/committee', to: 'static_pages#the_committee'
+  get '/history', to: 'static_pages#history'
+  get '/contact', to: 'static_pages#contact'
+  get '/links', to: 'static_pages#links'
+  get '/privacy-policy', to: 'static_pages#privacy_policy'
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/privacy_policy', to: 'static_pages#privacy_policy'
-  get '/pay', to: 'static_pages#pay'
-
+  
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :members do

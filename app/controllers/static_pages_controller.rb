@@ -11,13 +11,27 @@ class StaticPagesController < ApplicationController
     @bb_feed = bb_feed if @bb_feed.nil?
   end
 
-  def help
+  def benefits
+  end
+
+  def pay
+  end
+
+  def handbook
+  end
+
+  def handbook_download
+    send_file(
+      "#{Rails.root}/public/LMC_Handbook2017.pdf",
+      filename: "LMC Constitution and Handbook.pdf",
+      type: "application/pdf"
+  )
   end
 
   def membership
   end
 
-  def when_and_where
+  def meets
   	@future_meets = all_future_meets
   end
 
@@ -26,7 +40,13 @@ class StaticPagesController < ApplicationController
     @past_meets = past_meets
   end
 
-  def pay
+  def booking
+  end
+
+  def galleries
+  end
+
+  def privacy_policy
   end
 
 

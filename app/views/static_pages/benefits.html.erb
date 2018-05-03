@@ -1,0 +1,73 @@
+<div id="carousel-container">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+	    <div class="item active">
+	      <%= image_tag("lmc-img-1.jpg") %>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<div id="main" class="home">
+	<div class="row row-top">
+		<div class="container">
+			<h2 style="margin-left: 15px">Why Join the LMC?</h2>
+
+				<div class="col-md-6 col-xs-12">
+					<h3>Benefits of Membership</h3>
+					<ul>
+						<li>Busy calendar of meets all over the country (and sometimes abroad) all with great walking, climbing, scrambling and mountaineering in the area. See more in the <a href="#meets">Meets</a> section.</li>
+						<li>Social events including talks, the annual dinner, the summer bash and pub meets.</li>
+						<li><a href="#discounts">Discounts</a> at the Leeds Wall and local and national retailers.</li>
+						<li>BMC affiliate membership.</li>
+						<li>Access to training courses.</li>
+					</ul>
+					<%= link_to "Application Form", application_path, class: "btn btn-lg user-btn" %>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<h3>Who Can Join?</h3>
+					<p>Anyone interested in getting outdoors to go walking, climbing and mountaineering with other like minded people.</p>
+					<p>We don't set limitations on experience to become a member, however we do expect you to be able to enjoy your chosen activity safely. You'll need to own the basic gear and have a basic knowledge to be able to take part, eg: For climbing you'll need a harness and shoes and know how to belay.</p>
+					<p>If you want to climb but haven't ever done so before then we suggest a course at a climbing wall as a good starting point - The Leeds Wall offer such courses.</p>
+					<p>Under 18s can join the club, however there are limitations on which meets under 18s can attend.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-mid">
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-6 col-xs-12">
+					<h3>Meets</h3><a name="meets"></a>
+					<p>Throught summer we have regular camping meets and in the winter regular hut meets. We also have day walks throughout the year and day climbs in the summer.</p>
+					<p>In winter we meet once a week at the Leeds Wall and in summer at a local crag. We often follow this with a trip to the nearest pub.</p>
+					<p>We mainly meet in the Lake District, North Wales and the Peak District along with trips to Scotland, Pembrokeshire and occasionally abroad.</p>
+					<p>There's more information on what we do and where we meet on the meets page.</p>
+							<%= link_to "Meets Page", meets_path, class: "btn btn-lg user-btn" %>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<p>Image Here.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-btm">
+		<div class="container">
+			<div class="col-md-6 col-xs-12">
+				<h3>Activities</h3>
+				<p>The main activities undertaken by members are walking and climbing. Walking can be anything from a potter round a nearby lake in the rain to a full on 30km hike across the fells. Most climbers climb trad routes and also indoors. Members also go sport climbing in the UK and Europe as well as tackling alpine routes and Via Ferrata.
+				<p>In the winter members also go winter climbing and skiing, including touring and ski mountaineering and there are also a number who mountain bike throughout the year.</p>
+					<%= link_to "Galleries", galleries_path, class: "btn btn-lg user-btn" %>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<h3>Shopping Discounts</h3><a name="discounts"></a>
+				<p>Full members (members who have completed the requisite number of meets and been approved as a full member by the committee, see the <%= link_to "handbook", handbook_path %> for more information) get discounts at the following places:</p>
+				<ul>
+					<li>£10 discount on 10 climb pass at Leeds Wall</li>
+					<li>15% at Cotswold Outdoor</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

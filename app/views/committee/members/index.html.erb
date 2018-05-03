@@ -19,11 +19,11 @@
 				<div class="btn-group">
 					<button type="button" class="btn member-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export Selected <span class="caret"></span></button>
 					<ul class="dropdown-menu">
-						<li><%= button_tag "Entire Database", name: 'route_to[export_all]', class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "All Data", name: 'route_to[export_all]', class: "dd-btn btn member-btn" %></li>
 						<li><%= button_tag "Member Data", name: 'route_to[members]', class: "dd-btn btn member-btn" %></li>
 						<li><%= button_tag "Membership Data", name: 'route_to[membership]', class: "dd-btn btn member-btn" %></li>
-						<li><%= button_tag "Emergency Contact", name: 'route_to[em_cont]', class: "dd-btn btn member-btn" %></li>
-						<li><%= button_tag "BMC Data", name: 'route_to[bmc]',data: { confirm: "Note: Members whose fees have not been marked as received will not be exported."}, class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "Emergency Contact Data", name: 'route_to[em_cont]', class: "dd-btn btn member-btn" %></li>
+						<li><%= button_tag "Data for BMC", name: 'route_to[bmc]',data: { confirm: "Note: Members whose fees have not been marked as received will not be exported."}, class: "dd-btn btn member-btn" %></li>
 					</ul>
 				</div>
 			<div class="table-responsive">

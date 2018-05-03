@@ -13,7 +13,7 @@
 		<div class="col-md-6 col-xs-12">
 			<div class="paypal-box pay-top">
 				<h2>Pay with Paypal</h2>
-				<p>If you have a Paypal account you can instantly pay the LMC your membership fees by clicking the button below. This is will take you to the Paypal website.</p>
+				<p>If you have a Paypal account you can instantly pay the LMC your membership fees by clicking the button below. There is a small additional fee for using Paypal, it's less than £1.</p>
 				<div class="paypal">
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick">
@@ -36,14 +36,17 @@
 				<h2>Other Ways to Pay</h2>
 				<div>
 					<h4>Bank Transfer</h4>
-					<p>Info of bank transfer</p>
+					<p>You can transfer the membership fee directly into the LMC bank account. You'll need to email the club to get our sort code and account number. Please put your name and "subs" as the reference when you make the transfer.</p>
 					<h4>Cheque</h4>
-					<p>Info on cheque</p>
-					<h4>Others?</h4>
-					<p>Other stuff?</p>
+					<p>You can post or give a cheque to the treasurer. The treasurers address is in the private section of the bulletin board, or if you don't have access email the club. Please write your name and "subs" on the back of the cheque.</p>
+					<%= link_to "Contact Us", contact_path, class: "btn btn-lg btn-default user-btn" %>
 				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="side-img">
+				<%= image_tag("why-join.jpg") %>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="top-border"></div>

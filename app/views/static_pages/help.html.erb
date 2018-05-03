@@ -1,0 +1,60 @@
+<div id="carousel-container">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag("lmc-img-1.jpg") %>
+    </div>
+  </div>
+</div>
+
+<div id="main" class="home">
+	<div class="row row-top">
+		<div class="container">
+			<h2 style="margin-left: 15px">How do I...</h2>
+			<div class="row-elements">
+				<div class="col-md-6 col-xs-12">
+					<h3>Join the LMC?</h3>
+					<p>First thing to do is to fill out the application form. Once you've done this find a meet you'd like to go on and come along!</p>
+					<p>We organise the meets on the <a href="http://leedsmc.org/bulletinboard/">Bulletin Boards</a>, so you should register to use them and post on the thread of the meet you want to come along to. You need to have paid the membership fee to come to weekend meets.</p>
+					<%= link_to "Application Form", application_path, class: "btn btn-lg user-btn" %>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<p>Image Here.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-mid">
+		<div class="container">
+				<div class="col-md-6 col-xs-12">
+					<h3>Find Club Members on a Meet?</h3>
+					<p>If you're looking for us at the Leeds Wall the best thing to do is to ask a Leeds Wall staff member - they know who many members are.</p>
+					<p>For meets not at Leeds Wall it's best to post up on the bulletin boards as a meeting time and place will be set there.</p>
+					<p>If all else fails look out for Leeds Mountaineering Club (LMC) T shirts and hoodies!</p>
+					<p>There's more information on what we do and where we meet on the <%= link_to "meets page", meets_path %>.</p>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<h3>Update My Details?</h3>
+					<p>If you're already a member then you should be able to log into your account on this website to update your details. Just click log in at the top right to go to the login page.</p>
+					<p>If you're forgotten your password we have a handy password reset link which will email you a temporary password to access your account.</p>
+					<p>Note: the bulletin boards have a separate log in and register funtion to this site.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-btm">
+		<div class="container">
+			<div class="row-elements">
+				<div class="col-md-6 col-xs-12">
+					<p>Image Here</p>
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<h3>Sign Up for a Meet?</h3>
+					<p>For evening, day and camping meets there is no official sign up process as there are no limits on numbers. It is a good idea to register your interest on the bulletin board so that the meet leader knows who to expect.</p>
+					<p>If you want to go on a hut meet you do have to book in advance. To make hut meets equally accessible for all members there are some rules around booking. See the <%= link_to "Booking on a Meet", booking_path %> page for more information.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

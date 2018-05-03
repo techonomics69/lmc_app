@@ -1,7 +1,12 @@
 module StaticPagesHelper
 
 	def bb_feed
-		page = Nokogiri::HTML(open('http://leedsmc.org/bbfeed.php'))
+		begin
+			page = Nokogiri::HTML(open('http://leedsmc.org/bbfeed.php'))
+		rescue Exception
+			return "BB Feed Error. No response from http://leedsmc.org/bbfeed.php."
+			exit
+		end
   	links = page.css('a')
 		page.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each_with_index do |node,i|
 	    node.replace(Nokogiri.make("<p>#{links[i]}<br>#{node.to_html}</p>"))

@@ -69,6 +69,8 @@ class Committee::EmailsController < Committee::BaseController
 
 
 
+
+
   def destroy
   end
 

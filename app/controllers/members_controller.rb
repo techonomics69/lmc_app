@@ -19,6 +19,7 @@ class MembersController < ApplicationController
   		log_in @member
   		flash[:success] = "Welcome to the Leeds Mountaineering Club!"
       @member.send_welcome_email
+      send_application_notification
   		redirect_to member_path(@member)
   	else
   		render 'new'
@@ -85,8 +86,8 @@ class MembersController < ApplicationController
                                     :id ])
 	  end
 
-    #Before filters
-
-    #confirms member is logged in
+  def send_application_notification
+    MemberMailer.application_notification(@member).deliver_now
+  end
 
 end

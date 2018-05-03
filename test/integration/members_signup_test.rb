@@ -27,7 +27,7 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 																					 password: "password",
 																					 password_confirmation: "password" } }
 		end
-		assert_equal 1, ActionMailer::Base.deliveries.size
+		assert_equal 2, ActionMailer::Base.deliveries.size
 		follow_redirect!
 		assert_template 'members/show'
 		assert_not flash.empty?
