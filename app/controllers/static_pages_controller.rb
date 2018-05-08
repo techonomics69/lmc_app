@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
 
   def handbook_download
     send_file(
-      "#{Rails.root}/public/LMC_Handbook2017.pdf",
+      "#{Rails.root}/public/LMC_Handbook_May2018.pdf",
       filename: "LMC Constitution and Handbook.pdf",
       type: "application/pdf"
   )
