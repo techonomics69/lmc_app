@@ -3,7 +3,7 @@
 <div class="row-top">
 	<div class="row">	
 		<div class="col-md-8 col col-md-offset-2">
-			<h1>Information for <i><b><%=@member.title %> <%=@member.first_name %> <%=@member.last_name %></i></b></h1>
+			<h1>Information for <i><b><%=@member.first_name %> <%=@member.last_name %></i></b></h1>
 			<p><%= link_to "Back to database", committee_members_path %></p>
 		</div>
 	</div>
@@ -11,7 +11,7 @@
 		<div class="col-md-3 col-md-offset-2">
 			<h3>Address</h3>
 			<p>
-				<%=@member.title %> <%=@member.first_name %> <%=@member.last_name %><br>
+				<%=@member.first_name %> <%=@member.last_name %><br>
 				<%= @member.address_1 %><br>
 				<% if @member.address_2.present? %><%= @member.address_2 %><br><% end %>
 				<% if @member.address_3.present? %><%= @member.address_3 %><br><% end %>

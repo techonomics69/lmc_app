@@ -3,7 +3,7 @@ require 'test_helper'
 class MemberTest < ActiveSupport::TestCase
 	def setup
 		@member = Member.new(
-												 title: "Mr",
+#												 title: "Mr",
 												 first_name: "name", 
 												 last_name: "surname",
 												 address_1: "House Name",
@@ -28,10 +28,10 @@ class MemberTest < ActiveSupport::TestCase
 		assert @member.valid?
 	end
 
-	test "title should be present" do
-		@member.title = "    "
-		assert_not @member.valid?
-	end
+#	test "title should be present" do
+#		@member.title = "    "
+#		assert_not @member.valid?
+#	end
 
 #first_name
 	test "first_name should be present" do

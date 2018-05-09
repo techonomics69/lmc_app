@@ -9,7 +9,8 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		log_in_as(@member)
 		get edit_member_path(@member)
 		assert_template 'members/edit'
-		patch member_path(@member), params: { member: { title: "",
+		patch member_path(@member), params: { member: { 
+		#																							title: "",
 																									first_name: "",
 																								  last_name: "",
 																								  address_1: "",
@@ -28,7 +29,7 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 																								  password: "foo",
 																								  password_confirmation: "bar" } }
 		assert_template 'members/edit'
-		assert_select 'div.alert', "The form contains 14 errors."
+		assert_select 'div.alert', "The form contains 13 errors."
 	end
 
 	test "successful edit with friendly forwarding" do
@@ -40,7 +41,8 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		last_name = "Bar"
 		email = "foo@bar.com"
 		bmc_no = "A12345"
-		patch member_path(@member), params: { member: { title: "Mrs",
+		patch member_path(@member), params: { member: { 
+		#																							title: "Mrs",
 																									first_name: first_name,
 																								  last_name: last_name,
 																								  address_1: "1 Test",

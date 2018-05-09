@@ -3,10 +3,6 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h3>You</h3>
-			<%= f.label :title %>
-			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :title) %></p>
-			<%= f.collection_select :title, Member::TITLES, :to_s, :to_s %>
-			<br>
 			<%= f.label :first_name %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :first_name) %></p>
 			<%= f.text_field :first_name, class: 'form-control' %>

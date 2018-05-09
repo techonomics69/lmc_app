@@ -9,9 +9,9 @@ class Member < ApplicationRecord
 	before_create { build_emergency_contact }
 
 	before_save { email.downcase! }
-	TITLES = ["Mr", "Mrs", "Miss", "Ms", "Dr", "Prof", "Rev"]
+	#TITLES = ["Mr", "Mrs", "Miss", "Ms", "Dr", "Prof", "Rev"]
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-	validates :title, 	 		 presence: true#, inclusion: { in: TITLES }
+	#validates :title, 	 		 presence: true, inclusion: { in: TITLES }
 	validates :first_name, 	 presence: true
 	validates :last_name,    presence: true
 	validates :address_1,    presence: true, length: { maximum: 100 }
