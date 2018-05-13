@@ -1,7 +1,6 @@
 class CreateMembers < ActiveRecord::Migration[5.1]
   def change
     create_table :members do |t|
-      t.text :title
       t.text :first_name
       t.text :last_name
       t.string :address_1

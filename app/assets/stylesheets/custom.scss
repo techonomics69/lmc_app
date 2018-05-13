@@ -9,8 +9,8 @@ $light-background: #f2f2f2;
 $dark-border: #cccccc;
 $text-color: #1a1a1a;
 $nav-dark: #333333;
-$btn-green: #80ff80;
-$bright-green: #4dff4d;
+$btn-green: #99e687;
+$bright-green: #80e16b;
 
 html {
   position: relative;
@@ -196,6 +196,13 @@ div#main.home {
 .row {
   margin: 0;
   font-size: 16px;
+  text-align: justify;
+  ul {
+    padding-left: 15px;
+  }
+  ol {
+    padding-left: 15px;
+  }
 }
 
 .row-top {
@@ -223,11 +230,6 @@ div#main.home {
   padding-bottom: 50px;
 
 }
-
-.row-elements {
-}
-
-
 
 @media (min-width: 992px) {
   .row-elements {
@@ -382,6 +384,20 @@ div#main.home {
   font-size: 16px;
 }
 
+@media screen and (min-width: 992px) {
+  .spaced-left {
+    padding-right: 25px;
+    /*
+    text-align: justify;*/
+  }
+
+  .spaced-right {
+    padding-left: 25px;
+    /*
+    text-align: justify;*/
+  }
+}
+
 /*logged in pages*/
 .info-box {
   background-color: $light-green;
@@ -406,7 +422,15 @@ div#main.home {
 .committee-img {
   float: right;
   width: 200px;
-  height: 200px;
+  height: 240px;
+  margin: 0px 0px 10px 20px;
+}
+
+@media screen and (max-width: 425px){
+  .committee-img {
+    float: none;
+    margin: 0px 0px 10px 0px;
+  }
 }
 
 /*buttons*/

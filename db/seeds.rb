@@ -5,7 +5,7 @@
 #!!!!! remember to run: rails db:fixtures:load RAILS_ENV=test after resetting the database!!!!!!!
 
 member = Member.create!(
-							 title: "Mr",
+#							 title: "Mr",
 							 first_name: "Chris",
 							 last_name: "Bonnington",
 							 address_1: "1 Top Road",
@@ -35,7 +35,7 @@ member.membership.update(
 							 	notes: "Pretty good mountaineer")
 
 member = Member.create!(
-							 title: "Mr",
+#							 title: "Mr",
 							 first_name: "Mark",
 							 last_name: "Example 1",
 							 address_1: "99 Road Name",
@@ -65,7 +65,7 @@ member.membership.update(
 							 	notes: "")
 
 member = Member.create!(
-							 title: "Mr",
+#							 title: "Mr",
 							 first_name: "Luke",
 							 last_name: "Example 2",
 							 address_1: "11 Street",
@@ -144,7 +144,7 @@ Meet.create!( meet_date: DateTime.new(2018,6,9),
 							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland")
 
 60.times do |n|
-	title = Faker::Name.prefix
+#	title = Faker::Name.prefix
 	first_name = Faker::Name.first_name
 	last_name = Faker::Name.last_name
 	address_1 = Faker::Address.street_address
@@ -199,7 +199,7 @@ Meet.create!( meet_date: DateTime.new(2018,6,9),
 	ec_postcode = "EC#{n+2} #{n+7}PL"
 	ec_ph_1 = Faker::Number.number(11)
 	member =	Member.create!(
-							 title: title,
+	#						 title: title,
 							 first_name: first_name,
 							 last_name: last_name,
 							 address_1: address_1,

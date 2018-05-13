@@ -1,7 +1,16 @@
-<div class="top-border"></div>
+<div id="carousel-container">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+	    <div class="item active">
+	      <%= image_tag("banners/pay.jpg") %>
+	    </div>
+	  </div>
+	</div>
+</div>
 <div class="row row-top">
 	<div class="container">
-		<div class="col-md-6 col-xs-12 pay-top">
+		<div class="col-md-6 col-xs-12 pay-top spaced-left">
 			<h2>Subscription Information</h2>
 			<ul>
 				<li>The LMC subscription cost for this year (2018) is £19.</li>
@@ -31,7 +40,7 @@
 <div class="row row-mid">
 	<div class="container">
 		
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-6 col-xs-12 spaced-left">
 			<div class="main-box right">
 				<h2>Other Ways to Pay</h2>
 				<div>
@@ -43,9 +52,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6 col-xs-12">
+		<div class="col-md-6 col-xs-12 spaced-right">
 			<div class="side-img">
-				<%= image_tag("why-join.jpg") %>
+				<%= image_tag("pages/pay-1.jpg") %>
 			</div>
 		</div>
 	</div>
