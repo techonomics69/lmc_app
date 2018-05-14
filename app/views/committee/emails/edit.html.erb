@@ -6,6 +6,9 @@
 	<div class="container">
 		<h1>Edit Email</h1>
 		<p><%= link_to "Back to Email Members (without saving)", committee_emails_path %></p>
+		<% flash.each do |message_type, message| %>
+	   	<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+		<% end %>
 		<h3>Your Email</h3>
 		<%= form_for(@email, url: yield(:path)) do |f| %>
 			<%= f.label :subject %>

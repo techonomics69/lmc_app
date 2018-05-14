@@ -34,7 +34,7 @@ class Committee::EmailsController < Committee::BaseController
   def update
     @email = Email.find(params[:id])
     @template = @email
-    unless @email.default_template
+    unless @email.default_template == true && @email.template != "welcome"
       if @email.update_attributes(email_params)
         flash.now[:success] = "Email updated"
         render 'edit'
@@ -66,10 +66,6 @@ class Committee::EmailsController < Committee::BaseController
     flash[:success] = "Sending Emails..."
     redirect_to committee_emails_path
   end
-
-
-
-
 
   def destroy
   end
