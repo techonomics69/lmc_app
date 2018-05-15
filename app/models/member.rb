@@ -8,7 +8,8 @@ class Member < ApplicationRecord
 	before_create { build_membership }
 	before_create { build_emergency_contact }
 
-	before_save { email.downcase! }
+	before_save :email.downcase!, :postcode.upcase!
+
 	#TITLES = ["Mr", "Mrs", "Miss", "Ms", "Dr", "Prof", "Rev"]
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 	#validates :title, 	 		 presence: true, inclusion: { in: TITLES }
