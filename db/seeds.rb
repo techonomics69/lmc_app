@@ -268,8 +268,7 @@ Email.create!(template: "subs reminder",
 							body: "<p>This is the subs reminder template</p>",
 							default_template: true)
 
-Email.create!(member_id: 3,
-							template: "welcome",
+Email.create!(template: "welcome",
 							subject: "Welcome to the Leeds Mountaineering Club",
 							body: "<p>This is the welcome email</p>",
 							default_template: true)
