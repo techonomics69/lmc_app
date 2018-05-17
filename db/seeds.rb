@@ -3,7 +3,7 @@
 
 
 #!!!!! remember to run: rails db:fixtures:load RAILS_ENV=test after resetting the database!!!!!!!
-=begin
+
 member = Member.create!(
 #							 title: "Mr",
 							 first_name: "Chris",
@@ -257,7 +257,7 @@ members.each do |member|
 	member.membership.update(committee_position: remaining_committee[n])
 	n += 1
 end
-=end
+
 Email.create!(template: "newsfeed",
 							subject: "Newsfeed Template",
 							body: "<p>This is the newsfeed template</p>",

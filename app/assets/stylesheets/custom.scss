@@ -203,7 +203,7 @@ div#main.home {
   font-size: 16px;
   text-align: justify;
   ul {
-    padding-left: 15px;
+    
     li {
       text-align: left;
     }
@@ -395,14 +395,16 @@ div#main.home {
 @media screen and (min-width: 992px) {
   .spaced-left {
     padding-right: 25px;
-    /*
-    text-align: justify;*/
+    ul {
+    padding-left: 15px;
+    }
   }
 
   .spaced-right {
     padding-left: 25px;
-    /*
-    text-align: justify;*/
+    ul {
+    padding-left: 15px;
+    }
   }
 }
 
