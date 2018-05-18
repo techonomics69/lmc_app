@@ -1,22 +1,29 @@
 <% provide(:title, 'Reset password') %>
-<h1>Reset password</h1>
-<div class="row">
-  <div class="col-md-6 membership main-box">
-  	<h3>Enter your new password</h3>
-    <%= form_for(@member, url: password_reset_path(params[:id])) do |f| %>
-      <%= render 'shared/error_messages' %>
+<div class="row row-btm top-border">
+  <div class="container">
+    <h1>Reset password</h1>
+    <div class="row">
+      <div class="col-md-6 membership main-box">
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <% end %>
+  	    <h3>Enter your new password</h3>
+        <%= form_for(@member, url: password_reset_path(params[:id])) do |f| %>
+          <%= render 'shared/error_messages' %>
 
-      <%= hidden_field_tag :email, @member.email %>
+          <%= hidden_field_tag :email, @member.email %>
 
-      <%= f.label :password %>
-      <p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :password) %></p>
-      <%= f.password_field :password, class: 'form-control' %>
+          <%= f.label :password %>
+          <p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :password) %></p>
+          <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :password_confirmation) %></p>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :password_confirmation) %></p>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.submit "Update password", class: "btn btn-primary" %>
-    <% end %>
+          <%= f.submit "Update password", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
