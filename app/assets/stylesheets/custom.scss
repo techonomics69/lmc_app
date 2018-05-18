@@ -539,6 +539,14 @@ div#main.home {
   border-top: 0px;
   }}}}
 
+@media screen and (max-width: 425px) {
+  .table > tbody > tr > td {
+    padding: 4px 2px 0px 2px;
+  }
+  .table {
+    font-size: 14px;
+  }
+}
   /*calendar*/
 
 .meets-cal {

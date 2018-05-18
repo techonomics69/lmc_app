@@ -27,7 +27,7 @@ class Membership < ApplicationRecord
 
 	scope :honorary, -> { where(membership_type: "Honorary" ) }
 
-	private
+#	private
 
 	def update_date_made_full
 		if self.membership_type_change == ["Provisional", "Full"]
