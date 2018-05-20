@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/handbook_download', to: 'static_pages#handbook_download'
   get '/meets', to: 'static_pages#meets'
   get '/calendar', to: 'static_pages#calendar'
-  get '/ical_feed', to: 'static_pages#ical_feed'
+  get '/meetslist', to: 'static_pages#ical_feed'
   get '/booking', to: 'static_pages#booking'
   get '/galleries', to: 'static_pages#galleries'
   get '/help', to: 'static_pages#help'

@@ -33,7 +33,7 @@ module StaticPagesHelper
   		format.ics do
 
 		  	cal = Icalendar::Calendar.new
-		  	filename = "icalfeed"
+		  	filename = "lmc-meets-calendar"
 		  	cal.prodid = '-//LMC Meets Calendar//NONSGML v2.0//EN'
   			cal.version = '2.0'
   			filename += '.ics'

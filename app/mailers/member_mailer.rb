@@ -23,7 +23,7 @@ class MemberMailer < ApplicationMailer
 
   def application_notification(member)
     @member = member
-    mail from: "donotreply@leedsmc.org", to: "leedsmc@gmail.com", subject: "Woop Woop. New LMC Member!"
+    mail from: "donotreply@leedsmc.org", to: "leedsmc@gmail.com", subject: "New LMC Member! Woop Woop!"
   end
 
   def newsfeed(member, content)

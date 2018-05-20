@@ -153,10 +153,14 @@ body {
 .footer {
   margin-bottom: 30px;
   margin-top: 20px;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-left {
   float: left;
+  margin-bottom: 10px;
   p {
     font-size: 24px;
     line-height: 1em;
@@ -498,6 +502,14 @@ div#main.home {
   margin-top: 10px;
 }
 
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .btn, .member-btn {
+    display: table-caption;
+    margin-bottom: 10px;
+    width: 250px;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .btn, .member-btn {
     font-size: 14px;
@@ -522,7 +534,9 @@ div#main.home {
 
 
 /*tables*/
-
+.table-responsive {
+  border: none;
+}
 .table-narrow { tbody { tr { td {
   padding: 2px 8px 2px 8px;
   vertical-align: middle;
