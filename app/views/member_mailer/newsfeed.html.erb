@@ -1,6 +1,6 @@
 <% content_for :style do %>
   <title><%= @email.subject %></title>
-  <%# style goes here %>
+  <%= @email.style %>
 <% end %>
 
 <p><a style="text-decoration: none; font-size: 24px; color: black" href=<%= root_url %> target= "_blank" ><img style="vertical-align: middle; padding-right: 5px" src="https://lmc-app.herokuapp.com/assets/LMC_logo-cdaa838d970224d415d23e42c5456cce8796bc1965911f8439673f2628b78df0.gif" alt="Lmc logo" />Leeds Mountaineering Club</a></p>

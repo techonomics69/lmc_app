@@ -75,6 +75,7 @@ class Committee::EmailsController < Committee::BaseController
   def email_params
     params.require(:email).permit(:member_id,
                                   :template,
+                                  :style,
                                   :subject,
                                   :body)
   end

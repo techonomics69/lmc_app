@@ -76,6 +76,7 @@ class MembersController < ApplicationController
 	  															 :email,
 	  															 :dob,
 	  															 :experience,
+                                   :bb_name,
 	  															 :accept_risks,
                                    :receive_emails,
 	  															 :password, 

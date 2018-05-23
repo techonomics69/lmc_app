@@ -19,6 +19,10 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :experience) %></p>
 			<%= f.text_area :experience, size: "4x4", placeholder: "Please provide a brief resume of your mountaineering experience including membership of other clubs.", class: 'form-control' %>
 
+			<%= f.label :bb_name, 'Bulletin Board Name' %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :bb_name) %></p>
+			<%= f.text_field :bb_name, placeholder: "Username if you've registered on the Bulletin Boards.", class: 'form-control' %>
+
 			<%= f.fields_for :membership do |m| %>
 				<%= m.label :bmc_number, 'BMC number' %>
 				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member, :bmc_number) %></p>

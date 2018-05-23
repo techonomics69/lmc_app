@@ -9,6 +9,9 @@
 			<% else %>
 			<p>You are on the club newsletter mailing list. <%= link_to "Change this", email_subscribe_member_path(@member), :method => :patch %>.</p>
 		<% end %>
+		<% if @member.bb_name %>
+			<p>Your username for the Bulletin Board is: <b><%= @member.bb_name %></b></p>
+		<% end %>
 		<% flash.each do |message_type, message| %>
 	    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 	  <% end %>
