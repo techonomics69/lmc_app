@@ -32,6 +32,7 @@
 						<th></th>
 						<th><%= sort_link "first_name", "First Name", committee_members_path %></th>
 						<th><%= sort_link "last_name", "Last Name", committee_members_path %></th>
+						<th><%= sort_link "bb_name", "BB Name", committee_members_path %></th>
 						<th><%= sort_link "membership_type", "Type", committee_members_path %></th>
 						<th><%= sort_link "subs_paid", "Subs Paid?", committee_members_path %></th>
 						<th><%= sort_link "fees_received_on", "Last Payment", committee_members_path %></th>
@@ -49,6 +50,7 @@
 							<td><%= check_box_tag "selected[]", m.id, checked=m.selected, class: 'check-box' %></td>
 							<td><%= m.first_name %></td>
 							<td><%= m.last_name %></td>
+							<td><%= m.bb_name %></td>
 							<td><%= m.membership.membership_type %></td>
 							<td><%= readable_boolean(m.membership.subs_paid).html_safe %></td>
 							<td><% if !m.membership.fees_received_on.nil? %><%= m.membership.fees_received_on.strftime("%d/%m/%Y") %><% end %></td>

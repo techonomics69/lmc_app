@@ -82,6 +82,7 @@ def member_params
 	  														 :phone,
 	  														 :email,
 	  														 :dob,
+	  														 :bb_name,
 	  															membership_attributes: [
 	  																:bmc_number, 
 	  																:membership_type, 
