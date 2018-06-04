@@ -19,15 +19,15 @@ class Member < ApplicationRecord
 	validates :address_2,		 length: { maximum: 100 }
 	validates :address_3,		 length: { maximum: 100 }
 	validates :town,       	 presence: true, length: { maximum: 50 }
-	validates :county,			 presence: true, length: {maximum: 20 }
+	validates :county,			 presence: true, length: {maximum: 30 }
 	validates :postcode,   	 presence: true, length: { maximum: 10 }
 	validates :country,    	 presence: true, inclusion: { in: COUNTRIES }
-	validates :home_phone,	 length: { is: 11 }, numericality: true, allow_blank: true
-	validates :mob_phone,	 	 length: { is: 11 }, numericality: true, allow_blank: true
+#	validates :home_phone,	 numericality: true, allow_blank: true
+#	validates :mob_phone,	 	 numericality: true, allow_blank: true
 	validates :email, 			 presence: true, length: { maximum: 255 },
 													 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
 	validates :dob,        	 presence: true
-	validates :experience,   length: { maximum: 500 }
+	validates :experience,   length: { maximum: 1000 }
 	validates :accept_risks, inclusion: { in: [ true ] }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
@@ -134,7 +134,8 @@ class Member < ApplicationRecord
 	end
 
 	def password_reset_expired?
-		reset_sent_at < 2.hours.ago
+#		reset_sent_at < 2.hours.ago
+false
 	end
 
 	def authenticated?(attribute, token)
