@@ -11,6 +11,6 @@ class EmergencyContact < ApplicationRecord
 	validates :primary_phone,	  presence: true #allow_nil: true
 #	validates :secondary_phone,	
 	validates :relationship, 		presence: true, length: { maximum: 12 }
-	before_save { postcode.upcase! }
+#	before_save { postcode.upcase! }
 
 end
