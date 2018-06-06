@@ -134,8 +134,7 @@ class Member < ApplicationRecord
 	end
 
 	def password_reset_expired?
-#		reset_sent_at < 2.hours.ago
-false
+		reset_sent_at < 2.hours.ago
 	end
 
 	def authenticated?(attribute, token)
