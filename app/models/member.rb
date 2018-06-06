@@ -26,7 +26,7 @@ class Member < ApplicationRecord
 #	validates :mob_phone,	 	 numericality: true, allow_blank: true
 	validates :email, 			 presence: true, length: { maximum: 255 },
 													 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
-	validates :dob,        	 presence: true
+#	validates :dob,        	 presence: true
 	validates :experience,   length: { maximum: 1000 }
 	validates :accept_risks, inclusion: { in: [ true ] }
 	has_secure_password
