@@ -1,21 +1,21 @@
-<div class="row">	
-	<div class="col-md-4 col col-md-offset-2 no-padding">
-			<%= form_for(@meet, url: yield(:path)) do |f| %>
-				<%= f.label :meet_date %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :meet_date) %></p>
-				<%= f.date_field :meet_date, class: 'form-control' %>
+<%= form_for(@meet, url: yield(:path)) do |f| %>
+	<div class="row">
+		<div class="col-md-4 col col-md-offset-2 no-padding">
+			<%= f.label :meet_date %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :meet_date) %></p>
+			<%= f.date_field :meet_date, class: 'form-control' %>
 
-				<%= f.label :member_id, 'Meet leader' %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :member_id) %></p>
-				<%= f.collection_select :member_id, Member.all.order(:first_name), :id, :full_name, {include_blank: true},  {class: 'form-control'} %>
+			<%= f.label :member_id, 'Meet leader' %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :member_id) %></p>
+			<%= f.collection_select :member_id, Member.all.order(:first_name), :id, :full_name, {include_blank: true},  {class: 'form-control'} %>
 
-				<%= f.label :location %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :location) %></p>
-				<%= f.text_field :location, class: 'form-control' %>
+			<%= f.label :location %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :location) %></p>
+			<%= f.text_field :location, class: 'form-control' %>
 
-				<%= f.label :bb_url, 'Link to bulletin board post' %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :bb_url) %></p>
-				<%= f.text_field :bb_url, class: 'form-control' %>			
+			<%= f.label :bb_url, 'Link to bulletin board post' %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :bb_url) %></p>
+			<%= f.text_field :bb_url, class: 'form-control' %>			
 		</div>
 		<div class="col-md-4">
 			<%= f.label :meet_type %>
@@ -38,8 +38,9 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :notes) %></p>
 			<%= f.text_field :notes, class: 'form-control' %>
 		</div>
-	<div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px;">
-		 <%= f.submit yield(:button_text), class: "btn btn-lg user-btn full-width" %>
-		 <% end %>
+		<div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px;">
+			<%= f.submit yield(:button_text), class: "btn btn-lg user-btn full-width" %>
+		</div>
 	</div>
-</div>
+<% end %>
+
