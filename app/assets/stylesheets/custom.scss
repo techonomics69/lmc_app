@@ -578,7 +578,7 @@ div#main.home {
 .meets-cal {
   max-height: 200px;
   overflow-y: scroll;
-  margin: 20px;
+  margin-bottom: 20px;
   tbody {
     font-size: 16px;
   }
@@ -739,7 +739,9 @@ a:focus {
 
 /* bootstrap adjustments */
 
-
+.no-pad {
+  padding: 0;
+}
 
 .glyphicon-none:before {
     content: "\e113";
