@@ -14,7 +14,7 @@
 			<h4>Created On:</h4>
 			<p><%= @email.created_at.strftime("%d/%m/%Y") %></p>
 			<h4>Created By:</h4>
-			<p><%= @email.member.full_name %></p>
+			<p><%= @email.member.full_name unless @email.member.nil? %></p>
 			<h4>Last Edited On:</h4>
 			<p><%= @email.updated_at.strftime("%d/%m/%Y") %></p>
 			<h4>Sent On:</h4>

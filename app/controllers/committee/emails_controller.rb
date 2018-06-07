@@ -50,7 +50,7 @@ class Committee::EmailsController < Committee::BaseController
 
   def email_preview
     @email = Email.find(params[:id])
-    @recipient = @email.member || "[member name]"
+    @recipient = @email.member || @member
     render :file => 'member_mailer/newsfeed.html.erb', :layout => 'mailer'
   end
 
