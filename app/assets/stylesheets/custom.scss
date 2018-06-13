@@ -265,6 +265,7 @@ div#main.home {
   margin: 0;
   height: 400px;
   overflow-y: scroll;
+  text-align: left;
 }
 
 @media screen and (max-width: 991px) {
@@ -424,6 +425,7 @@ div#main.home {
   margin: 20px 0 0 0;
   height: 400px;
   overflow-x: scroll;
+  text-align: left;
 }
 
 @media screen and (max-width: 768px){
