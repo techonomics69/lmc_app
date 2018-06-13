@@ -127,13 +127,13 @@
 									<% @meets.first(4).each do |m| %>
 										<tr>
 											<td><%= date_display(m.meet_date, m.number_of_nights) %></td>
-											<td id="col-two"><%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>Meet Leader: <% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %><% else %>TBC<% end %></td>
+											<td id="col-two"><%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>Meet Leader: <% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %><% else %>TBC<% end %><% if m.bb_url.present? %>. <%= link_to 'Bulletin Board Thread', m.bb_url %><% end %></td>
 										</tr>
 									<% end %>
 								</tbody>
 							</table>
 						</div>
-						<p style="margin: 5px 0 0 0;"><%= link_to "View Full Meets Calendar", calendar_path %></p>
+						<p style="margin: 5px 0 0 0; display: inline-block;"><%= link_to "View Full Meets Calendar", calendar_path %></p>
 					</div>
 				</div>
 			</div>

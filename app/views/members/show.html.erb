@@ -81,7 +81,7 @@
 								<tr>
 									<td><%= m.meet_date.strftime("%d/%m/%Y") %></td>
 									<td><%= m.location %></td>
-									<td><%= link_to 'details', meets_member_path(@member, {:meet => {:id => m.id}}) %></td>
+									<td><%= link_to 'edit', meets_member_path(@member, {:meet => {:id => m.id}}) %></td>
 								</tr>
 							<% end %>
 						<% end %>
