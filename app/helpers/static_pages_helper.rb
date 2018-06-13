@@ -2,9 +2,9 @@ module StaticPagesHelper
 
 	def bb_feed
 		begin
-			page = Nokogiri::HTML(open('http://leedsmc.org/bbfeed.php'))
+			page = Nokogiri::HTML(open('http://bb.leedsmc.org/bbfeed.php'))
 		rescue Exception
-			return "BB Feed Error. No response from http://leedsmc.org/bbfeed.php."
+			return "Error. No response from http://bb.leedsmc.org/bbfeed.php."
 			exit
 		end
   	links = page.css('a')
