@@ -11,6 +11,7 @@ class MembersController < ApplicationController
 
   def new
   	@member = Member.new
+    @meta_description = "Application form to join the Leeds Mountaineering Club."
   end
 
   def create

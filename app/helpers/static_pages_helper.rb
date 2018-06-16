@@ -1,5 +1,36 @@
 module StaticPagesHelper
 
+	def meta_description(page)
+		case page
+		when "home"
+			"A group of like minded people from the Leeds area and beyond who enjoy doing stuff in the outdoors including walking, climbing, mountaineering, mountain biking, cycling, skiing, camping and anything else that sounds like fun."
+		when "benefits"
+			"There are plenty of reasons to join the Leeds Mountaineering Club. We have a busy calendar of meets, organised social events, BMC affiliate membership and discounts with local shops and national retailers."
+		when "booking"
+			"How to book on a meet with the Leeds Mountaineering Club. You must be a member before you can come on a hut meet."
+		when "calendar"
+			"We have meets organized all over the country, throughout the year, camping and in huts. There's loads to do!"
+		when "contact"
+			"Get in touch with the Leeds Mountaineering Club. We're happy to answer any questions about the club and how to join."
+		when "galleries"
+			"See photos of some of our previous meets and adventures."
+		when "handbook"
+			"The rules and regulations which govern the club and how it works."
+		when "help"
+			"Information on joining the club, signing up for a meet, finding us and using this website."
+		when "links"
+			"A list of useful links for leeds based climber, walkers and mountaineers."
+		when "meets"
+			"On the first Tueday of every month we head to a pub for a pint and chat. We also climb every Tuesday, at the wall in winter and outside in summer. "
+		when "membership"
+			"There are two levels of membership, provisional and full, you need to attend three meets and demonstrate that you can conduct yourself safely to progress from provisional to full membership."
+		when "pay"
+			"Pay your subs online with Paypal or contact us for other ways to pay."
+		when "the_committee"
+			"We have a 10 member committee who meet throughout the year to run the club. The committee are voted in every year at our AGM."
+		end
+	end
+
 	def bb_feed
 		begin
 			page = Nokogiri::HTML(open('http://bb.leedsmc.org/bbfeed.php'))
