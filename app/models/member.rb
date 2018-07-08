@@ -19,7 +19,7 @@ class Member < ApplicationRecord
 	validates :address_2,		 length: { maximum: 100 }
 	validates :address_3,		 length: { maximum: 100 }
 	validates :town,       	 presence: true, length: { maximum: 50 }
-	validates :county,			 presence: true, length: {maximum: 30 }
+#	validates :county,			 presence: true, length: {maximum: 30 }
 	validates :postcode,   	 presence: true, length: { maximum: 10 }
 	validates :country,    	 presence: true, inclusion: { in: COUNTRIES }
 #	validates :home_phone,	 numericality: true, allow_blank: true
