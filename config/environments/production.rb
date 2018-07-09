@@ -46,8 +46,8 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
-  config.ssl_options = { redirect: { exclude: -> request { request.url =~ /bb.leedsmc.org/ } } }
-  #config.ssl_options = { hsts: { subdomains: false } }
+  #config.ssl_options = { redirect: { exclude: -> request { request.url =~ /bb.leedsmc.org/ } } }
+  config.ssl_options = { hsts: { subdomains: false } }
   #http://api.rubyonrails.org/v5.2/classes/ActionDispatch/SSL.html
 
   # Use the lowest log level to ensure availability of diagnostic information
