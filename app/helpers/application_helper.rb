@@ -36,4 +36,8 @@ module ApplicationHelper
   def store_sort
   	session[:forwarding_url] = request.original_url
   end
+
+  def bb_url
+  	"http://bb.leedsmc.org"
+  end
 end
