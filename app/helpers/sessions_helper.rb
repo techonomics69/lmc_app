@@ -2,6 +2,7 @@ module SessionsHelper
 
 	def log_in(member)
 		session[:member_id] = member.id
+#		session[:expires_at] = (Time.now + 20.minutes).to_i
 	end
 
 	# Returns the user corresponding to the remember token cookie.

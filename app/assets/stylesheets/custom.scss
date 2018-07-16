@@ -15,7 +15,6 @@ $bright-green: #80e16b;
 html {
   position: relative;
   min-height: 100%;
-  
 }
 
 body {
@@ -592,6 +591,31 @@ div#main.home {
     color: #4d4d4d;
 
   }
+}
+
+#evening {
+  background-color: #ffccfd;
+}
+
+#day {
+  background-color: #cecfd2;
+}
+
+#hut {
+  background-color: #eaf7a4;
+}
+
+#camping {
+  background-color: #b4f7bc;
+}
+
+.cal-key {
+  padding: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+  color: text-color;
 }
 
 @media screen and (max-width: 768px) {

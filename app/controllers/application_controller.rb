@@ -1,6 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
+  
+  before_action :session_expires, :except => [:login, :logout]
+  before_action :update_session_time, :except => [:login, :logout]
+
+  def session_expires
+    unless session[:expires_at].nil?
+      time_left = session[:expires_at] - Time.now.to_i
+      if time_left < 0
+        log_out
+        flash[:danger] = 'Logged out due to inactivity.'
+        redirect_to membership_path
+      end
+    end
+  end
+
+  def update_session_time
+    session[:expires_at] = (Time.now + 20.minutes).to_i
+  end
 
   private
     def logged_in_member
