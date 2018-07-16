@@ -1,6 +1,6 @@
 <div class="meets-cal">
 	<div class="table-responsive">
-		<table class="table table-condensed table-striped" id="calendar">
+		<table class="table table-condensed" id="calendar">
 			<thead>
 				<tr>
 					<td>Date</td>
@@ -10,7 +10,7 @@
 			</thead>
 			<tbody>
 				<% meets.each do |m| %>
-					<tr>
+					<tr id="<%= m.meet_type.downcase %>">
 						<td><%= date_display(m.meet_date, m.number_of_nights) %></td>
 						<td>
 							<%= m.meet_type %> Meet. <% unless m.places.nil? %><%= m.places %> places.<% end %><br>

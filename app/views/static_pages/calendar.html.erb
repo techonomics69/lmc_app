@@ -3,6 +3,7 @@
 	<div class="container">
 		<h2>Upcoming Meets</h2>
 		<p>Don't miss a thing! We have a <a href="#icalfeed">calendar feed</a> for most calendar apps on Apple and Android.</p>
+			<span class="cal-key" id="evening" >Evening Meet</span><span class="cal-key" id="day">Day Meet</span><span class="cal-key" id="hut">Hut Meet</span><span class="cal-key" id="camping">Camping Meet</span>
 			<div id="no-scroll"><%= render partial: 'meets_calendar', locals: {meets: @future_meets} %></div>
 			<br>
 			<br>
