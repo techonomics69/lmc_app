@@ -7,10 +7,10 @@
 			<p><%= link_to "Back to my details", members_path(@member) %></p>
 		</div>
 	</div>
-	<%= form_for(@meet, url: meets_member_path) do |f| %>
-		<div class="row">	
-			<div class="col-md-4 col col-md-offset-2">
-				<h3>Meet Details</h3>
+	<div class="row">	
+		<div class="col-md-4 col col-md-offset-2">
+			<h3>Meet Details</h3>
+			<%= form_for(@meet, url: meets_member_path) do |f| %>
 				<p>
 					<b>Meet Date</b><br>
 					<%= @meet.meet_date.strftime("%d/%m/%Y") %><br>
@@ -32,8 +32,9 @@
 					<%= @meet.places %><br>
 				</p>
 				<p>Please speak to the Meets Secretary if there are any errors.</p>
-			</div>
-			<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+			<div class="main-box">
 				<h3>Add notes or links</h3>
 				<%= f.label :bb_url, 'Link to bulletin board post' %>
 				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :bb_url) %></p>
@@ -44,9 +45,10 @@
 				<%= f.text_area :notes, class: 'form-control' %>
 
 				<%= f.hidden_field :id %>
-				<%= f.submit 'add notes or link', class: "btn user-btn btn-lg full-width" %>	
+				<%= f.submit 'add notes or link', class: "btn user-btn btn-lg full-width" %>
+				<% end %>
 			</div>
 		</div>
-	<% end %>
+	</div>
 </div>
 
