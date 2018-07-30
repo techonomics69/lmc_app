@@ -30,7 +30,7 @@ class MemberMailer < ApplicationMailer
     @m_name = m_name
     @m_add = email_add
     @email = content
-    mail to: member.email, subject: "#{content.subject}"
+    mail to: email_add, subject: "#{content.subject}"
   end
 
   def subs_reminder(member, content)
