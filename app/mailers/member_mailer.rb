@@ -26,8 +26,9 @@ class MemberMailer < ApplicationMailer
     mail from: "donotreply@leedsmc.org", to: "leedsmc@gmail.com", subject: "New LMC Member! Woop Woop!"
   end
 
-  def newsfeed(member, content)
-    @recipient = member
+  def newsfeed(email_add, m_name, content)
+    @m_name = m_name
+    @m_add = email_add
     @email = content
     mail to: member.email, subject: "#{content.subject}"
   end

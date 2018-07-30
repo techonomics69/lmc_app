@@ -59,7 +59,7 @@ class Committee::EmailsController < Committee::BaseController
     @email = Email.find(params[:id])
     recipients
     @recipients.each do |rec|
-      MemberMailer.newsfeed(rec, @email).deliver_later
+      MemberMailer.newsfeed(rec.email, rec.first_name, @email).deliver_later
       sent_to += 1
     end
     @email.update_columns(sent_to: sent_to, sent_on: DateTime.now)
