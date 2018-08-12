@@ -34,6 +34,8 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.active_job.queue_adapter     = :sucker_punch
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

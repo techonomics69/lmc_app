@@ -12,6 +12,7 @@ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'b
 gem 'bootstrap-sass'
 gem 'faker', '1.7.3'
 gem 'tinymce-rails'
+gem 'sucker_punch', '~> 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
