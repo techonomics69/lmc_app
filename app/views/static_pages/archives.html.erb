@@ -1,0 +1,64 @@
+<div class="top-border"></div>
+<div id="carousel-container">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+
+    </div>
+  </div>
+</div>
+
+<div id="main" class="home">
+	<div class="row row-top">
+		<div class="container">
+			<h2 style="margin-left: 15px">Leeds Mountaineering Club Archives</h2>
+			<div class="col-md-6 col-xs-12 spaced-left">
+				<h3>Archives</h3>
+				<p>We have some old blog posts and newsletters preserved on the site for posterity. You can view them below.</p>
+				<p>We also have an overview of the club's history and how it came to be on our history page.</p>
+				<%= link_to "History", history_path, class: "btn btn-lg btn-default user-btn" %>
+			</div>
+			<div class="col-md-6 col-xs-12 spaced-right">
+				<p>Image here.</p>
+			</div>
+		</div>
+	</div>
+	<div class="row row-btm">
+		<div class="container">
+			<div class="col-md-6 col-xs-12 spaced-left">
+				<a name="bottom"></a>
+				<h3>Blogs</h3>
+				<!-- Button trigger modal -->
+				<ul>
+					<li><a href="" data-toggle="modal" data-target="#blog1">Skiing in Glen Shee, April 2013</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog2">A Crookrise rainy day come good, June 2013</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog3">The Meet That Never Was, January 2013</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog4">Hanging Around In The Peak, October 2012</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog5">A Tale of 2 Winter Belays</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog6">Winter Skills in the Cairngorms, January 2012 </a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog7">LMCers in the Pass, October 2011</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog8">Dave and Holly's Trip to Yosemite, August 2011</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog9">Paul's Trip to Ailefroid, July 2011</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog10">The Greenwoods Go Climbing, Easter 2011</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog11">Photos in Videos with Music, 2004 - 2011</a></li>
+					
+					<li><a href="" data-toggle="modal" data-target="#blog12">Wasdale Head Meet, 13th - 14th August 2010</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog13">Buttermere - Dalegarth Campsite, July 2010</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog14">Tour of the Lake District, April - May 2010</a></li>
+					<li><a href="" data-toggle="modal" data-target="#blog15">C2C - A Taste of Things to Come? June 2004</a></li>
+				</ul>
+				<%= render partial: 'modals' %>
+			</div>
+			<div class="col-md-6 col-xs-12 spaced-right">
+				<h3>Newsletters</h3>
+				<p>Each of these links will open a pdf of the newsletter.</p>
+				<ul>
+					<li>NL 1</li>
+					<li>NL 2</li>
+					<li>etc</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
