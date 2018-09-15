@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/committee', to: 'static_pages#the_committee'
   get '/history', to: 'static_pages#history'
+  get '/cae_amos', to: 'static_pages#cae_amos'
   get '/archives', to: 'static_pages#archives'
   get '/reports', to: 'static_pages#reports'
   get '/contact', to: 'static_pages#contact'

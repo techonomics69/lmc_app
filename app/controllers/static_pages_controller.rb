@@ -48,6 +48,9 @@ class StaticPagesController < ApplicationController
   def archives
   end
 
+  def cae_amos
+  end
+
   def links
     @meta_description = meta_description("links")
   end

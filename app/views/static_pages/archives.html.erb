@@ -16,8 +16,9 @@
 			<div class="col-md-6 col-xs-12 spaced-left">
 				<h3>Archives</h3>
 				<p>We have some old blog posts and newsletters preserved on the site for posterity. You can view them below.</p>
-				<p>We also have an overview of the club's history and how it came to be on our history page.</p>
-				<%= link_to "History", history_path, class: "btn btn-lg btn-default user-btn" %>
+				<p>We also have a page on the club's history and how it came to be as well as a page on the history of our former hut, Cae Amos.</p>
+				<%= link_to "Club History", history_path, class: "btn btn-lg btn-default user-btn" %>
+				<%= link_to "Cae Amos History", cae_amos_path, class: "btn btn-lg btn-default user-btn" %>
 			</div>
 			<div class="col-md-6 col-xs-12 spaced-right">
 				<p>Image here.</p>
@@ -42,7 +43,6 @@
 					<li><a href="" data-toggle="modal" data-target="#blog9">Paul's Trip to Ailefroid, July 2011</a></li>
 					<li><a href="" data-toggle="modal" data-target="#blog10">The Greenwoods Go Climbing, Easter 2011</a></li>
 					<li><a href="" data-toggle="modal" data-target="#blog11">Photos in Videos with Music, 2004 - 2011</a></li>
-					
 					<li><a href="" data-toggle="modal" data-target="#blog12">Wasdale Head Meet, 13th - 14th August 2010</a></li>
 					<li><a href="" data-toggle="modal" data-target="#blog13">Buttermere - Dalegarth Campsite, July 2010</a></li>
 					<li><a href="" data-toggle="modal" data-target="#blog14">Tour of the Lake District, April - May 2010</a></li>
@@ -54,9 +54,24 @@
 				<h3>Newsletters</h3>
 				<p>Each of these links will open a pdf of the newsletter.</p>
 				<ul>
-					<li>NL 1</li>
-					<li>NL 2</li>
-					<li>etc</li>
+					<li><%= link_to "Winter 2014", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2014-12-NewsLetter.pdf", target: :_blank %></li>
+					<li><%= link_to "Summer 2013", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2013-11-LMCNewsletterSummer2013.pdf", target: :_blank %></li>
+					<li><%= link_to "Spring 2013", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2013-09-LMCNewsletterWinter2012Spring2013.pdf", target: :_blank %></li>
+					<li><%= link_to "Autumn 2012", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2013-02-LMCnewsletterAutumn2012.pdf", target: :_blank %></li>
+					<li><%= link_to "Summer 2012", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2012-09-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Autumn 2011", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2011-10-Autumn-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Spring 2011", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2011-04-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Winter 2010", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2010-11-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Summer 2010", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2010-07-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Spring 2010", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2010-04-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Winter 2009", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2009-12-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Autumn 2008", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2008-10-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Autumn 2007", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2007-11-20-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Spring 2007", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2007-05-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Winter 2006", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2006-12-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Spring 2006", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2006-03-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Autumn 2005", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2005-LMCnewsletter.pdf", target: :_blank %></li>
+					<li><%= link_to "Spring 2004", "https://s3.eu-west-2.amazonaws.com/leedsmc/newsletters/2004-Spring-LMCnewsletter.pdf", target: :_blank %></li>
 				</ul>
 			</div>
 		</div>
