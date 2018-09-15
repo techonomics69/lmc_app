@@ -415,6 +415,18 @@ div#main.home {
   }
 }
 
+/*modals*/
+
+.caption img {
+  float: right;
+  margin-left:10px;
+}
+
+.caption img {
+  float: left;
+  margin-right:10px;
+}
+
 /*logged in pages*/
 .info-box {
   background-color: $light-green;

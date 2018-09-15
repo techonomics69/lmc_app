@@ -45,6 +45,9 @@ class StaticPagesController < ApplicationController
   def history
   end
 
+  def archives
+  end
+
   def links
     @meta_description = meta_description("links")
   end
