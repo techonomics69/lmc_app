@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   
-  before_action :session_expires, :except => [:login, :logout]
-  before_action :update_session_time, :except => [:login, :logout]
+  before_action :session_expires, :except => [:login, :logout], if: :logged_in?
+  before_action :update_session_time, :except => [:login, :logout], if: :logged_in?
 
   def session_expires
     unless session[:expires_at].nil?
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       if time_left < 0
         log_out
         flash[:danger] = 'Logged out due to inactivity.'
-        redirect_to membership_path
+        redirect_to login_url
       end
     end
   end

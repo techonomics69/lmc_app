@@ -415,6 +415,32 @@ div#main.home {
   }
 }
 
+/*history and archives*/
+
+.history-img-l {
+  float: left;
+  margin: 0px 20px 10px 0px;
+}
+
+.history-img-r {
+  float: right;
+  margin: 0px 0px 10px 20px;
+}
+
+.committee-img {
+  float: right;
+  width: 200px;
+  height: 240px;
+  margin: 0px 0px 10px 20px;
+}
+
+@media screen and (max-width: 425px){
+  .committee-img {
+    float: none;
+    margin: 0px 0px 10px 0px;
+  }
+}
+
 /*modals*/
 
 .caption img {
@@ -446,20 +472,6 @@ div#main.home {
     height: auto;
     overflow: scroll;
     margin-top: 20px;
-  }
-}
-
-.committee-img {
-  float: right;
-  width: 200px;
-  height: 240px;
-  margin: 0px 0px 10px 20px;
-}
-
-@media screen and (max-width: 425px){
-  .committee-img {
-    float: none;
-    margin: 0px 0px 10px 0px;
   }
 }
 
