@@ -6,6 +6,8 @@ class StaticPagesController < ApplicationController
 	
 	include StaticPagesHelper
 
+  skip_before_action :session_expires
+
   def home
   	@meets = next_meets
     @bb_feed = bb_feed if @bb_feed.nil?

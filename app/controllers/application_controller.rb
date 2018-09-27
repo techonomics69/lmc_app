@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   
-  before_action :session_expires, :except => [:login, :logout], if: :logged_in?
-  before_action :update_session_time, :except => [:login, :logout], if: :logged_in?
+  before_action :session_expires, if: :logged_in?
+  before_action :update_session_time, if: :logged_in?
 
   def session_expires
     unless session[:expires_at].nil?
@@ -17,7 +17,14 @@ class ApplicationController < ActionController::Base
   end
 
   def update_session_time
-    session[:expires_at] = (Time.now + 20.minutes).to_i
+    if session[:expires_at].nil?
+      session[:expires_at] = (Time.now + 20.minutes).to_i
+    else
+      time_left = session[:expires_at] - Time.now.to_i
+      if time_left > 0
+        session[:expires_at] = (Time.now + 20.minutes).to_i
+      end
+    end
   end
 
   private
