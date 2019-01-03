@@ -50,8 +50,8 @@
 				<% if !@member.bb_name.nil? %><b>Bulletin Board Name:</b><br>
 				<%= @member.bb_name %><% end %>
 			</p>			
-			<p><b><%= @member.membership.membership_type %> Member
-				<% if @member.membership.made_full_member? %>since:</b><br>
+			<p><b><%= @member.membership.membership_type %> Member</b>
+				<% if @member.membership.made_full_member? %><b>since:</b><br>
 				<%= @member.membership.made_full_member.strftime("%d/%m/%Y") %><% end %>
 			</p>			
 							
