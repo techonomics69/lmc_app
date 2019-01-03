@@ -31,9 +31,9 @@
 							<%= form_for(m, url: update_role_committee_members_path) do |ff| %>
 								<%= fields_for :membership do |f| %>
 									<%= hidden_field_tag 'id', m.id %>
-									<%= f.collection_select :committee_position, Membership::COMMITTEE_POSITIONS, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
+									<div style="display: inline-block"><%= f.collection_select :committee_position, Membership::COMMITTEE_POSITIONS, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %></div>
 								<% end %>
-								<%= ff.submit "Assign Role", id: "table-btn", class: "btn member-btn" %>
+								<div style="display: inline-block"><%= ff.submit "Assign Role", id: "table-btn", class: "btn member-btn" %></div>
 							<% end %>
 						</td>
 					</tr>
