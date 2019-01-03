@@ -54,7 +54,8 @@ class Committee::MembersController < Committee::BaseController
   	@member_to_assign_role = Member.find(params[:id])
   	@member_to_remove_role = Member.joins(:membership).find_by(memberships: {committee_position: params[:membership][:committee_position]})
   	@member_to_remove_role.membership.update_attributes!(committee_position: nil) unless @member_to_remove_role.nil?
-  	@member_to_remove_role.membership.update_attributes!(committee_position: nil) if @member_to_remove_role == @member_to_assign_role && params[:membership][:committee_position].blank?
+  	
+  	@member_to_remove_role.membership.update_attributes!(committee_position: nil) if @member_to_remove_role == @member_to_assign_role# && params[:membership][:committee_position].blank?
   	
   	if @member_to_assign_role.membership.update_attributes(roles_params)
   		flash[:success] = "#{@member_to_assign_role.first_name} #{@member_to_assign_role.last_name} is now the #{@member_to_assign_role.membership.committee_position}"
