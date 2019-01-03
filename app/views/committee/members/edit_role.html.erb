@@ -28,13 +28,15 @@
 						<td><%= m.email %></td>
 						<td><%= m.membership.committee_position %></td>
 						<%= form_for(m, url: update_role_committee_members_path) do |ff| %>
-							<%= fields_for :membership do |f| %>
+							<td>
+								<%= fields_for :membership do |f| %>
 								<%= hidden_field_tag 'id', m.id %>
-								<td>
 								<%= f.collection_select :committee_position, Membership::COMMITTEE_POSITIONS, :to_s, :to_s, {include_blank: true}, {class: 'form-control'} %>
-								</td>
-							<% end %>
-								<td><%= ff.submit "Assign Role", id: "table-btn", class: "btn member-btn" %></td>
+								<% end %>
+							</td>
+							<td>
+								<%= ff.submit "Assign Role", id: "table-btn", class: "btn member-btn" %>
+							</td>
 						<% end %>
 					</tr>
 				<% end %>
