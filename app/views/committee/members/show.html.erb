@@ -69,8 +69,10 @@
 			<% if !@member.membership.bmc_number.nil? %>
 				<p><b>BMC number</b><br> <%= @member.membership.bmc_number %></p>
 			<% end %>
+		</div>
+		<div class="col-md-8 col col-md-offset-2">
 			<% if !@member.experience.nil? %><br>
-				<p><b>Mountaineering Experience<b></p><p><%= @member.experience %></p>
+				<p><b>Mountaineering Experience</b></p><p><%= @member.experience %></p>
 			<% end %>
 		</div>
 	</div>
