@@ -66,15 +66,12 @@
 					No
 				<% end %>
 			</p>
-			<% if @member.membership.bmc_number %>
+			<% if !@member.membership.bmc_number.nil? %>
 				<p><b>BMC number</b><br> <%= @member.membership.bmc_number %></p>
+			<% end %>
+			<% if !@member.experience.nil? %><br>
+				<p><b>Mountaineering Experience<b></p><p><%= @member.experience %></p>
 			<% end %>
 		</div>
 	</div>
-	<p>Mountaineering Experience</p>
-	<p>
-		<% if !@member.experience.nil? %><br>
-			<%= @member.experience %>
-		<% end %>
-	</p>
 </div>
