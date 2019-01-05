@@ -71,4 +71,10 @@
 			<% end %>
 		</div>
 	</div>
+	<p>Mountaineering Experience</p>
+	<p>
+		<% if !@member.experience.nil? %><br>
+			<%= @member.experience %>
+		<% end %>
+	</p>
 </div>
