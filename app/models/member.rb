@@ -27,7 +27,7 @@ class Member < ApplicationRecord
 	validates :email, 			 presence: true, length: { maximum: 255 },
 													 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
 #	validates :dob,        	 presence: true
-	validates :experience,   length: { maximum: 1000 }
+	validates :experience,   length: { maximum: 1100 }
 	validates :accept_risks, inclusion: { in: [ true ] }
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true

@@ -48,14 +48,19 @@ class Committee::MembersController < Committee::BaseController
 
   def edit_role
 		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
+		@committee_positions_list = committee_positions_list
   end
 
   def update_role
   	@member_to_assign_role = Member.find(params[:id])
   	@member_to_remove_role = Member.joins(:membership).find_by(memberships: {committee_position: params[:membership][:committee_position]})
-  	@member_to_remove_role.membership.update_attributes!(committee_position: nil) unless @member_to_remove_role.nil?
-  	
-  	@member_to_remove_role.membership.update_attributes!(committee_position: nil) if @member_to_remove_role == @member_to_assign_role# && params[:membership][:committee_position].blank?
+  	if params[:membership][:committee_position] == "- remove role -"
+  		if @member_to_assign_role.membership.update_attributes!(committee_position: nil)
+  			flash[:success] = "#{@member_to_assign_role.first_name} #{@member_to_assign_role.last_name} is no longer on the committee"
+  		end
+  	else
+  		@member_to_remove_role.membership.update_attributes!(committee_position: nil) unless @member_to_remove_role.nil?
+  	end
   	
   	if @member_to_assign_role.membership.update_attributes(roles_params)
   		flash[:success] = "#{@member_to_assign_role.first_name} #{@member_to_assign_role.last_name} is now the #{@member_to_assign_role.membership.committee_position}"
@@ -64,10 +69,6 @@ class Committee::MembersController < Committee::BaseController
   	end
 		redirect_to saved_sort_or(committee_members_path)
   end
-
-#  def destroy_role
-#  	@member_to_destroy_role = Member.joins(:membership).find_by(memberships: {committee_position: params[:membership][:committee_position]})
-#  end
 
   def destroy
   	Member.find(params[:id]).destroy
@@ -125,4 +126,20 @@ def member_params
 
 	def route_to params
 		params[:route_to].keys.first.to_sym unless params[:route_to].nil?
+	end
+
+	def committee_positions_list
+		["Chair",
+		"Treasurer",
+		"Meets Secretary",
+		"Membership Secretary",
+		"Communications Secretary",
+		"Social Secretary",
+		"Climbing Co-ordinator",
+		"Walking Co-ordinator",
+		"Ordinary Member",
+		"Member Without Portfolio",
+		"",
+		"site admin",
+		"- remove role -"]
 	end

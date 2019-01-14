@@ -3,7 +3,7 @@ class Membership < ApplicationRecord
 	before_save :update_date_made_full, if: :membership_type_changed?
 	after_find :update_subs_paid
 
-	include ActiveModel::Dirty
+	include ActiveModel::Dirty #allows changes to be tracked
 
 	COMMITTEE_POSITIONS = ["Chair",
 												 "Treasurer",
@@ -15,7 +15,7 @@ class Membership < ApplicationRecord
 												 "Walking Co-ordinator",
 												 "Ordinary Member",
 												 "Member Without Portfolio",
-												 "(site admin)"]
+												 "site admin"]
 
 	MEMBERSHIP_TYPES = ["Provisional","Full","Honorary","Provisional (unpaid)"]
 
@@ -38,7 +38,7 @@ class Membership < ApplicationRecord
 			self.subs_paid = false
 		elsif self.fees_received_on.year == DateTime.now.year
 			self.subs_paid = true
-		elsif self.fees_received_on.month.between?(10,12) && self.fees_received_on.year == (DateTime.now - 365.days).year# && self.membership_type == "Provisional (unpaid)"
+		elsif self.fees_received_on.month.between?(10,12) && self.fees_received_on.year == (DateTime.now - 365.days).year && self.membership_type == "Provisional (unpaid)"
 			self.subs_paid = true
 		else
 			self.subs_paid = false
