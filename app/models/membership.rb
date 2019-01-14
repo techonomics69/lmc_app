@@ -38,7 +38,7 @@ class Membership < ApplicationRecord
 			self.subs_paid = false
 		elsif self.fees_received_on.year == DateTime.now.year
 			self.subs_paid = true
-		elsif self.fees_received_on.month.between?(10,12) && self.fees_received_on.year == (DateTime.now - 365.days).year && self.membership_type == "Provisional (unpaid)"
+		elsif self.fees_received_on.month.between?(10,12) && self.fees_received_on.year == (DateTime.now - 365.days).year && self.membership_type == "Provisional"
 			self.subs_paid = true
 		else
 			self.subs_paid = false
