@@ -5,7 +5,7 @@ class Committee::MembersController < Committee::BaseController
 	include MembersMultiple
 
 	def index
-		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
+		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}", "last_name ASC")
 		recall_selected(@members)
 	end
 
