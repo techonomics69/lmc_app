@@ -17,6 +17,10 @@ module MembersHelper
 		updates.max.strftime("%d/%m/%Y")
 	end
 
+	def created_at(member)
+		member.created_at.strftime("%d/%m/%Y")
+	end
+
 	def new_member?(member)
 		membership_level(member) == "Provisional (unpaid) Member"
 	end

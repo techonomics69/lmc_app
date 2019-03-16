@@ -39,6 +39,7 @@
 						<th><%= sort_link "welcome_pack_sent", "Welcome Pack?", committee_members_path %></th>
 						<th><%= sort_link "receive_emails", "Mailing List?", committee_members_path %></th>
 						<th><%= sort_link "updated_at", "Updated", committee_members_path %></th>
+						<th><%= sort_link "created_at", "Created", committee_members_path %></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -57,6 +58,7 @@
 							<td><%= readable_boolean(m.membership.welcome_pack_sent).html_safe %></td>
 							<td><%= readable_boolean(m.receive_emails).html_safe %></td>
 							<td><%= latest_update(m) %></td>
+							<td><%= created_at(m) %></td>
 							<td><%= link_to "view", committee_member_path(m) %></td>
 							<td><%= link_to "edit", edit_committee_member_path(m) %></td>
 							<td><%= link_to "delete", committee_member_path(m), method: :delete, data: { confirm: "You are about to delete #{m.full_name} from the database."} %></td>
