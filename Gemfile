@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.1.2'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'bootstrap-sass', '~> 3.4.1'
-gem 'tinymce-rails'
+gem 'tinymce-rails', '4.2.1'
 gem 'sucker_punch', '~> 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
