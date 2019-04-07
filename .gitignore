@@ -7,6 +7,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -25,7 +26,18 @@
 /spring/*.pid
 
 #Ignore Secrets
-/config/secrets.yml
+/config/secrets
 
-#Ignore Precompiled Assets
+# Ignore precompiled javascript packs
+/public/packs
+/public/packs-test
 /public/assets
+
+# Ignore yarn files
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
