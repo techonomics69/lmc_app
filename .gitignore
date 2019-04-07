@@ -26,7 +26,7 @@
 /spring/*.pid
 
 # Ignore precompiled javascript packs
-public/assets/**
+/public/assets
 
 # Ignore yarn files
 /yarn-error.log
