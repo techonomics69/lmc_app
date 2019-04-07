@@ -5,7 +5,7 @@ class Committee::MembersController < Committee::BaseController
 	include MembersMultiple
 
 	def index
-		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}", "last_name ASC")
+		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
 		recall_selected(@members)
 	end
 
@@ -47,7 +47,7 @@ class Committee::MembersController < Committee::BaseController
   end
 
   def edit_role
-		@members = Member.joins(:membership).order("#{sort_column("committee_position")} #{sort_direction("desc")}")
+		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
 		@committee_positions_list = committee_positions_list
   end
 
@@ -108,7 +108,7 @@ def member_params
 		params.require(:membership).permit(:committee_position)
 	end
 
-	def sort_column(default = "last_name")
+	def sort_column(default="last_name")
 		if 
 			Member.column_names.include?(params[:sort])
 			return params[:sort]
