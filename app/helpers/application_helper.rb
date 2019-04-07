@@ -19,8 +19,7 @@ module ApplicationHelper
 	end
 
 	def readable_boolean(value)
-		return "&#10004;" if value ==true
-		"&#10008;"
+		value ? "&#10004;" : "&#10008;"
 	end
 
 	def sort_link(column, options = {})

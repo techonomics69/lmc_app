@@ -13,12 +13,16 @@ module MembersHelper
 	end
 
 	def latest_update(member)
-		updates = [member.updated_at, member.membership.updated_at]
-		updates.max.strftime("%d/%m/%Y")
+		update = [member.updated_at, member.membership.updated_at].max
+		update.strftime("%d/%m/%Y")
 	end
 
 	def created_at(member)
 		member.created_at.strftime("%d/%m/%Y")
+	end
+
+	def updated_at(member)
+		member.updated_at.strftime("%d/%m/%Y")
 	end
 
 	def new_member?(member)
