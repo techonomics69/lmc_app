@@ -13,7 +13,7 @@
 				<th><%= sort_link "first_name", title: "First Name", link: edit_role_committee_members_path %></th>
 				<th><%= sort_link "last_name", title: "Last Name", link: edit_role_committee_members_path %></th>
 				<th><%= sort_link "email", title: "Email", link: edit_role_committee_members_path %></th>
-				<th><%= sort_link "committee_position", title: "Current Role", link: edit_role_committee_members_path, direction: "desc" %></th>
+				<th><%= sort_link "committee_position", { title: "Current Role", link: edit_role_committee_members_path, direction: "desc" } %></th>
 				<th>New Role</th>
 				<th></th>
 			</thead>

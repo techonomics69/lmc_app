@@ -9,8 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
-gem 'bootstrap-sass'
-gem 'faker', '1.7.3'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'tinymce-rails'
 gem 'sucker_punch', '~> 2.0'
 # Use Puma as the app server
@@ -45,6 +44,7 @@ group :development, :test do
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', '1.7.3'
   end
 
 group :development do
