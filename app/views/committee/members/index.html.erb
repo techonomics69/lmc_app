@@ -30,16 +30,16 @@
 				<table class="table table-hover membership-table">
 					<thead>
 						<th></th>
-						<th><%= sort_link "first_name", "First Name", committee_members_path %></th>
-						<th><%= sort_link "last_name", "Last Name", committee_members_path %></th>
-						<th><%= sort_link "bb_name", "BB Name", committee_members_path %></th>
-						<th><%= sort_link "membership_type", "Type", committee_members_path %></th>
-						<th><%= sort_link "subs_paid", "Subs Paid?", committee_members_path %></th>
-						<th><%= sort_link "fees_received_on", "Last Payment", committee_members_path %></th>
-						<th><%= sort_link "welcome_pack_sent", "Welcome Pack?", committee_members_path %></th>
-						<th><%= sort_link "receive_emails", "Mailing List?", committee_members_path %></th>
-						<th><%= sort_link "updated_at", "Updated", committee_members_path %></th>
-						<th><%= sort_link "created_at", "Created", committee_members_path %></th>
+						<th><%= sort_link "first_name", title: "First Name", link: committee_members_path %></th>
+						<th><%= sort_link "last_name", title: "Last Name", link: committee_members_path %></th>
+						<th><%= sort_link "bb_name", title: "BB Name", link: committee_members_path %></th>
+						<th><%= sort_link "membership_type", title: "Type", link: committee_members_path %></th>
+						<th><%= sort_link "subs_paid", title: "Subs Paid?", link: committee_members_path %></th>
+						<th><%= sort_link "fees_received_on", title: "Last Paid", link: committee_members_path %></th>
+						<th><%= sort_link "welcome_pack_sent", title: "Welcome Pack?", link: committee_members_path %></th>
+						<th><%= sort_link "receive_emails", title: "Mailing List?", link: committee_members_path %></th>
+						<th><%= sort_link "created_at", title: "Signed Up", link: committee_members_path %></th>
+						<th><%= sort_link "updated_at", title: "Updated", link: committee_members_path %></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -57,8 +57,8 @@
 							<td><% if !m.membership.fees_received_on.nil? %><%= m.membership.fees_received_on.strftime("%d/%m/%Y") %><% end %></td>
 							<td><%= readable_boolean(m.membership.welcome_pack_sent).html_safe %></td>
 							<td><%= readable_boolean(m.receive_emails).html_safe %></td>
-							<td><%= latest_update(m) %></td>
 							<td><%= created_at(m) %></td>
+							<td><%= latest_update(m) %></td>
 							<td><%= link_to "view", committee_member_path(m) %></td>
 							<td><%= link_to "edit", edit_committee_member_path(m) %></td>
 							<td><%= link_to "delete", committee_member_path(m), method: :delete, data: { confirm: "You are about to delete #{m.full_name} from the database."} %></td>

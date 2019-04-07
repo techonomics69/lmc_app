@@ -15,6 +15,7 @@ class Membership < ApplicationRecord
 												 "Walking Co-ordinator",
 												 "Ordinary Member",
 												 "Member Without Portfolio",
+												 "Extra Ordinary Member",
 												 "site admin"]
 
 	MEMBERSHIP_TYPES = ["Provisional","Full","Honorary","Provisional (unpaid)"]

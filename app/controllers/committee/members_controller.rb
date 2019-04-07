@@ -47,7 +47,7 @@ class Committee::MembersController < Committee::BaseController
   end
 
   def edit_role
-		@members = Member.joins(:membership).order("#{sort_column} #{sort_direction}")
+		@members = Member.joins(:membership).order("#{sort_column("committee_position")} #{sort_direction("desc")}")
 		@committee_positions_list = committee_positions_list
   end
 
@@ -108,7 +108,7 @@ def member_params
 		params.require(:membership).permit(:committee_position)
 	end
 
-	def sort_column
+	def sort_column(default = "last_name")
 		if 
 			Member.column_names.include?(params[:sort])
 			return params[:sort]
@@ -116,12 +116,12 @@ def member_params
 			Membership.column_names.include?(params[:sort])
 			return params[:sort]
 		else
-			"last_name"
+			default
 		end
 	end
 
-	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	def sort_direction(default = "asc")
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : default
 	end
 
 	def route_to params
@@ -138,6 +138,7 @@ def member_params
 		"Climbing Co-ordinator",
 		"Walking Co-ordinator",
 		"Ordinary Member",
+		"Extra Ordinary Member",
 		"Member Without Portfolio",
 		"",
 		"site admin",

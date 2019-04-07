@@ -10,11 +10,10 @@
 
 		<table class="table table-hover table-narrow">
 			<thead>
-				<th><%= sort_link "first_name", "First Name", edit_role_committee_members_path %></th>
-				<th><%= sort_link "last_name", "Last Name", edit_role_committee_members_path %></th>
-				<th><%= sort_link "address_1", "Address", edit_role_committee_members_path %></th>
-				<th><%= sort_link "email", "Email", edit_role_committee_members_path %></th>
-				<th><%= sort_link "committee_position", "Current Role", edit_role_committee_members_path %></th>
+				<th><%= sort_link "first_name", title: "First Name", link: edit_role_committee_members_path %></th>
+				<th><%= sort_link "last_name", title: "Last Name", link: edit_role_committee_members_path %></th>
+				<th><%= sort_link "email", title: "Email", link: edit_role_committee_members_path %></th>
+				<th><%= sort_link "committee_position", title: "Current Role", link: edit_role_committee_members_path, direction: "desc" %></th>
 				<th>New Role</th>
 				<th></th>
 			</thead>
@@ -24,7 +23,6 @@
 					<tr>
 						<td><%= m.first_name %></td>
 						<td><%= m.last_name %></td>
-						<td><%= m.address_1 %></td>
 						<td><%= m.email %></td>
 						<td><%= m.membership.committee_position %></td>
 						<td>

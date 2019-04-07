@@ -71,11 +71,12 @@ class Member < ApplicationRecord
 	#export functions - all membership information
 	def self.to_csv_membership(member_atts = ["first_name", "last_name"], membership_atts = DEFAULT_MEMBERSHIP_ATTS, options = {})
 		CSV.generate(options) do |csv|
-			csv << member_atts + membership_atts
+			csv << member_atts + membership_atts + ["completed membership form"]
 
 			all.each do |member|
 				values = member.attributes.values_at(*member_atts)
 				values += member.membership.attributes.slice(*membership_atts).values_at(*membership_atts) if member.membership
+				values += member.membership.attributes.slice("created_at").values_at("created_at") if member.membership
 				csv << values
 			end
 		end
