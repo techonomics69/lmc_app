@@ -25726,8 +25726,7 @@ window.tinymce = window.tinymce || {
         this._nodeChangeDispatcher.nodeChanged(args);
       },
       addButton: function () {
-        editor.ui.registry.addButton()
-        //throw new Error('editor.addButton has been removed in tinymce 5x, use editor.ui.registry.addButton or editor.ui.registry.addToggleButton or editor.ui.registry.addSplitButton instead');
+        throw new Error('editor.addButton has been removed in tinymce 5x, use editor.ui.registry.addButton or editor.ui.registry.addToggleButton or editor.ui.registry.addSplitButton instead');
       },
       addSidebar: function () {
         throw new Error('editor.addSidebar has been removed in tinymce 5x, use editor.ui.registry.addSidebar instead');
