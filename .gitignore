@@ -25,9 +25,6 @@
 # Ignore Spring files.
 /spring/*.pid
 
-#Ignore Secrets
-/config/secrets
-
 # Ignore precompiled javascript packs
 /public/packs
 /public/packs-test
