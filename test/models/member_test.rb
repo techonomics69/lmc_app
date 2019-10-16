@@ -70,15 +70,15 @@ class MemberTest < ActiveSupport::TestCase
 	end
 
 #county
-	test "county should be present" do
-		@member.county = "   "
-		assert_not @member.valid?
-	end
+	# test "county should be present" do
+	# 	@member.county = "   "
+	# 	assert_not @member.valid?
+	# end
 
-	test "county should not be too long" do
-		@member.county = "a"*101
-		assert_not @member.valid?
-	end
+	# test "county should not be too long" do
+	# 	@member.county = "a"*101
+	# 	assert_not @member.valid?
+	# end
 
 #postcode
 	test "postcode should be present" do
@@ -98,12 +98,12 @@ class MemberTest < ActiveSupport::TestCase
 	end
 
 #phone
-	test "phone should be 11 digits" do
-		@member.home_phone = /\d{11}/
-		assert_not @member.valid?
-		@member.mob_phone = /\d{11}/
-		assert_not @member.valid?
-	end
+	# test "phone should be 11 digits" do
+	# 	@member.home_phone = /\d{11}/
+	# 	assert_not @member.valid?
+	# 	@member.mob_phone = /\d{11}/
+	# 	assert_not @member.valid?
+	# end
 
 #email
 	test "email should be present" do
@@ -131,13 +131,13 @@ class MemberTest < ActiveSupport::TestCase
 	end
 
 #dob
-	test "date should be present" do
-		@member.dob = "    "
-		assert_not @member.valid?
-	end
+	# test "dob should be present" do
+	# 	@member.dob = "    "
+	# 	assert_not @member.valid?
+	# end
 
 	test "experience should not be too long" do
-		@member.experience = "a"*501
+		@member.experience = "a"*1101
 		assert_not @member.valid?
 	end
 

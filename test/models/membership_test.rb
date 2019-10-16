@@ -33,6 +33,7 @@ class MembershipTest < ActiveSupport::TestCase
 		@normal_member.membership.membership_type = "Provisional (unpaid)"
 		@normal_member.save
 		assert @normal_member.membership.membership_type == "Provisional (unpaid)"
+		@normal_member.membership.fees_received_on = DateTime.now.strftime("%d/%m/%Y")
 		@normal_member.membership.subs_paid = true
 		@normal_member.save
 		@normal_member.membership._run_find_callbacks
@@ -51,7 +52,7 @@ class MembershipTest < ActiveSupport::TestCase
 	test "update subs paid when subs paid in Oct, Nov or Dec" do
 		@normal_member.membership.subs_paid = false
 		assert @normal_member.membership.subs_paid == false
-		@normal_member.membership.fees_received_on = DateTime.new(2017,11,11)
+		@normal_member.membership.fees_received_on = DateTime.new(Date.today.year-1,11,11)
 		@normal_member.save
 		@normal_member.membership._run_find_callbacks
 		assert @normal_member.membership.subs_paid == true

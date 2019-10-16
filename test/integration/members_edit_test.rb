@@ -29,7 +29,7 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 																								  password: "foo",
 																								  password_confirmation: "bar" } }
 		assert_template 'members/edit'
-		assert_select 'div.alert', "The form contains 13 errors."
+		assert_select 'div.alert', "The form contains 11 errors."
 	end
 
 	test "successful edit with friendly forwarding" do

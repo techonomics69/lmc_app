@@ -30,7 +30,6 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 		assert_equal 2, ActionMailer::Base.deliveries.size
 		follow_redirect!
 		assert_template 'members/show'
-		assert_not flash.empty?
 		assert is_logged_in?
 	end
 
