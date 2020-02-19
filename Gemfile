@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'loofah', '>= 2.3.1'
 gem 'rails-html-sanitizer', '~> 1.3.0'
 
-gem 'rake', '~> 12.3.1'
+gem 'rake', '~> 12.3.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
