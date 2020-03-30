@@ -9,7 +9,7 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
 	test "valid application information and welcome message sent" do
 		get application_path
 		assert_difference 'Member.count', 1 do
-			post members_path, params: { member: { title: "Mr",
+			post members_path, params: { member: {
 																					 first_name: "Example",
 																					 last_name: "User",
 																					 dob: "01/01/1990",

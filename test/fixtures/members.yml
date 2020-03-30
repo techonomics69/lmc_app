@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 luke:
-  title: Mr
   first_name: Luke
   last_name: Example
   address_1: 1 Road Street
@@ -21,7 +20,6 @@ luke:
   password_digest: <%= Member.digest('password') %>
 
 climber:
-  title: Mr
   first_name: Tough
   last_name: Climber
   address_1: Base Camp
