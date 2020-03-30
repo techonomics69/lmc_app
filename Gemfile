@@ -13,7 +13,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'tinymce-rails'
 gem 'sucker_punch', '~> 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -63,7 +63,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '~> 0.21'
+  gem 'pg', '~> 1.1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
