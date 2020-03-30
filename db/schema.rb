@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20180523163514) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.text "title"
     t.text "first_name"
     t.text "last_name"
     t.string "address_1"
