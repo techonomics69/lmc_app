@@ -125,9 +125,24 @@
 							<table class="table table-condensed" id="calendar">
 								<tbody>
 									<% @meets.first(4).each do |m| %>
+										<% meet_leader = find_meet_leader(m) %>
 										<tr>
 											<td><%= date_display(m.meet_date, m.number_of_nights) %></td>
-											<td id="col-two"><%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>Meet Leader: <% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %><% else %>TBC<% end %><% if m.bb_url.present? %>. <%= link_to 'Bulletin Board Thread', m.bb_url %><% end %></td>
+											<td id="col-two">
+												<%= m.location %>
+												<% if m.activity.present? %>
+													(<%= m.activity %>)
+												<% end %><br>
+												Meet Leader: 
+												<% if meet_leader %>
+													<%= meet_leader.first_name %> <%= meet_leader.last_name %>
+												<% else %>
+													TBC
+												<% end %>
+												<% if m.bb_url.present? %>
+													. <%= link_to 'Bulletin Board Thread', m.bb_url %>
+												<% end %>
+											</td>
 										</tr>
 									<% end %>
 								</tbody>

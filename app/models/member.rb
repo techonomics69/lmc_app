@@ -2,7 +2,8 @@ class Member < ApplicationRecord
 	attr_accessor :selected, :reset_token
 	has_one :membership, dependent: :destroy
 	has_one :emergency_contact, dependent: :destroy
-	has_many :meets
+	has_many :attendees
+	has_many :meets, :through => :attendees
 	has_many :emails
 	accepts_nested_attributes_for :membership, :emergency_contact, :meets
 	before_create { build_membership }
@@ -24,8 +25,8 @@ class Member < ApplicationRecord
 	validates :country,    	 presence: true, inclusion: { in: COUNTRIES }
 #	validates :home_phone,	 numericality: true, allow_blank: true
 #	validates :mob_phone,	 	 numericality: true, allow_blank: true
-	validates :email, 			 presence: true, length: { maximum: 255 },
-													 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
+	# validates :email, 			 presence: true, length: { maximum: 255 },
+	# 												 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
 #	validates :dob,        	 presence: true
 	validates :experience,   length: { maximum: 1100 }
 	validates :accept_risks, inclusion: { in: [ true ] }

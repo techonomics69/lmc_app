@@ -5,7 +5,6 @@
 #!!!!! remember to run: rails db:fixtures:load RAILS_ENV=test after resetting the database!!!!!!!
 
 member = Member.create!(
-#							 title: "Mr",
 							 first_name: "Chris",
 							 last_name: "Bonnington",
 							 address_1: "1 Top Road",
@@ -35,7 +34,6 @@ member.membership.update(
 							 	notes: "Pretty good mountaineer")
 
 member = Member.create!(
-#							 title: "Mr",
 							 first_name: "Mark",
 							 last_name: "Example 1",
 							 address_1: "99 Road Name",
@@ -65,7 +63,6 @@ member.membership.update(
 							 	notes: "")
 
 member = Member.create!(
-#							 title: "Mr",
 							 first_name: "Luke",
 							 last_name: "Example 2",
 							 address_1: "11 Street",
@@ -87,64 +84,14 @@ member = Member.create!(
 member.membership.update(
 							 	bmc_number: "",
 							 	membership_type: "Full",
-							 	fees_received_on: DateTime.new(2017,1,10).strftime,
+							 	fees_received_on: DateTime.new(2020,1,10).strftime,
 							 	welcome_pack_sent: true,
-							 	made_full_member: DateTime.new(2015,2,11).strftime,
+							 	made_full_member: DateTime.new(2017,2,11).strftime,
 							 	committee_position: "Membership Secretary",
 							 	subs_paid: true,
 							 	notes: "")
 
-Meet.create!( member_id: 3,
-							meet_date: DateTime.new(2018,8,10),
-							meet_type: "Hut",
-							number_of_nights: 2,
-							places: 12,
-							location: "Ingledon, Yorkshire Dales",
-							bb_url: "www.bburl2.com",)
-
-Meet.create!( member_id: 3,
-							meet_date: DateTime.new(2018,7,22),
-							meet_type: "Camping",
-							number_of_nights: 2,
-							location: "Ty'n Lon, Nant Peris, Snowdonia",
-							bb_url: "www.bburl12.com",
-							notes: "some notes")
-
-Meet.create!( member_id: 1,
-							meet_date: DateTime.new(2018,5,3),
-							meet_type: "Camping",
-							number_of_nights: 2,
-							location: "Gwern Gof Uchaf Campsite, Ogwen, Wales",
-							bb_url: "www.bburl.com")
-
-Meet.create!( member_id: 2,
-							meet_date: DateTime.new(2018,6,4),
-							meet_type: "Evening",
-							location: "Leeds Wall",
-  						activity: "climb")
-
-Meet.create!( member_id: 2,
-							meet_date: DateTime.new(2018,6,4),
-							meet_type: "Day",
-							location: "Pen y Ghent, Yorkshire Dates",
-							bb_url: "www.bburl4.com",
-							notes: "Meet at Horton in Ribblesdale at 10am",
-  						activity: "walk")
-
-Meet.create!( meet_date: DateTime.new(2018,11,9),
-							meet_type: "Hut",
-							number_of_nights: 2,
-							places: 16,
-							location: "K Shoes, Borrowdale")
-
-Meet.create!( meet_date: DateTime.new(2018,6,9),
-							meet_type: "Hut",
-							number_of_nights: 4,
-							places: 10,
-							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland")
-
 60.times do |n|
-#	title = Faker::Name.prefix
 	first_name = Faker::Name.first_name
 	last_name = Faker::Name.last_name
 	address_1 = Faker::Address.street_address
@@ -199,7 +146,6 @@ Meet.create!( meet_date: DateTime.new(2018,6,9),
 	ec_postcode = "EC#{n+2} #{n+7}PL"
 	ec_ph_1 = Faker::Number.number(11)
 	member =	Member.create!(
-	#						 title: title,
 							 first_name: first_name,
 							 last_name: last_name,
 							 address_1: address_1,
@@ -257,6 +203,89 @@ members.each do |member|
 	member.membership.update(committee_position: remaining_committee[n])
 	n += 1
 end
+
+#Meet1
+Meet.create!( member_id: [3, 5, 7, 24],
+							meet_date: DateTime.new(2020,8,10),
+							meet_type: "Hut",
+							number_of_nights: 2,
+							places: 12,
+							location: "Ingleton, Yorkshire Dales",
+							bb_url: "www.bburl2.com")
+#Meet2
+Meet.create!( member_id: [3, 10],
+							meet_date: DateTime.new(2020,7,22),
+							meet_type: "Camping",
+							number_of_nights: 2,
+							location: "Ty'n Lon, Nant Peris, Snowdonia",
+							bb_url: "www.bburl12.com",
+							notes: "some notes")
+#Meet3
+Meet.create!( meet_date: DateTime.new(2020,5,3),
+							meet_type: "Camping",
+							number_of_nights: 2,
+							location: "Gwern Gof Uchaf Campsite, Ogwen, Wales",
+							bb_url: "www.bburl.com")
+#Meet4
+Meet.create!( member_id: [6, 5],
+							meet_date: DateTime.new(2020,6,4),
+							meet_type: "Evening",
+							location: "Leeds Wall",
+  						activity: "climb")
+#Meet5
+Meet.create!( meet_date: DateTime.new(2020,6,4),
+							meet_type: "Day",
+							location: "Pen y Ghent, Yorkshire Dates",
+							bb_url: "www.bburl4.com",
+							notes: "Meet at Horton in Ribblesdale at 10am",
+  						activity: "walk")
+#Meet6
+Meet.create!( meet_date: DateTime.new(2020,11,9),
+							meet_type: "Hut",
+							number_of_nights: 2,
+							places: 16,
+							location: "K Shoes, Borrowdale")
+#Meet7
+Meet.create!( meet_date: DateTime.new(2020,6,9),
+							meet_type: "Hut",
+							number_of_nights: 4,
+							places: 10,
+							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland")
+
+#Meet 1
+Attendee.create!( member_id: 3,
+									meet_id: 1,
+									is_meet_leader: true)
+									
+Attendee.create!( member_id: 5,
+									meet_id: 1,
+									is_meet_leader: false)
+
+Attendee.create!( member_id: 7,
+									meet_id: 1,
+									is_meet_leader: false)
+
+Attendee.create!( member_id: 24,
+									meet_id: 1,
+									is_meet_leader: false)
+
+#Meet 2
+Attendee.create!( member_id: 3,
+									meet_id: 2,
+									is_meet_leader: true)
+									
+Attendee.create!( member_id: 10,
+									meet_id: 2,
+									is_meet_leader: false)
+
+#Meet 4
+Attendee.create!( member_id: 6,
+									meet_id: 4,
+									is_meet_leader: false)
+									
+Attendee.create!( member_id: 5,
+									meet_id: 4,
+									is_meet_leader: true)
 
 Email.create!(template: "newsfeed",
 							subject: "Newsfeed Template",

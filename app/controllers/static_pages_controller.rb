@@ -4,7 +4,10 @@ class StaticPagesController < ApplicationController
   require 'open-uri'
   require 'nokogiri'
 	
-	include StaticPagesHelper
+  include StaticPagesHelper
+  include MeetsHelper
+
+  helper_method :find_meet_leader
 
   skip_before_action :session_expires
 

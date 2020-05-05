@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'static_pages#home'
   get 'password_resets/new'
@@ -28,8 +30,8 @@ Rails.application.routes.draw do
   get '/login', to: 'static_pages#membership'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  
-  resources :password_resets, only: [:new, :create, :edit, :update]
+
+  resources :password_resets, only: %i[new create edit update]
 
   resources :members do
     member do
@@ -43,13 +45,14 @@ Rails.application.routes.draw do
 
   namespace :committee do
     resources :emails
-    get '/mailer/email_preview(/:id(.:format))', to: 'emails#email_preview', as: "email_preview"
+    get '/mailer/email_preview(/:id(.:format))', to: 'emails#email_preview', as: 'email_preview'
     get '/mailer/send_email(/:id(.:format))', to: 'emails#send_email', as: 'send_email'
-    get 'past_meets', to: 'meets#past'      
+    get 'past_meets', to: 'meets#past'
     resources :meets
+    resources :attendees
     resources :members do
       collection do
-        post :multiple 
+        post :multiple
         patch :update_multiple
         get :edit_role
         patch :update_role

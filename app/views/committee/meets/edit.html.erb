@@ -1,12 +1,66 @@
 <% provide(:title, 'Edit Meet') %>
 <% provide(:path, committee_meet_path) %>
-<% provide(:button_text, 'Update Meet') %>
+<% provide(:button_text, 'Update Meet Details') %>
 <div class="top-border"></div>
-<div class="row-top">
-	<div class="row">	
+<%if @meet.meet_type == "Hut"%>
+	<div class="row row-top">
 		<div class="col-md-8 col col-md-offset-2 no-padding">
-		<h1>Edit Meet</h1>
-		<p><%= link_to "Back to meets list", committee_meets_path %></p>
+			<p><%= link_to "Back to meets list", committee_meets_path %></p>
+			<h1>Hut Meet: <%=@meet.location%> - <%=date_display(@meet.meet_date)%></h1>
+			<h2>Attendees</h2>
+			<table class="table table-hover table-narrow">
+				<thead>
+					<th>Place</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Signed Up On</th>
+					<th>Paid?</th>
+					<th></th>
+				</thead>
+
+				<tbody class="table-striped narrow">
+					<tr>
+						<td>Meet Leader</td>
+						<td><%= @meet_leader.first_name %></td>
+						<td><%= @meet_leader.last_name %></td>
+						<td></td>
+						<td>Boolean</td>
+						<td></td>
+					<% @attendees.each_with_index do |attendee, index| %>
+						<%if attendee != @meet_leader%>
+							<tr>
+								<td><%= index + 2%>. </td>
+								<td><%= attendee.first_name %></td>
+								<td><%= attendee.last_name %></td>
+								<td>Date</td>
+								<td>Boolean</td>
+								<td><%= link_to "remove from meet", committee_attendee_path(attendee), method: :delete, data: { confirm: "Remove #{attendee.first_name} #{attendee.last_name} from this meet?"} %></td>
+
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+			<p>Add Attendee Button</p>
+
+
+		</div>
 	</div>
-</div>
-<%= render 'form' %>
+<% end %>
+
+<%if @meet.meet_type != "Hut"%>
+	<div class="row row-top">
+		<div class="col-md-8 col col-md-offset-2 no-padding">
+			<p><%= link_to "Back to meets list", committee_meets_path %></p>
+			<h2>Edit Meet: <%=@meet.location%> - <%=date_display(@meet.meet_date)%></h2>
+		</div>
+		<%= render 'form' %>
+	</div>
+<% else %>
+	<div class="row row-mid">
+		<div class="col-md-8 col col-md-offset-2 no-padding">
+			<h2>Edit Meet</h2>
+		</div>
+		<%= render 'form' %>
+	</div>
+<% end %>

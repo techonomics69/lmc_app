@@ -1,5 +1,6 @@
 class Meet < ApplicationRecord
-	belongs_to :member, optional: true
+	has_many :attendees
+	has_many :members, :through => :attendees
 
 	MEET_TYPES = ["Hut", "Camping", "Day", "Evening"]
 

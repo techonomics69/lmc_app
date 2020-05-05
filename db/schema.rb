@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180523163514) do
+ActiveRecord::Schema.define(version: 20200415204902) do
+
+  create_table "attendees", force: :cascade do |t|
+    t.integer "meet_id"
+    t.integer "member_id"
+    t.boolean "is_meet_leader"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meet_id"], name: "index_attendees_on_meet_id"
+    t.index ["member_id"], name: "index_attendees_on_member_id"
+  end
 
   create_table "emails", force: :cascade do |t|
     t.integer "member_id"

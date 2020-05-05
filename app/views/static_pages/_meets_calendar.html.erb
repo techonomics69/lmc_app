@@ -10,13 +10,18 @@
 			</thead>
 			<tbody>
 				<% meets.each do |m| %>
+					<% meet_leader = find_meet_leader(m) %>
 					<tr id="<%= m.meet_type.downcase %>">
 						<td><%= date_display(m.meet_date, m.number_of_nights) %></td>
 						<td>
 							<%= m.meet_type %> Meet. <% unless m.places.nil? %><%= m.places %> places.<% end %><br>
 							<%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>
-							Meet Leader: <% if m.member.present? %><%= m.member.first_name %> <%= m.member.last_name %>
-							<% else %>TBC<% end %>
+							Meet Leader: 
+							<% if meet_leader %>
+								<%= meet_leader.first_name %> <%= meet_leader.last_name %>
+							<% else %>
+								TBC
+							<% end %>
 						</td>
 						<td><%= m.notes %><br><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %></td>
 					</tr>
