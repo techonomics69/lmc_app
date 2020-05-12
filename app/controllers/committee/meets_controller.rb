@@ -1,8 +1,7 @@
-# frozen_string_literal: true
-
 class Committee::MeetsController < Committee::BaseController
-  include MeetsHelper
   helper_method :find_meet_leader
+
+  include MeetsHelper
 
   def new
     @meet = Meet.new
@@ -29,7 +28,9 @@ class Committee::MeetsController < Committee::BaseController
   def edit
     @meet = Meet.find(params[:id])
     @meet_leader = find_meet_leader(@meet)
-    @attendees = @meet.members
+    @meet_members = @meet.members
+    @remaining_members = Member.where.not(id: @meet_members.map { |member| member.id })
+    @attendee = Attendee.new
   end
 
   def update

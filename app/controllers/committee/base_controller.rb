@@ -1,7 +1,7 @@
 class Committee::BaseController < ApplicationController
   before_action :logged_in_member
-	before_action :committee_member
-
+  before_action :committee_member
+  
 	include MembersHelper
 	
 	private
