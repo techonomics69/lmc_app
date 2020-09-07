@@ -40,5 +40,9 @@ module ApplicationHelper
 
   def bb_url
   	"http://bb.leedsmc.org"
-  end
+	end
+	
+	def blog_url
+		"http://lmclogbook.cloudaccess.host/"
+	end
 end
