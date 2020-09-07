@@ -1,16 +1,93 @@
 <% provide(:title, 'Edit Meet') %>
 <div class="top-border"></div>
-<div class="row-top">
+<div class="row row-top">
 	<div class="row">	
 		<div class="col-md-8 col col-md-offset-2">
-			<h1>Edit Meet</h1>
+			<h1>Meet: <%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
 			<p><%= link_to "Back to my details", members_path(@member) %></p>
+			<h3>Attendees</h3>
+			<% flash.each do |message_type, message| %>
+				<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+			<% end %>
+			<%= form_for(@new_attendee, url: meets_member_path) do |f| %>
+				<table class="table table-hover table-narrow">
+					<thead>
+						<th>Place</th>
+						<th>Name</th>
+						<th>Signed Up On</th>
+						<th><% if @meet.meet_type == "Hut" %>Paid?<% end %></th>
+						<th>Make Meet Leader</th>
+						<th></th>
+					</thead>
+
+					<tbody class="table-striped narrow">
+						<tr>
+							<td>Meet Leader</td>
+							<td><%= @meet_leader.full_name if @meet_leader %></td>
+							<td><%= format_date(@meet_leader_attendee.sign_up_date) if @meet_leader %></td>
+							<td>
+								<% if @meet.meet_type == "Hut" %>
+									<% paid = @meet_leader ? @meet_leader_attendee.paid ? "✔️" : "❌" : "" %>
+									<%= (link_to "#{paid}", meets_member_path(meet: {id: @meet.id}, attendee: {id: @meet_leader_attendee.id}, update_paid: true), action: :update_paid, method: :patch, :class => "emoji-link") if @meet_leader %>
+								<% end %>
+							</td>
+							<td></td>
+							<td></td>
+						<% @meet_attendees.each_with_index do |attendee, index| %>
+							<% if attendee.member != @meet_leader %>
+								<% member_paid = attendee.paid ? "✔️" : "❌" %>
+								<% if index + 1 < @meet.places %>
+								<tr>
+									<td><%= index + 2 %>.</td>
+									<td><%= attendee.member.full_name %></td>
+									<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+									<td>
+										<% if @meet.meet_type == "Hut" %>
+											<%= link_to "#{member_paid}", meets_member_path(meet: {id: @meet.id}, attendee: {id: attendee.id}, update_paid: true), method: :patch, :class => "emoji-link"%>
+										<% end %>
+									</td>
+									<td><%= link_to "make meet leader", meets_member_path(meet: {id: @meet.id}, attendee: {id: attendee.id}, member: {id: @meet_leader_attendee.id}, update_meet_leader: true), method: :patch, data: { confirm: "Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
+									<td><%= link_to "remove from meet", meets_member_path(meet: {id: @meet.id}, attendee: {id: attendee.id}), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+								</tr>
+								<% else %>
+									<% if @meet.meet_type == "Hut" %>
+										<% row_class = (index - @meet.places == 0) ? "reserves-top" : "reserves" %>
+										<tr class="<%= row_class %>">
+											<td>Reserve <%= index - @meet.places + 2 %>.</td>
+											<td><%= attendee.member.full_name %></td>
+											<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+											<td><%= link_to "#{member_paid}", meets_member_path(meet: {id: @meet.id}, attendee: {id: attendee.id}, update_paid: true), method: :patch, :class => "emoji-link"%></td>
+											<td></td>
+											<td><%= link_to "remove reserves", meets_member_path(meet: {id: @meet.id}, attendee: {id: attendee.id}), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+										</tr>
+									<% end %>
+								<% end %>
+							<% end %>
+						<% end %>
+							<tr>
+								<td>
+									<%= fields_for :meet do | meet | %>
+										<%= meet.hidden_field :id, value:  @meet.id %>
+										
+									<% end %>
+									<%= f.hidden_field :is_meet_leader, value: false %>
+								</td>
+								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>
+								<td><%= f.date_field :sign_up_date, as: :date, class: 'form-control', id: 'small-date-picker' %></td>
+								<td><%= f.select :paid, [['yes', true], ['no', false]], {},{class: 'form-control small-select-box'} %></td>
+								<td></td>
+								<td><%= f.submit "add to meet", { class: 'btn member-btn full-width' } %></td>
+								</tr>
+					</tbody>
+				</table>
+			<% end %>
 		</div>
 	</div>
+</div>
+<div class="row-mid">
 	<div class="row">	
 		<div class="col-md-4 col col-md-offset-2">
-			<h3>Meet Details</h3>
-			<%= form_for(@meet, url: meets_member_path) do |f| %>
+			<h3>Meet details</h3>
 				<p>
 					<b>Meet Date</b><br>
 					<%= @meet.meet_date.strftime("%d/%m/%Y") %><br>
@@ -35,20 +112,29 @@
 		</div>
 		<div class="col-md-4">
 			<div class="main-box">
-				<h3>Add notes or links</h3>
-				<%= f.label :bb_url, 'Link to bulletin board post' %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :bb_url) %></p>
-				<%= f.text_field :bb_url, class: 'form-control' %>
+				<h3>Edit details</h3>
+				<%= form_for(@meet, url: meets_member_path) do |f| %>
+					<%= fields_for :attendees do | attendee | %>
+						<%= attendee.hidden_field(:member_id) %>
+					<% end %>
+					<%= f.label :location, 'Location' %>
+					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :location) %></p>
+					<%= f.text_field :location, class: 'form-control' %>
 
-				<%= f.label :notes %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :notes) %></p>
-				<%= f.text_area :notes, class: 'form-control' %>
+					<%= f.label :bb_url, 'Link to bulletin board post' %>
+					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :bb_url) %></p>
+					<%= f.text_field :bb_url, class: 'form-control' %>
 
-				<%= f.hidden_field :id %>
-				<%= f.submit 'add notes or link', class: "btn user-btn btn-lg full-width" %>
+					<%= f.label :notes %>
+					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :notes) %></p>
+					<%= f.text_area :notes, class: 'form-control' %>
+
+					<%= f.hidden_field :id %>
+					<%= f.submit 'update details', class: "btn user-btn btn-lg full-width" %>
 				<% end %>
 			</div>
 		</div>
 	</div>
+
 </div>
 

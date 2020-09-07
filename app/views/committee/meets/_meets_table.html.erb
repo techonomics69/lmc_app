@@ -23,12 +23,12 @@
 				<td><% if meet_leader %><% meet_leader = find_meet_leader(m) %><%= meet_leader.first_name %> <%= meet_leader.last_name %><% end %></td>
 				<td><%= m.location %></td>
 				<td><%= m.meet_type %></td>
-				<td><%= m.places %></td>
+				<td><% if m.meet_type == "Hut" %><%= m.places %><% end %></td>
 				<td><%= m.activity %></td>
 				<td><%= m.notes %></td>
 				<td><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">click here</a><% end %></td>
 				<td><%= link_to "details", edit_committee_meet_path(m) %></td>
-				<td><%= link_to "delete", committee_meet_path(m), method: :delete, data: { confirm: "Delete the #{m.meet_date.strftime("%d/%m/%Y")} meet to #{m.location}?"} %></td>
+				<td><%= link_to "delete", committee_meet_path(m), method: :delete, data: { confirm: "Delete the #{m.meet_date.strftime("%d/%m/%Y")} meet to #{m.location}? This will remove all member bookings."} %></td>
 			</tr>
 			<% end %>
 		</tbody>

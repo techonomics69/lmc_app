@@ -205,16 +205,14 @@ members.each do |member|
 end
 
 #Meet1
-Meet.create!( member_id: [3, 5, 7, 24],
-							meet_date: DateTime.new(2020,8,10),
+Meet.create!( meet_date: DateTime.new(2020,8,10),
 							meet_type: "Hut",
 							number_of_nights: 2,
 							places: 12,
 							location: "Ingleton, Yorkshire Dales",
 							bb_url: "www.bburl2.com")
 #Meet2
-Meet.create!( member_id: [3, 10],
-							meet_date: DateTime.new(2020,7,22),
+Meet.create!( meet_date: DateTime.new(2020,7,22),
 							meet_type: "Camping",
 							number_of_nights: 2,
 							location: "Ty'n Lon, Nant Peris, Snowdonia",
@@ -227,8 +225,7 @@ Meet.create!( meet_date: DateTime.new(2020,5,3),
 							location: "Gwern Gof Uchaf Campsite, Ogwen, Wales",
 							bb_url: "www.bburl.com")
 #Meet4
-Meet.create!( member_id: [6, 5],
-							meet_date: DateTime.new(2020,6,4),
+Meet.create!( meet_date: DateTime.new(2020,6,4),
 							meet_type: "Evening",
 							location: "Leeds Wall",
   						activity: "climb")
@@ -255,37 +252,53 @@ Meet.create!( meet_date: DateTime.new(2020,6,9),
 #Meet 1
 Attendee.create!( member_id: 3,
 									meet_id: 1,
-									is_meet_leader: true)
+									is_meet_leader: true,
+									paid: true,
+									sign_up_date: Date.today)
 									
 Attendee.create!( member_id: 5,
 									meet_id: 1,
-									is_meet_leader: false)
+									is_meet_leader: false,
+									paid: false,
+									sign_up_date: Date.today)
 
 Attendee.create!( member_id: 7,
 									meet_id: 1,
-									is_meet_leader: false)
+									is_meet_leader: false,
+									paid: false,
+									sign_up_date: Date.today)
 
 Attendee.create!( member_id: 24,
 									meet_id: 1,
-									is_meet_leader: false)
+									is_meet_leader: false,
+									paid: true,
+									sign_up_date: Date.today)
 
 #Meet 2
 Attendee.create!( member_id: 3,
 									meet_id: 2,
-									is_meet_leader: true)
+									is_meet_leader: true,
+									paid: true,
+									sign_up_date: Date.today)
 									
 Attendee.create!( member_id: 10,
 									meet_id: 2,
-									is_meet_leader: false)
+									is_meet_leader: false,
+									paid: false,
+									sign_up_date: Date.today)
 
 #Meet 4
 Attendee.create!( member_id: 6,
 									meet_id: 4,
-									is_meet_leader: false)
+									is_meet_leader: false,
+									paid: false,
+									sign_up_date: Date.today)
 									
 Attendee.create!( member_id: 5,
 									meet_id: 4,
-									is_meet_leader: true)
+									is_meet_leader: true,
+									paid: true,
+									sign_up_date: Date.today)
 
 Email.create!(template: "newsfeed",
 							subject: "Newsfeed Template",

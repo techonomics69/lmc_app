@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get 'emergency_contact', to: 'emergency_contact#edit'
       patch 'emergency_contact', to: 'emergency_contact#update'
       get 'meets', to: 'meets#edit'
+      post 'meets', to: 'meets#create_attendee'
       patch 'meets', to: 'meets#update'
       patch 'email_subscribe', to: 'members#email_subscribe'
     end

@@ -2,72 +2,90 @@
 <% provide(:path, committee_meet_path) %>
 <% provide(:button_text, 'Update Meet Details') %>
 <div class="top-border"></div>
-<%if @meet.meet_type == "Hut"%>
 	<div class="row row-top">
 		<div class="col-md-8 col col-md-offset-2 no-padding">
 			<p><%= link_to "Back to meets list", committee_meets_path %></p>
-			<h1>Hut Meet: <%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
+			<h1>Meet: <%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
 			<h2>Attendees</h2>
-			<table class="table table-hover table-narrow">
-				<thead>
-					<th>Place</th>
-					<th>Name</th>
-					<th>Signed Up On</th>
-					<th>Paid?</th>
-					<th>Make Meet Leader</th>
-					<th></th>
-				</thead>
+			<% flash.each do |message_type, message| %>
+		 		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+			<% end %>
+			<%# tables cannot have forms inside them %>
+			<%= form_for(@new_attendee, url: committee_attendees_path) do |f| %>
+				<table class="table table-hover table-narrow">
+					<thead>
+						<th>Place</th>
+						<th>Name</th>
+						<th>Signed Up On</th>
+						<th><% if @meet.meet_type == "Hut" %>Paid?<% end %></th>
+						<th>Make Meet Leader</th>
+						<th></th>
+					</thead>
 
-				<tbody class="table-striped narrow">
-					<tr>
-						<td>Meet Leader</td>
-						<td><%= @meet_leader.full_name %></td>
-						<td></td>
-						<td>Boolean</td>
-						<td>Button</td>
-						<td></td>
-					<% @meet_members.each_with_index do |member, index| %>
-						<%if member != @meet_leader%>
-							<tr>
-								<td><%= index + 1%>.</td>
-								<td><%= member.full_name %></td>
-								<td>Date</td>
-								<td>Boolean</td>
-								<td>Button</td>
-								<td><%= link_to "remove from meet", committee_attendee_path(member_id: member.id, meet_id: @meet.id), method: :delete, data: { confirm: "Remove #{member.first_name} #{member.last_name} from this meet?"} %></td>
-							</tr>
-						<% end %>
-					<% end %>
-					<tr>
-						<td></td>
-						<%= form_for(@attendee, url: committee_attendees_path) do |f| %>
-							<%= f.hidden_field :meet_id, value: @meet.id %>
-							<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, class: 'form-control' %></td>
-							<td>Date select</td>
-							<td>Paid - Yes/No</td>
+					<tbody class="table-striped narrow">
+						<tr>
+							<td>Meet Leader</td>
+							<td><%= @meet_leader.full_name if @meet_leader %></td>
+							<td><%= format_date(@meet_leader_attendee.sign_up_date) if @meet_leader %></td>
+							<td>
+								<% if @meet.meet_type == "Hut" %>
+									<% paid = @meet_leader ? @meet_leader_attendee.paid ? "✔️" : "❌" : "" %>
+									<%= (link_to "#{paid}", committee_attendee_path(update_paid: true, attendee_id: @meet_leader_attendee.id), method: :patch, :class => "emoji-link") if @meet_leader %>
+								<% end %>
+							</td>
 							<td></td>
-							<td><%= f.submit "add to meet" %></td>
+							<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: @meet_leader_attendee.id), method: :delete, data: { confirm: "Remove #{@meet_leader_attendee.member.first_name} #{@meet_leader_attendee.member.last_name} (meet leader) from this meet?"} if @meet_leader%></td>
+						<% @meet_attendees.each_with_index do |attendee, index| %>
+							<% if attendee.member != @meet_leader %>
+								<% member_paid = attendee.paid ? "✔️" : "❌" %>
+								<% if index + 1 < @meet.places %>
+								<tr>
+									<td><%= index + 2 %>.</td>
+									<td><%= attendee.member.full_name %></td>
+									<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+									<td>
+										<% if @meet.meet_type == "Hut" %>
+											<%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%>
+										<% end %>
+									</td>
+									<td><%= link_to "make meet leader", committee_attendee_path(attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee, update_meet_leader: true), method: :patch, data: { confirm: "Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
+									<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+								</tr>
+								<% else %>
+									<% if @meet.meet_type == "Hut" %>
+										<% row_class = (index - @meet.places == 0) ? "reserves-top" : "reserves" %>
+										<tr class="<%= row_class %>">
+											<td>Reserve <%= index - @meet.places + 2 %>.</td>
+											<td><%= attendee.member.full_name %></td>
+											<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+											<td><%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%></td>
+											<td></td>
+											<td><%= link_to "remove reserves", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+										</tr>
+									<% end %>
+								<% end %>
+							<% end %>
 						<% end %>
-					</tr>
-				</tbody>
-			</table>
+							<tr>
+								<td>
+									<%= f.hidden_field :meet_id, value: @meet.id %>
+									<%= f.hidden_field :is_meet_leader, value: false %>
+								</td>
+								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>
+								<td><%= f.date_field :sign_up_date, as: :date, class: 'form-control', id: 'small-date-picker' %></td>
+								<td><%= f.select :paid, [['yes', true], ['no', false]], {},{class: 'form-control small-select-box'} %></td>
+								<td></td>
+								<td><%= f.submit "add to meet", { class: 'btn member-btn full-width' } %></td>
+								</tr>
+					</tbody>
+				</table>
+			<% end %>
 		</div>
 	</div>
-<% end %>
-
-<%if @meet.meet_type != "Hut"%>
-	<div class="row row-top">
-		<div class="col-md-8 col col-md-offset-2 no-padding">
-			<p><%= link_to "Back to meets list", committee_meets_path %></p>
-			<h2>Edit Meet: <%=@meet.location%> - <%=date_display(@meet.meet_date)%></h2>
-		</div>
-		<%= render 'form' %>
-	</div>
-<% else %>
+	
 	<div class="row row-mid">
 		<div class="col-md-8 col col-md-offset-2 no-padding">
 			<h2>Edit Meet</h2>
 		</div>
 		<%= render 'form' %>
 	</div>
-<% end %>

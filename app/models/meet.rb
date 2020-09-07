@@ -1,6 +1,8 @@
 class Meet < ApplicationRecord
-	has_many :attendees
+	has_many :attendees, dependent: :destroy
 	has_many :members, :through => :attendees
+
+	accepts_nested_attributes_for :attendees
 
 	MEET_TYPES = ["Hut", "Camping", "Day", "Evening"]
 

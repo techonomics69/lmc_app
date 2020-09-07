@@ -40,5 +40,9 @@ module ApplicationHelper
 
   def bb_url
   	"http://bb.leedsmc.org"
-  end
+	end
+	
+	def format_date(date)
+		date.strftime("%d/%m/%Y")
+	end
 end

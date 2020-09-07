@@ -15,7 +15,9 @@ ActiveRecord::Schema.define(version: 20200415204902) do
   create_table "attendees", force: :cascade do |t|
     t.integer "meet_id"
     t.integer "member_id"
-    t.boolean "is_meet_leader"
+    t.boolean "is_meet_leader", default: false, null: false
+    t.boolean "paid", default: false, null: false
+    t.date "sign_up_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["meet_id"], name: "index_attendees_on_meet_id"
@@ -54,7 +56,6 @@ ActiveRecord::Schema.define(version: 20200415204902) do
   end
 
   create_table "meets", force: :cascade do |t|
-    t.integer "member_id"
     t.date "meet_date"
     t.string "meet_type"
     t.integer "number_of_nights"
@@ -65,7 +66,6 @@ ActiveRecord::Schema.define(version: 20200415204902) do
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_meets_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|

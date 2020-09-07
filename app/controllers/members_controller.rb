@@ -4,6 +4,8 @@ class MembersController < ApplicationController
 
   include MembersHelper
 
+  helper_method :committee_member?
+
 	def show
 		@member = Member.find(params[:id])
     @future_meets = all_future_meets

@@ -33,9 +33,37 @@
 </div>
 <div class="row row-mid" >
 	<div class="container no-padding">
+		<div class="col-md-4 col-sm-4 col-xs-12">
+			<div class="info-box">
+			<h3>My Meets</h3>
+			<% if @member.meets.any? %>
+				<% @member.meets.each do |m| %>
+					<% if m.meet_date >= Date.today %>
+						<p>
+							<strong><%= m.meet_date.strftime("%d/%m/%Y") %></strong>
+							<br>
+							<%= m.location %>
+							<% if meet_leader?(@member, m)%>
+								<% if committee_member?(@member)%>
+									<%= link_to '(meet leader)', edit_committee_meet_path(@member, {:meet => {:id => m.id}}) %>
+									<br>
+								<% else %>
+									<%= link_to '(meet leader)', meets_member_path(@member, {:meet => {:id => m.id}}) %>
+									<br>
+								<% end %>
+							<% end %>
+							<% if m.bb_url %><%= link_to 'go to bulletin board thread', m.bb_url%><% end %>
+						</p>
+					<% end %>
+				<% end %>
+			<% end %>
+			<p>Link --> Sign Up For a Meet</p>
+			</div>
+		</div>
 		<div class="lead col-md-4 col-sm-4 col-xs-12">
 			<div id="box-1" class="info-box">
-				<h3>My Details</h3><%= link_to "Edit My Details", edit_member_path(@member), class: "btn member-btn" %>
+				<h3>My Details</h3>
+				<%= link_to "Edit My Details", edit_member_path(@member), class: "btn member-btn" %>
 				<p>
 					<%= @member.email %><br>
 					<% if @member.home_phone.present? %><%= @member.home_phone %><br><% end %>
@@ -55,42 +83,18 @@
 			<div class="info-box">
 				<h3>My Emergency Contact</h3><%= link_to "Add / Edit Emergency Contact", emergency_contact_member_path, class: "btn member-btn" %>
 				<p>
-					<%= @member.emergency_contact.relationship %></br>
+					<%= @member.emergency_contact.relationship %><br>
 					<%= @member.emergency_contact.name %><br>
-					<%= @member.emergency_contact.primary_phone %></br>
+					<%= @member.emergency_contact.primary_phone %><br>
 					<% if @member.emergency_contact.secondary_phone %><%= @member.emergency_contact.secondary_phone %><% end %>
 				</p>
 				<p>
-					<%= @member.emergency_contact.address_1 %></br>
+					<%= @member.emergency_contact.address_1 %><br>
 					<% if @member.emergency_contact.address_2.present? %><%= @member.emergency_contact.address_2 %><br><% end %>
 					<% if @member.emergency_contact.address_3.present? %><%= @member.emergency_contact.address_3 %><br><% end %>
-					<%= @member.emergency_contact.town %></br>
-					<%= @member.emergency_contact.postcode %></br>
+					<%= @member.emergency_contact.town %><br>
+					<%= @member.emergency_contact.postcode %><br>
 				</p>
-			</div>
-		</div>
-		<div class="col-md-4 col-sm-4 col-xs-12">
-			<div class="info-box">
-			<h3>My Meets</h3>
-			<% if @member.meets.any? %>
-				<p>You're down to lead these meets:</p>
-				<table class="table" id="mini">
-					<tbody>
-						<% @member.meets.each do |m| %>
-							<% if m.meet_date >= Date.today %>
-								<tr>
-									<td><%= m.meet_date.strftime("%d/%m/%Y") %></td>
-									<td><%= m.location %></td>
-									<td><%= link_to 'edit', meets_member_path(@member, {:meet => {:id => m.id}}) %></td>
-								</tr>
-							<% end %>
-						<% end %>
-					</tbody>
-				</table>
-			<% else %>
-				<p>You're not down to lead any meets. </p>
-			<% end %>
-				<p>Note: Only meets you've agreed to lead will show here.</p>
 			</div>
 		</div>
 	</div>

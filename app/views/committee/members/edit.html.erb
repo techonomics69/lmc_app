@@ -17,7 +17,7 @@
 				<%= f.fields_for :membership do |m| %>
 					<%= m.label :membership_type %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@member_to_edit, :membership_type) %></p>
-					<%= m.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, class: 'form-control' %>
+					<%= m.collection_select :membership_type, Membership::MEMBERSHIP_TYPES, :to_s, :to_s, {}, { class: 'form-control' }%>
 
 					<p><b>Date made full member</b>
 					<% if @member_to_edit.membership.made_full_member? %><br>
@@ -103,7 +103,7 @@
 				<%= f.text_field :postcode, class: 'form-control' %>
 						
 				<%= f.label :country %>
-				<%= f.collection_select :country, Member::COUNTRIES, :to_s, :to_s %>
+				<%= f.collection_select :country, Member::COUNTRIES, :to_s, :to_s, {}, {class: 'form-control'} %>
 			</div>
 		</div>
 
