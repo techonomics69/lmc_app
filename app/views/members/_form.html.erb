@@ -111,8 +111,14 @@
 			<p class="text-center">By completing your application below you are accepting the terms of our <%= link_to "Privacy Policy", privacy_policy_path %>.</p>
 		</div>
 	</div>
+	<div>
+		<div class="col-md-6 col-md-offset-4" style="margin-top: 20px;">
+			<%= recaptcha_tags %>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3" style="margin-top: 20px;">
+		
 		  <%= f.submit yield(:button_text), class: "btn btn-lg user-btn full-width" %>
 		</div>
 	</div>
