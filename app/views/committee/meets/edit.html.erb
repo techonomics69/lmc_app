@@ -29,28 +29,27 @@
 							<td><%= format_date(@meet_leader_attendee.sign_up_date) if @meet_leader %></td>
 							<td>
 								<% if @meet.meet_type == "Hut" %>
-									<% paid = @meet_leader ? @meet_leader_attendee.paid ? "✔️" : "❌" : "" %>
+									<% paid = @meet_leader ? @meet_leader_attendee.paid ? "✅" : "❌" : ""%>
 									<%= (link_to "#{paid}", committee_attendee_path(update_paid: true, attendee_id: @meet_leader_attendee.id), method: :patch, :class => "emoji-link") if @meet_leader %>
 								<% end %>
 							</td>
 							<td></td>
 							<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: @meet_leader_attendee.id), method: :delete, data: { confirm: "Remove #{@meet_leader_attendee.member.first_name} #{@meet_leader_attendee.member.last_name} (meet leader) from this meet?"} if @meet_leader%></td>
 						<% @meet_attendees.each_with_index do |attendee, index| %>
-							<% if attendee.member != @meet_leader %>
-								<% member_paid = attendee.paid ? "✔️" : "❌" %>
+								<% member_paid = attendee.paid ? "✅" : "❌" %>
 								<% if index + 1 < @meet.places %>
-								<tr>
-									<td><%= index + 2 %>.</td>
-									<td><%= attendee.member.full_name %></td>
-									<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
-									<td>
-										<% if @meet.meet_type == "Hut" %>
-											<%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%>
-										<% end %>
-									</td>
-									<td><%= link_to "make meet leader", committee_attendee_path(attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee, update_meet_leader: true), method: :patch, data: { confirm: "Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
-									<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
-								</tr>
+									<tr>
+										<td><%= index + 2 %>.</td>
+										<td><%= attendee.member.full_name %></td>
+										<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+										<td>
+											<% if @meet.meet_type == "Hut" %>
+												<%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%>
+											<% end %>
+										</td>
+										<td><%= link_to "make meet leader", committee_attendee_path(attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee, update_meet_leader: true), method: :patch, data: { confirm: "attendee_id: #{attendee.id}\n meet_leader_id: #{@meet_leader_attendee.id} Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
+										<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+									</tr>
 								<% else %>
 									<% if @meet.meet_type == "Hut" %>
 										<% row_class = (index - @meet.places == 0) ? "reserves-top" : "reserves" %>
@@ -64,7 +63,6 @@
 										</tr>
 									<% end %>
 								<% end %>
-							<% end %>
 						<% end %>
 							<tr>
 								<td>
@@ -73,7 +71,7 @@
 								</td>
 								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>
 								<td><%= f.date_field :sign_up_date, as: :date, class: 'form-control', id: 'small-date-picker' %></td>
-								<td><%= f.select :paid, [['yes', true], ['no', false]], {},{class: 'form-control small-select-box'} %></td>
+								<td><% if @meet.meet_type == "Hut" %><%= f.select :paid, [['yes', true], ['no', false]], {},{class: 'form-control small-select-box'} %><% end %></td>
 								<td></td>
 								<td><%= f.submit "add to meet", { class: 'btn member-btn full-width' } %></td>
 								</tr>
