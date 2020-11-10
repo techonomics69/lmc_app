@@ -17,7 +17,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     verified = verify_recaptcha(model: @member)
-    if @member.save && verified
+    if verified && @member.save
   		log_in @member
       @member.send_welcome_email
       send_application_notification
