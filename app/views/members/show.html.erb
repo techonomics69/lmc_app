@@ -36,6 +36,7 @@
 		<div class="col-md-4 col-sm-4 col-xs-12">
 			<div class="info-box">
 			<h3>My Meets</h3>
+			<%= link_to "Sign Up For A Meet", attendees_member_path(@member), class: "btn member-btn" %>
 			<% if @member.meets.any? %>
 				<% @member.meets.each do |m| %>
 					<% if m.meet_date >= Date.today %>
@@ -45,19 +46,18 @@
 							<%= m.location %>
 							<% if meet_leader?(@member, m)%>
 								<% if committee_member?(@member)%>
-									<%= link_to '(meet leader)', edit_committee_meet_path(@member, {:meet => {:id => m.id}}) %>
-									<br>
+									<%= link_to '(meet leader)', edit_committee_meet_path(m) %>
+									<br/>
 								<% else %>
 									<%= link_to '(meet leader)', meets_member_path(@member, {:meet => {:id => m.id}}) %>
-									<br>
+									<br/>
 								<% end %>
 							<% end %>
-							<% if m.bb_url %><%= link_to 'go to bulletin board thread', m.bb_url%><% end %>
+							<% if m.bb_url != "" %><%= link_to 'go to bulletin board thread', m.bb_url%><% end %>
 						</p>
 					<% end %>
 				<% end %>
 			<% end %>
-			<p>Link --> Sign Up For a Meet</p>
 			</div>
 		</div>
 		<div class="lead col-md-4 col-sm-4 col-xs-12">

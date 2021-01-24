@@ -5,7 +5,7 @@
 				<tr>
 					<td>Date</td>
 					<td>Meet & Leader</td>
-					<td>Notes</td>
+					<td>Info</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,16 @@
 								TBC
 							<% end %>
 						</td>
-						<td><%= m.notes %><br><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %></td>
+						<td>
+							<%= m.notes %>
+							<% if @member%>
+								<% if m.meet_date >= Date.today %><br/><%= link_to "Sign Up!", attendees_member_path(@member) %><% end %>
+								<% if m.meet_date >= Date.today %><br/>Opens on DATE<% end %>
+							<% else %>
+								<%= link_to "Sign Up!", login_path %>
+							<% end %>
+							<% if m.bb_url.present? %><br/><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>

@@ -40,6 +40,8 @@ Rails.application.routes.draw do
       get 'meets', to: 'meets#edit'
       post 'meets', to: 'meets#create_attendee'
       patch 'meets', to: 'meets#update'
+      get 'attendees', to: 'attendees#index'
+      get 'sign_up/:meet_id', to: 'attendees#new', as: 'new_attendees'
       patch 'email_subscribe', to: 'members#email_subscribe'
     end
   end

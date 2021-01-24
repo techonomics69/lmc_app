@@ -3,7 +3,6 @@ class MembersController < ApplicationController
   before_action :correct_member, only: [:show, :edit, :update]
 
   include MembersHelper
-
   helper_method :committee_member?
 
 	def show

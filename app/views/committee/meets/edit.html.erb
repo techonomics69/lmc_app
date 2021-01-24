@@ -4,7 +4,7 @@
 <div class="top-border"></div>
 	<div class="row row-top">
 		<div class="col-md-8 col col-md-offset-2 no-padding">
-			<p><%= link_to "Back to meets list", committee_meets_path %></p>
+			<p><%= link_to "Back to my details", members_path(@member) %></p>
 			<h1>Meet: <%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
 			<h2>Attendees</h2>
 			<% flash.each do |message_type, message| %>

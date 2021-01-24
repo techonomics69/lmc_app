@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
   include StaticPagesHelper
   include MeetsHelper
 
-  helper_method :find_meet_leader
+  # helper_method :find_meet_leader
 
   skip_before_action :session_expires
 
@@ -26,6 +26,9 @@ class StaticPagesController < ApplicationController
   end
 
   def calendar
+    if logged_in?
+      @member = current_user
+    end
     @future_meets = all_future_meets
     @past_meets = past_meets
     @meta_description = meta_description("calendar")
