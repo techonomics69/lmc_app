@@ -1,0 +1,52 @@
+<% provide(:title, 'Meet Sign Up') %><div id="no-scroll">
+<div class="sign-up-cal">
+	<div class="table-responsive">
+    <div class="top-border"></div>
+      <div class="row-top">
+        <div class="container">
+          <h1>Meet Sign Up</h1>
+          <p><%= link_to "Back to my details", members_path(@member) %></p>
+          <span class="cal-key" id="evening" >Evening Meet</span><span class="cal-key" id="day">Day Meet</span><span class="cal-key" id="hut">Hut Meet</span><span class="cal-key" id="camping">Camping Meet</span>
+          <table class="table table-condensed" id="calendar">
+          <thead>
+            <tr>
+              <td>Date</td>
+              <td>Meet & Leader</td>
+              <td>Info</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @meets.each do |m| %>
+              <% meet_leader = find_meet_leader(m) %>
+              <tr id="<%= m.meet_type.downcase %>">
+                <td><%= date_display(m.meet_date, m.number_of_nights) %></td>
+                <td>
+                  <%= m.meet_type %> Meet. <% unless m.places.nil? %><%= m.places %> places.<% end %><br>
+                  <%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>
+                  Meet Leader: 
+                  <% if meet_leader %>
+                    <%= meet_leader.first_name %> <%= meet_leader.last_name %>
+                  <% else %>
+                    TBC
+                  <% end %>
+                </td>
+                <td>
+                  <%= m.notes %>
+                  <% if @member%>
+                    <% if m.meet_date >= Date.today %><br/><%= link_to "Sign Up!", new_attendees_member_path(@member, m) %><% end %>
+                    <% if m.meet_date >= Date.today %><br/>Opens on DATE<% end %>
+                  <% else %>
+                    <%= link_to "Sign Up!", login_path %>
+                  <% end %>
+                  <% if m.bb_url.present? %><br/><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

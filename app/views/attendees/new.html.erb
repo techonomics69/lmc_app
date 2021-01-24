@@ -1,0 +1,60 @@
+<div class="top-border"></div>
+<div class="row-top">
+	<div class="container">
+    <h1><%= @meet %></h1>
+		<h4>You are logged in as <%= @member.first_name %> <%= @member.last_name %></h4>
+		<% unless @member.membership.subs_paid %>
+      <h4>Warning: You are not marked as having paid your membership for this year. You must have paid your membership fee to attend a meet.</h4>
+    <% end %>
+    <% meet_leader = find_meet_leader(@meet) %>
+    <% if meet_leader %>
+			<%= meet_leader.first_name %> <%= meet_leader.last_name %>
+		<% else %>
+			TBC
+	  <% end %>
+    <p></p>
+    <%= @meet.meet_type %> Meet. <% unless @meet.places.nil? %><%= @meet.places %> places.<% end %><br>
+		<%= @meet.location %><% if @meet.activity.present? %> (<%= @meet.activity %>)<% end %><br>
+    <%= @meet.notes %>
+	  <% if @meet.bb_url.present? %><br/><a href="<%= @meet.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
+
+    <table class="table table-condensed">
+			<tbody>
+        <tr>
+          <td>Date:</td>
+          <td><%= date_display(@meet.meet_date, @meet.number_of_nights)%> (<%= @meet.number_of_nights%> nights)</td>
+        </tr>
+        <tr>
+          <td>Location:</td>
+          <td><%= @meet.location %></td>
+        </tr>
+        <% if @meet.activity.present? %>
+          <tr>
+            <td>Activity:</td>
+            <td><%= @meet.activity %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>Leader:</td>
+          <td>    
+            <% if meet_leader %>
+			        <%= meet_leader.first_name %> <%= meet_leader.last_name %>
+		        <% else %>
+			        TBC
+	          <% end %>
+          </td>
+        </tr>
+        <tr>
+            <td>Link to Bulletin Board:</td>
+            <td><%= link_to @meet.bb_url, @meet.bb_url, target: :_blank %></td>
+          </tr>
+        <% if @meet.notes.present? %>
+          <tr>
+            <td>Notes:</td>
+            <td><%= @meet.notes %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
