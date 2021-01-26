@@ -36,13 +36,13 @@ module StaticPagesHelper
 			page = Nokogiri::HTML(open('http://bb.leedsmc.org/bbfeed.php'))
 		rescue Exception
 			return "Error. No response from http://bb.leedsmc.org/bbfeed.php."
-			exit
+		else
+			links = page.css('a')
+			page.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each_with_index do |node,i|
+				node.replace(Nokogiri.make("<p>#{links[i]}<br>#{node.to_html}</p>"))
+			end
+			return page.css('p').to_s
 		end
-  	links = page.css('a')
-		page.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each_with_index do |node,i|
-	    node.replace(Nokogiri.make("<p>#{links[i]}<br>#{node.to_html}</p>"))
-	  end
-  	page.css('p').to_s
 	end
 
 	def date_display(date, nights = 0)
