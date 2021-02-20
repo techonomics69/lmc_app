@@ -11,7 +11,7 @@
           <thead>
             <tr>
               <td>Date</td>
-              <td>Meet & Leader</td>
+              <td>Meet</td>
               <td>Info</td>
             </tr>
           </thead>
@@ -25,18 +25,19 @@
                   <%= m.location %><% if m.activity.present? %> (<%= m.activity %>)<% end %><br>
                   Meet Leader: 
                   <% if meet_leader %>
-                    <%= meet_leader.first_name %> <%= meet_leader.last_name %>
+                    <%= meet_leader.full_name %>
                   <% else %>
                     TBC
                   <% end %>
                 </td>
                 <td>
-                  <%= m.notes %>
-                  <% if @member%>
-                    <% if m.meet_date >= Date.today %><br/><%= link_to "Sign Up!", new_attendees_member_path(@member, m) %><% end %>
-                    <% if m.meet_date >= Date.today %><br/>Opens on DATE<% end %>
-                  <% else %>
-                    <%= link_to "Sign Up!", login_path %>
+                  <% if !m.notes.nil? %><%= m.notes %><br/><% end %>
+                  <% if !m.opens_on.nil?%>
+                    <% if m.opens_on.future? %>
+                      Opens on <%= format_date(m.opens_on) %>
+                    <% else %>
+                      <%= link_to "Sign Up!", new_attendee_member_path(@member, m) %>
+                    <% end %>
                   <% end %>
                   <% if m.bb_url.present? %><br/><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
                 </td>

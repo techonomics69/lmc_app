@@ -3,9 +3,9 @@
 <% provide(:button_text, 'Update Meet Details') %>
 <div class="top-border"></div>
 	<div class="row row-top">
-		<div class="col-md-8 col col-md-offset-2 no-padding">
+		<div class="col-md-8 col col-md-offset-2">
+			<h1><%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
 			<p><%= link_to "Back to my details", members_path(@member) %></p>
-			<h1>Meet: <%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
 			<h2>Attendees</h2>
 			<% flash.each do |message_type, message| %>
 		 		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
@@ -14,7 +14,7 @@
 			<%= form_for(@new_attendee, url: committee_attendees_path) do |f| %>
 				<table class="table table-hover table-narrow">
 					<thead>
-						<th>Place</th>
+						<th></th>
 						<th>Name</th>
 						<th>Signed Up On</th>
 						<th><% if @meet.meet_type == "Hut" %>Paid?<% end %></th>
@@ -47,19 +47,22 @@
 												<%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%>
 											<% end %>
 										</td>
-										<td><%= link_to "make meet leader", committee_attendee_path(attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee, update_meet_leader: true), method: :patch, data: { confirm: "attendee_id: #{attendee.id}\n meet_leader_id: #{@meet_leader_attendee.id} Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
+										<td><%= link_to "make meet leader", committee_attendee_path(attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee, update_meet_leader: true), method: :patch, data: { confirm: "Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
 										<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
 									</tr>
 								<% else %>
 									<% if @meet.meet_type == "Hut" %>
-										<% row_class = (index - @meet.places == 0) ? "reserves-top" : "reserves" %>
+										<% row_class = (index - @meet.places + 1 == 0) ? "reserves-top" : "reserves" %>
+										<% if index - @meet.places + 1 == 0%>
+											<tr class="reserves"><td>Reserves</td><td></td><td></td><td></td><td></td><td></td></tr>
+										<% end %>
 										<tr class="<%= row_class %>">
-											<td>Reserve <%= index - @meet.places + 2 %>.</td>
+											<td><%= index - @meet.places + 2 %>.</td>
 											<td><%= attendee.member.full_name %></td>
 											<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
 											<td><%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%></td>
 											<td></td>
-											<td><%= link_to "remove reserves", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+											<td><%= link_to "remove reserve", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
 										</tr>
 									<% end %>
 								<% end %>
@@ -71,10 +74,10 @@
 								</td>
 								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>
 								<td><%= f.date_field :sign_up_date, as: :date, class: 'form-control', id: 'small-date-picker' %></td>
-								<td><% if @meet.meet_type == "Hut" %><%= f.select :paid, [['yes', true], ['no', false]], {},{class: 'form-control small-select-box'} %><% end %></td>
+								<td><% if @meet.meet_type == "Hut" %><%= f.check_box :paid, {class: 'my-checkbox', type: 'checkbox'}, true, false %><% end %></td>
 								<td></td>
 								<td><%= f.submit "add to meet", { class: 'btn member-btn full-width' } %></td>
-								</tr>
+							</tr>
 					</tbody>
 				</table>
 			<% end %>
@@ -82,8 +85,8 @@
 	</div>
 	
 	<div class="row row-mid">
-		<div class="col-md-8 col col-md-offset-2 no-padding">
-			<h2>Edit Meet</h2>
+		<div class="col-md-8 col col-md-offset-2">
+			<h2>Edit Details</h2>
 		</div>
 		<%= render 'form' %>
 	</div>

@@ -39,9 +39,9 @@ class Committee::MeetsController < Committee::BaseController
     @meet_leader = find_meet_leader(@meet)
     @meet_leader_attendee = @meet_leader.attendees.where(meet_id: @meet.id).first if @meet_leader
     @meet_attendees = @meet.attendees.where(is_meet_leader: false).order(sign_up_date: :asc)
-    attendee_ids = @meet_attendees.map { | attendee | attendee.member.id }
-    attendee_ids.push(@meet_leader_attendee.id) if @meet_leader_attendee
-    @remaining_members = Member.where.not(id: attendee_ids).order(first_name: :ASC)
+    attendee_member_ids = @meet_attendees.map { | attendee | attendee.member.id }
+    attendee_member_ids.push(@meet_leader.id) if @meet_leader
+    @remaining_members = Member.where.not(id: attendee_member_ids).order(first_name: :ASC)
     @new_attendee = Attendee.new
   end
 
@@ -86,6 +86,7 @@ class Committee::MeetsController < Committee::BaseController
                                  :places,
                                  :activity,
                                  :notes,
+                                 :opens_on,
                                  attendees_attributes: [
                                    :member_id
                                   ]

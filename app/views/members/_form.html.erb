@@ -55,7 +55,7 @@
 			<%= f.text_field :postcode, class: 'form-control' %>
 
 			<%= f.label :country %>
-			<%= f.collection_select :country, Member::COUNTRIES, :to_s, :to_s %>
+			<%= f.collection_select :country, Member::COUNTRIES, :to_s, :to_s, {}, {class: 'form-control'} %>
 		</div>
 
 		<div class="col-md-4">

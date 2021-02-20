@@ -9,7 +9,7 @@
 			<% flash.each do |message_type, message| %>
 				<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 			<% end %>
-			<%= form_for(@new_attendee, url: meets_member_path) do |f| %>
+			<%= form_for(@new_attendee, url: new_attendee_member_path(@member, @meet)) do |f| %>
 				<table class="table table-hover table-narrow">
 					<thead>
 						<th>Place</th>
@@ -66,10 +66,10 @@
 						<% end %>
 							<tr>
 								<td>
-									<%= fields_for :meet do | meet | %>
-										<%= meet.hidden_field :id, value:  @meet.id %>
+									<%# <%= fields_for :meet do | meet | %>
+										<%# <%= meet.hidden_field :id, value:  @meet.id %>
 										
-									<% end %>
+									<%# <% end %>
 									<%= f.hidden_field :is_meet_leader, value: false %>
 								</td>
 								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>

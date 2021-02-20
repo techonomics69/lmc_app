@@ -468,16 +468,28 @@ div#main.home {
 
 /*logged in pages*/
 .info-box {
-  background-color: $light-green;
+  background-color: $light-background;
   border-radius: 10px;
   padding: 0 10px 0 10px;
   border-style: solid;
-  border-width: 10px;
+  border-width: 4px;
   border-color: $dark-green;
   margin: 20px 0 0 0;
   height: 400px;
   overflow-x: scroll;
-  text-align: left;
+  text-align: center;
+}
+
+.info-box .meet-box {
+  background-color: $light-green;
+  border-radius: 4px;
+  border: 1px solid $dark-border;
+  margin-bottom: 6px;
+}
+
+.info-box h3 {
+  margin: 10px;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -515,9 +527,25 @@ div#main.home {
 .member-btn {
   background-color: $btn-green;
   color: $text-color;
-  border: 1px solid $dark-green;
   font-size: 16px;
+  border-radius: 1px;
 }
+
+.member-btn-large {
+  width: 150px;
+  font-weight: 500;
+}
+
+.info-box .member-btn {
+  display: block;
+  margin: auto auto 12px auto;
+  width: 120px;
+}
+
+.sign-up-btn {
+  margin-top: 4px;
+}
+
 .member-btn:hover {
   background-color: $bright-green;
   border: 1px solid $bright-green;
@@ -535,11 +563,6 @@ div#main.home {
 
 .buttons-menu {
   margin-bottom: 20px;
-}
-
-.info-box .member-btn {
-  font-weight: bold;
-  font-style: italic;
 }
 
 .form-btn {
@@ -731,6 +754,12 @@ div#main.home {
   }
 }
 
+ul.attendees-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 #no-scroll .sign-up-cal {
   max-height: none;
   overflow-y: visible;
@@ -769,10 +798,12 @@ div#main.home {
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
+  box-shadow: 0 0 0 30px white inset;
 }
 
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 30px white inset;
+  box-shadow: 0 0 0 30px white inset;
 }
 
 input,
@@ -829,6 +860,12 @@ input {
 }
 
 #my-checkbox {
+  transform: scale(1.5, 1.5);
+  width: auto;
+  margin: 0px 0px 10px 2px;
+}
+
+.my-checkbox {
   transform: scale(1.5, 1.5);
   width: auto;
   margin: 0px 0px 10px 2px;

@@ -1,60 +1,102 @@
+<% provide(:title, 'Meet Sign Up') %>
 <div class="top-border"></div>
-<div class="row-top">
+<div class="row row-top">
 	<div class="container">
-    <h1><%= @meet %></h1>
-		<h4>You are logged in as <%= @member.first_name %> <%= @member.last_name %></h4>
+    <h1><%= @meet.location %>, <%=date_display(@meet.meet_date, @meet.number_of_nights) %></h1>
+    <p><%= link_to "Back to meets", attendees_member_path(@member) %></p>
 		<% unless @member.membership.subs_paid %>
-      <h4>Warning: You are not marked as having paid your membership for this year. You must have paid your membership fee to attend a meet.</h4>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h5>Warning: You are not marked as having paid your membership for this year. You must have paid your membership fee to attend a meet.</h5>
+        </div>
+      </div>
     <% end %>
-    <% meet_leader = find_meet_leader(@meet) %>
-    <% if meet_leader %>
-			<%= meet_leader.first_name %> <%= meet_leader.last_name %>
-		<% else %>
-			TBC
-	  <% end %>
-    <p></p>
-    <%= @meet.meet_type %> Meet. <% unless @meet.places.nil? %><%= @meet.places %> places.<% end %><br>
-		<%= @meet.location %><% if @meet.activity.present? %> (<%= @meet.activity %>)<% end %><br>
-    <%= @meet.notes %>
-	  <% if @meet.bb_url.present? %><br/><a href="<%= @meet.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
-
-    <table class="table table-condensed">
-			<tbody>
-        <tr>
-          <td>Date:</td>
-          <td><%= date_display(@meet.meet_date, @meet.number_of_nights)%> (<%= @meet.number_of_nights%> nights)</td>
-        </tr>
-        <tr>
-          <td>Location:</td>
-          <td><%= @meet.location %></td>
-        </tr>
-        <% if @meet.activity.present? %>
-          <tr>
-            <td>Activity:</td>
-            <td><%= @meet.activity %></td>
-          </tr>
+    <% if @member_is_on_meet %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h5>You are signed up to this meet. If you can no longer attend then you'll need to speak to the meet leader or meets secretary.</h5>
+        </div>
+      </div>
+    <% end %>
+    <% flash.each do |message_type, message| %>
+			<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+		<% end %>
+    <div>
+      <%= button_to  "Sign Up!", new_attendee_member_path(@member, @meet), :disabled => @member_is_on_meet, method: :post, class: "btn member-btn member-btn-large" %>
+    </div>
+    <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
+      <h4>Attendees</h4>
+      <ul class=attendees-list>
+        <li>1. <%= @meet_leader.nil? ? "(meet leader)" : @meet_leader.full_name %></li>
+        <% @attendees.each_with_index do |attendee, index| %>
+          <% if (index - @meet.places + 1) < 0 %>
+            <li><%= index + 2 %>. <%= attendee.member.full_name %></li>
+          <% elsif (index == @meet.places - 1)%>
+            <br/>
+            <li><h4>Reserves</h4></li>
+            <li><%= 1 %>. <%= attendee.member.full_name %></li>
+          <% else %>
+            <li><%= index - @meet.places + 2 %>. <%= attendee.member.full_name %></li>
+          <% end %>
         <% end %>
-        <tr>
-          <td>Leader:</td>
-          <td>    
-            <% if meet_leader %>
-			        <%= meet_leader.first_name %> <%= meet_leader.last_name %>
-		        <% else %>
-			        TBC
-	          <% end %>
-          </td>
-        </tr>
-        <tr>
-            <td>Link to Bulletin Board:</td>
-            <td><%= link_to @meet.bb_url, @meet.bb_url, target: :_blank %></td>
-          </tr>
-        <% if @meet.notes.present? %>
+      </ul>
+    </div>
+    <div class="col-md-7 col-sm-7 col-xs-12">
+      <h4>Meet Info</h4>
+      <table class="table table-condensed">
+        <tbody>
           <tr>
-            <td>Notes:</td>
-            <td><%= @meet.notes %></td>
+            <td>Date:</td>
+            <td><%= date_display(@meet.meet_date, @meet.number_of_nights)%></td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <tr>
+            <td>Meet Type:</td>
+            <td><%= @meet.meet_type %> meet</td>
+          </tr>
+          <% if @meet.number_of_nights != 0 %>
+            <tr>
+              <td>Nights Away:</td>
+              <td><%= @meet.number_of_nights%> nights</td>
+            </tr>
+          <% end %>
+          <% unless @meet.places.nil? %>
+            <tr>
+              <td>Total places:</td>
+              <td><%= @meet.places %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td>Location:</td>
+            <td><%= @meet.location %></td>
+          </tr>
+          <% if @meet.activity.present? %>
+            <tr>
+              <td>Activity:</td>
+              <td><%= @meet.activity %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td>Leader:</td>
+            <td>    
+                <% if !@meet_leader.nil? %>
+                  <%= @meet_leader.full_name %>
+                <% else %>
+                  TBC
+                <% end %>
+            </td>
+          </tr>
+          <tr>
+              <td>Link to Bulletin Board:</td>
+              <td><%= link_to @meet.bb_url, @meet.bb_url, target: :_blank %></td>
+            </tr>
+          <% if @meet.notes.present? %>
+            <tr>
+              <td>Notes:</td>
+              <td><%= @meet.notes %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

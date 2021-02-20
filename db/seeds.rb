@@ -205,49 +205,62 @@ members.each do |member|
 end
 
 #Meet1
-Meet.create!( meet_date: DateTime.new(2020,8,10),
+Meet.create!( meet_date: DateTime.new(2021,8,10),
 							meet_type: "Hut",
 							number_of_nights: 2,
 							places: 12,
 							location: "Ingleton, Yorkshire Dales",
-							bb_url: "www.bburl2.com")
+							bb_url: "www.bburl2.com",
+							opens_on: DateTime.new(2021,7,10)
+)
 #Meet2
-Meet.create!( meet_date: DateTime.new(2020,7,22),
+Meet.create!( meet_date: DateTime.new(2021,7,22),
 							meet_type: "Camping",
 							number_of_nights: 2,
 							location: "Ty'n Lon, Nant Peris, Snowdonia",
 							bb_url: "www.bburl12.com",
-							notes: "some notes")
+							notes: "some notes",
+							opens_on: DateTime.new(2021,6,22)
+)
 #Meet3
-Meet.create!( meet_date: DateTime.new(2020,5,3),
+Meet.create!( meet_date: DateTime.new(2021,5,3),
 							meet_type: "Camping",
 							number_of_nights: 2,
 							location: "Gwern Gof Uchaf Campsite, Ogwen, Wales",
-							bb_url: "www.bburl.com")
+							bb_url: "www.bburl.com",
+							opens_on: DateTime.new(2021,4,3)
+)
 #Meet4
-Meet.create!( meet_date: DateTime.new(2020,6,4),
+Meet.create!( meet_date: DateTime.new(2021,6,4),
 							meet_type: "Evening",
 							location: "Leeds Wall",
-  						activity: "climb")
+							activity: "climb"
+)
 #Meet5
-Meet.create!( meet_date: DateTime.new(2020,6,4),
+Meet.create!( meet_date: DateTime.new(2021,6,4),
 							meet_type: "Day",
 							location: "Pen y Ghent, Yorkshire Dates",
 							bb_url: "www.bburl4.com",
 							notes: "Meet at Horton in Ribblesdale at 10am",
-  						activity: "walk")
+							activity: "walk",
+							opens_on: DateTime.new(2021,5,4)
+)
 #Meet6
-Meet.create!( meet_date: DateTime.new(2020,11,9),
+Meet.create!( meet_date: DateTime.new(2021,11,9),
 							meet_type: "Hut",
 							number_of_nights: 2,
 							places: 16,
-							location: "K Shoes, Borrowdale")
+							location: "K Shoes, Borrowdale",
+							opens_on: DateTime.new(2021,10,9)
+)
 #Meet7
-Meet.create!( meet_date: DateTime.new(2020,6,9),
+Meet.create!( meet_date: DateTime.new(2021,6,9),
 							meet_type: "Hut",
 							number_of_nights: 4,
 							places: 10,
-							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland")
+							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland",
+							opens_on: DateTime.new(2021,5,9)
+)
 
 #Meet 1
 Attendee.create!( member_id: 3,

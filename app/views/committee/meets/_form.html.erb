@@ -1,6 +1,6 @@
 <%= form_for(@meet, url: yield(:path)) do |f| %>
 	<div class="row">
-		<div class="col-md-4 col col-md-offset-2 no-padding">
+		<div class="col-md-4 col col-md-offset-2">
 			<%= f.label :meet_date %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :meet_date) %></p>
 			<%= f.date_field :meet_date, class: 'form-control' %>
@@ -19,11 +19,19 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :location) %></p>
 			<%= f.text_field :location, class: 'form-control' %>
 
+			<%= f.label :activity %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :activity) %></p>
+			<%= f.text_field :activity, class: 'form-control' %>
+
 			<%= f.label :bb_url, 'Link to bulletin board post' %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :bb_url) %></p>
 			<%= f.text_field :bb_url, class: 'form-control' %>			
 		</div>
 		<div class="col-md-4">
+			<%= f.label :opens_on %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :opens_on) %></p>
+			<%= f.date_field :opens_on, class: 'form-control' %>
+
 			<%= f.label :meet_type %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :meet_type) %></p>
 			<%= f.collection_select :meet_type, Meet::MEET_TYPES, :to_s, :to_s,{}, {class: 'form-control'} %>
@@ -37,10 +45,6 @@
 				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :places) %></p>
 				<%= f.text_field :places, class: 'form-control' %>
 			<% end %>
-
-			<%= f.label :activity %>
-			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :activity) %></p>
-			<%= f.text_field :activity, class: 'form-control' %>
 
 			<%= f.label :notes %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :notes) %></p>

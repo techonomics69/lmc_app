@@ -24,10 +24,15 @@
 							<% end %>
 						</td>
 						<td>
-							<%= m.notes %>
+							<% if m.notes %><%= m.notes %><br/><% end %>
 							<% if @member%>
-								<% if m.meet_date >= Date.today %><br/><%= link_to "Sign Up!", attendees_member_path(@member) %><% end %>
-								<% if m.meet_date >= Date.today %><br/>Opens on DATE<% end %>
+								<% if !m.opens_on.nil?%>
+                  <% if m.opens_on.future? %>
+                    Opens on <%= format_date(m.opens_on) %>
+                  <% else %>
+                    <%= link_to "Sign Up!", new_attendee_member_path(@member, m) %>
+                  <% end %>
+                <% end %>
 							<% else %>
 								<%= link_to "Sign Up!", login_path %>
 							<% end %>
