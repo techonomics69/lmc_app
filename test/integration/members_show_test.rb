@@ -5,7 +5,6 @@ class MembersShowTest < ActionDispatch::IntegrationTest
 	def setup
 		@committee_member = members(:luke)
 		@normal_member = members(:climber)
-		@assigned_meet = meets(:assigned_meet)
 	end
 
 	test "committee paths are not available to non committee members and are redirected" do

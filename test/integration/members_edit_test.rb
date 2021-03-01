@@ -10,7 +10,6 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		get edit_member_path(@member)
 		assert_template 'members/edit'
 		patch member_path(@member), params: { member: { 
-		#																							title: "",
 																									first_name: "",
 																								  last_name: "",
 																								  address_1: "",
@@ -42,7 +41,6 @@ class MembersEditTest < ActionDispatch::IntegrationTest
 		email = "foo@bar.com"
 		bmc_no = "A12345"
 		patch member_path(@member), params: { member: { 
-		#																							title: "Mrs",
 																									first_name: first_name,
 																								  last_name: last_name,
 																								  address_1: "1 Test",

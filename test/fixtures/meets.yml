@@ -1,34 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-assigned_meet:
-  member: luke
-  meet_date: 2018-03-06
+future_meet:
+  # id: 1
+  meet_date: 2021-03-06
   meet_type: Hut
   number_of_nights: 2
   places: 10
   location: Dales
   bb_url: www.bburl2.com
-  notes: 
-  activity: walk
-
-non_assigned_meet:
-  member:
-  meet_date: 2018-01-01
-  meet_type: Hut
-  number_of_nights: 2
-  places: 12
-  location: Wales
-  bb_url: www.bburl.com
   notes:
-  activity:
+  activity: walk
+  opens_on: 2021-02-06
+  # attendees: meet_leader, non_meet_leader
+  #add attendee fixture for meet_leader
+
+# non_assigned_meet:
+#   meet_date: 2018-01-01
+#   meet_type: Hut
+#   number_of_nights: 2
+#   places: 12
+#   location: Wales
+#   bb_url: www.bburl.com
+#   notes:
+#   activity:
 
 past_meet:
-  member: luke
+  # id: 3
   meet_date: 2017-03-06
   meet_type: Camping
   number_of_nights: 2
-  places: 
+  places:
   location: Dales
   bb_url: www.bburl3.com
-  notes: 
-  activity: 
+  notes:
+  activity:
+  opens_on: 2017-02-06

@@ -15,24 +15,13 @@ class MeetsController < ApplicationController
   end
 
   def update
-    meet = Meet.find(params[:meet][:id])
-    attendee = Attendee.find(params[:attendee][:id])
-    if params[:update_paid]
-      if attendee.toggle!(:paid)
-        redirect_to meets_member_path(@member, {:meet => {:id => meet.id}})
-      else
-        flash[:error] = 'Failed to update payment status.'
-        redirect_to meets_member_path(@member, {:meet => {:id => meet.id}})
-      end
-    end
-    if params[:update_meet_leader]
-      current_leader = find_meet_leader(meet).attendees.first
-      if attendee.toggle!(:is_meet_leader) && current_leader.update_attribute(:is_meet_leader, false)
-        redirect_to meets_member_path(@member, {:meet => {:id => meet.id}})
-      else
-        flash[:error] = 'Failed to update meet leader.'
-      end
-    end
+    @meet = Meet.find(meet_params[:id])
+  	if @meet.update_attributes(meet_params)
+  		flash[:success] = "Meet updated"
+      redirect_to meets_member_path(@member, {:meet => {:id => @meet.id}})
+  	else
+  		render 'edit'
+  	end
   end
 
   private
@@ -51,13 +40,6 @@ class MeetsController < ApplicationController
                                  :notes,
                                  :location,
                                  :opens_on)
-  end
-
-  def attendee_params
-    params.require(:attendee).permit(:id,
-                                     :member_id,
-                                     :paid,
-                                     :sign_up_date)
   end
 
 end

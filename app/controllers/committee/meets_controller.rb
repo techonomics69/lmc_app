@@ -35,36 +35,29 @@ class Committee::MeetsController < Committee::BaseController
   end
 
   def edit
-    @meet = Meet.find(params[:id])
-    @meet_leader = find_meet_leader(@meet)
-    @meet_leader_attendee = @meet_leader.attendees.where(meet_id: @meet.id).first if @meet_leader
-    @meet_attendees = @meet.attendees.where(is_meet_leader: false).order(sign_up_date: :asc)
-    attendee_member_ids = @meet_attendees.map { | attendee | attendee.member.id }
-    attendee_member_ids.push(@meet_leader.id) if @meet_leader
-    @remaining_members = Member.where.not(id: attendee_member_ids).order(first_name: :ASC)
-    @new_attendee = Attendee.new
+    values_for_edit()
   end
 
   def update
-    # fix this - see meets_controller.rb
     @meet = Meet.find(params[:id])
     if @meet.update_attributes(meet_params)
-      if attendee_params[:member_id] != nil && @meet_leader == nil && !member_is_on_meet?(attendee_params[:member_id], @meet.id)
-        attendee = Attendee.create(
+      flash[:success] = 'Meet updated'
+    else
+      values_for_edit()
+      return render 'edit'
+    end
+    if attendee_params
+      attendee = Attendee.create(
           meet_id: @meet.id,
           member_id: attendee_params[:member_id],
           is_meet_leader: true,
           paid: false,
           sign_up_date: Date.today)
-        attendee.save
-      elsif member_is_on_meet?(attendee_params[:member_id], @meet.id)
-        flash[:warning] = 'Selected meet leader already on meet'
+      if attendee.save
+        flash[:success] = 'Meet leader added'
       end
-      flash[:success] = 'Meet updated'
-      redirect_to edit_committee_meet_path(@meet)
-    else
-      render 'edit'
     end
+    redirect_to edit_committee_meet_path(@meet)
   end
 
   def destroy
@@ -86,14 +79,22 @@ class Committee::MeetsController < Committee::BaseController
                                  :places,
                                  :activity,
                                  :notes,
-                                 :opens_on,
-                                 attendees_attributes: [
-                                   :member_id
-                                  ]
+                                 :opens_on
                                  )
   end
 
   def attendee_params
     params.require(:attendees).permit(:member_id)
+  end
+
+  def values_for_edit
+    @meet = Meet.find(params[:id])
+    @meet_leader = find_meet_leader(@meet)
+    @meet_leader_attendee = @meet_leader.attendees.where(meet_id: @meet.id).first if @meet_leader
+    @meet_attendees = @meet.attendees.where(is_meet_leader: false).order(sign_up_date: :asc)
+    attendee_member_ids = @meet_attendees.map { | attendee | attendee.member.id }
+    attendee_member_ids.push(@meet_leader.id) if @meet_leader
+    @remaining_members = Member.where.not(id: attendee_member_ids).order(first_name: :ASC)
+    @new_attendee = Attendee.new
   end
 end

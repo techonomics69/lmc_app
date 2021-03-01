@@ -3,7 +3,7 @@
 <div class="row row-top">
 	<div class="row">	
 		<div class="col-md-8 col col-md-offset-2">
-			<h1>Meet: <%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
+			<h1><%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
 			<p><%= link_to "Back to my details", members_path(@member) %></p>
 			<h3>Attendees</h3>
 			<% flash.each do |message_type, message| %>
@@ -66,15 +66,17 @@
 						<% end %>
 							<tr>
 								<td>
-									<%# <%= fields_for :meet do | meet | %>
-										<%# <%= meet.hidden_field :id, value:  @meet.id %>
-										
-									<%# <% end %>
 									<%= f.hidden_field :is_meet_leader, value: false %>
 								</td>
 								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>
 								<td><%= f.date_field :sign_up_date, as: :date, class: 'form-control', id: 'small-date-picker' %></td>
-								<td><%= f.select :paid, [['yes', true], ['no', false]], {},{class: 'form-control small-select-box'} %></td>
+								<td>
+									<% if @meet.meet_type == "Hut" %>
+										<%= f.select :paid, [['yes', true], ['no', false]], {}, {class: 'form-control small-select-box'} %>
+									<% else %>
+										<%= f.hidden_field :paid, value: false %>
+									<% end %>
+								</td>
 								<td></td>
 								<td><%= f.submit "add to meet", { class: 'btn member-btn full-width' } %></td>
 								</tr>
@@ -114,9 +116,10 @@
 			<div class="main-box">
 				<h3>Edit details</h3>
 				<%= form_for(@meet, url: meets_member_path) do |f| %>
-					<%= fields_for :attendees do | attendee | %>
-						<%= attendee.hidden_field(:member_id) %>
-					<% end %>
+					<%= f.label :opens_on, 'Opens on' %>
+					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :opens_on) %></p>
+					<%= f.date_field :opens_on, class: 'form-control' %>
+
 					<%= f.label :location, 'Location' %>
 					<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :location) %></p>
 					<%= f.text_field :location, class: 'form-control' %>

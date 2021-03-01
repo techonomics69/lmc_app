@@ -5,7 +5,7 @@ class CommitteeMeetsIndexTest < ActionDispatch::IntegrationTest
 	def setup
 		@committee_member = members(:luke)
 		@normal_member = members(:climber)
-		@non_assigned_meet = meets(:non_assigned_meet)
+		@future_meet = meets(:future_meet)
 		@past_meet = meets(:past_meet)
 	end
 
@@ -19,7 +19,7 @@ class CommitteeMeetsIndexTest < ActionDispatch::IntegrationTest
 			assert_select 'a[href=?]', committee_meet_path(m), text: 'delete'
 		end
 		assert_difference 'Meet.count', -1 do
-			delete committee_meet_path(@non_assigned_meet)
+			delete committee_meet_path(@future_meet)
 		end
 	end
 

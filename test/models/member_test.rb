@@ -3,7 +3,6 @@ require 'test_helper'
 class MemberTest < ActiveSupport::TestCase
 	def setup
 		@member = Member.new(
-#												 title: "Mr",
 												 first_name: "name", 
 												 last_name: "surname",
 												 address_1: "House Name",

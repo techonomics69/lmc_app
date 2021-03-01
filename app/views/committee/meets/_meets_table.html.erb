@@ -27,7 +27,7 @@
 				<td><%= m.activity %></td>
 				<td><%= m.notes %></td>
 				<td><% if m.bb_url.present? %><a href="<%= m.bb_url %>" target="_blank">click here</a><% end %></td>
-				<td><%= link_to "details", edit_committee_meet_path(m) %></td>
+				<td><%= link_to "edit", edit_committee_meet_path(m) %></td>
 				<td><%= link_to "delete", committee_meet_path(m), method: :delete, data: { confirm: "Delete the #{m.meet_date.strftime("%d/%m/%Y")} meet to #{m.location}? This will remove all member bookings."} %></td>
 			</tr>
 			<% end %>
