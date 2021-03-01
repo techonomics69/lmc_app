@@ -1,0 +1,19 @@
+meet_leader:
+  member: luke
+  meet: future_meet
+  id: 1
+  # meet_id: 1
+  # member_id: 1
+  is_meet_leader: true
+  paid: true
+  sign_up_date: 2021-03-01
+
+non_meet_leader:
+  member: climber
+  meet: future_meet
+  id: 2
+  # meet_id: 1
+  # member_id: 2
+  is_meet_leader: false
+  paid: true
+  sign_up_date: 2021-03-01
