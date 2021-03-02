@@ -58,6 +58,10 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  # config.action_dispatch.default_headers = {
+  #   'X-Frame-Options' => 'ALLOWALL'
+  # }
+
   config.before_configuration do
     env_file = File.join(Rails.root, 'config', 'local_env.yml')
     YAML.load(File.open(env_file)).each do |key, value|

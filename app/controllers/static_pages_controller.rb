@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
 	include StaticPagesHelper
 
   skip_before_action :session_expires
+  # after_action :allow_youtube_iframe# only: :home
 
   def home
   	@meets = next_meets
@@ -85,4 +86,8 @@ class StaticPagesController < ApplicationController
       type: "application/pdf"
     )
   end
+
+  # def allow_youtube_iframe
+  #   response.headers['X-Frame-Options'] = 'ALLOW-FROM https://www.youtube.com/'
+  # end
 end
