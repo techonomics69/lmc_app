@@ -1,0 +1,41 @@
+a.link-with-arrow {
+  position: relative;
+}
+
+a.link-with-arrow:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #1a1a1a;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+a.link-with-arrow:hover:before {
+  visibility: visible;
+  width: 100%;
+}
+
+/* a.bb-link {
+  position: relative;
+} */
+
+/* a.bb-link:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #1a1a1a;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+a.bb-link:hover:before {
+  visibility: visible;
+  width: 100%;
+} */
