@@ -6,7 +6,7 @@
 <div class="row-top">
 	<div class="container">
 		<h1>New <%= @template.template %></h1>
-		<p><%= link_to "Back to Email Members", committee_emails_path %></p>
+		<p><%= back_link(committee_emails_path) %></p>
 		<h3>Your Email</h3>
 		<%= form_for(@email, url: yield(:path)) do |f| %>
 			<%= f.hidden_field :member_id, value: @member.id %>

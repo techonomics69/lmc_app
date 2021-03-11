@@ -4,7 +4,7 @@
 <div class="row row-btm top-border">
 	<div class="container">
 		<h1>Update Your Information</h1>
-		<p><%= link_to "Back to your details (without saving)", members_path(@member) %></p>
+		<p><%= back_link(members_path(@member)) %></p>
 		<%= link_to "Add/change your emergency contact", emergency_contact_member_path, class: "btn member-btn" %>
 		<% unless @member.receive_emails %>
 			<%= link_to "Subscribe to all club emails", email_subscribe_member_path(@member), :method => :patch, class: "btn member-btn" %>

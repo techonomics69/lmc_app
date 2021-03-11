@@ -2,10 +2,10 @@
 <div class="sign-up-cal">
 	<div class="table-responsive">
     <div class="top-border"></div>
-      <div class="row-top">
+      <div class="row row-top">
         <div class="container">
           <h1>Meet Sign Up</h1>
-          <p><%= link_to "Back to my details", members_path(@member) %></p>
+          <p><%= back_link(members_path(@member)) %></p>
           <span class="cal-key" id="evening" >Evening Meet</span><span class="cal-key" id="day">Day Meet</span><span class="cal-key" id="hut">Hut Meet</span><span class="cal-key" id="camping">Camping Meet</span>
           <table class="table table-condensed" id="calendar">
           <thead>
@@ -31,15 +31,17 @@
                   <% end %>
                 </td>
                 <td>
-                  <% if !m.notes.nil? %><%= m.notes %><br/><% end %>
                   <% if !m.opens_on.nil?%>
                     <% if m.opens_on.future? %>
-                      Opens on <%= format_date(m.opens_on) %>
+                      <p>Opens on <%= format_date(m.opens_on) %></p>
                     <% else %>
-                      <%= link_to "Sign Up!", new_attendee_member_path(@member, m) %>
+                      <p>
+                        <%= link_with_arrow(new_attendee_member_path(@member, m), "Sign Up") %>
+                      </p>
                     <% end %>
                   <% end %>
-                  <% if m.bb_url.present? %><br/><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
+                  <% if !m.notes.nil? %><p><%= m.notes %></p><% end %>
+                  <% if m.bb_url.present? %><p><%= link_with_arrow(m.bb_url, "Bulletin Board Thread") %></p><% end %>
                 </td>
               </tr>
             <% end %>

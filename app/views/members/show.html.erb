@@ -5,9 +5,19 @@
 		<h1><%= @member.first_name %> <%= @member.last_name %></h1>
 		<h4><%= membership_level(@member) %></h4>
 		<% unless @member.receive_emails %>
-			<p>You are not currently on the club newsletter mailing list. <%= link_to "Change this", email_subscribe_member_path(@member), :method => :patch %>.</p>
-			<% else %>
-			<p>You are on the club newsletter mailing list. <%= link_to "Change this", email_subscribe_member_path(@member), :method => :patch %>.</p>
+			<span class="email-opt-in">
+				<%= link_to email_subscribe_member_path(@member), :method => :patch, class: "btn member-btn-small" do %>
+					<i class="fas fa-envelope-open-text"></i> Opt in
+				<% end %>
+				You are not currently on the club newsletter mailing list.
+			</span>
+		<% else %>
+			<span class="email-opt-in">
+				<%= link_to email_subscribe_member_path(@member), :method => :patch, class: "btn member-btn-small" do %>
+					<i class="far fa-envelope"></i> Opt out
+				<% end %>
+				You are on the club newsletter mailing list.
+			</span>
 		<% end %>
 		<% if @member.bb_name %>
 			<p>Your username for the Bulletin Board is: <b><%= @member.bb_name %></b></p>
@@ -42,13 +52,14 @@
 									<p><strong><%= m.meet_date.strftime("%d/%m/%Y") %></strong></p>
 									<%= m.location %>
 									<% if meet_leader?(@member, m)%>
+										<br/>
 										<% if committee_member?(@member)%>
-											<p><%= link_to 'edit', edit_committee_meet_path(m) %></p>
+											<%= link_with_arrow(edit_committee_meet_path(m), "Edit") %>
 										<% else %>
-											<p><%= link_to 'meet leader', meets_member_path(@member, {:meet => {:id => m.id}}) %></p>
+											<p><%= link_with_arrow(meets_member_path(@member, {:meet => {:id => m.id}}), "Meet Leader") %></p>
 										<% end %>
 									<% end %>
-									<% if m.bb_url != "" %><br/><%= link_to 'bulletin board thread', m.bb_url%><% end %>
+									<% if m.bb_url != "" %><br/><%= link_with_arrow(m.bb_url, "Bulletin Board Thread", "meet-sign-up-bb-link") %><% end %>
 								</div>
 							<% end %>
 						<% end %>
@@ -58,6 +69,7 @@
 		<div class="lead col-md-4 col-sm-4 col-xs-12">
 			<div id="box-1" class="info-box">
 				<h3>My Details</h3>
+				<%= link_to @member.email.present? ? "Edit" : "Add", edit_member_path(@member), class: "btn member-btn" %>
 				<p>
 					<%= @member.email %><br>
 					<% if @member.home_phone.present? %><%= @member.home_phone %><br><% end %>
@@ -71,12 +83,12 @@
 					<%= @member.county %><br>
 					<%= @member.postcode %><br>
 				</p>
-				<%= link_to "Edit", edit_member_path(@member), class: "btn member-btn" %>
 			</div>
 		</div>
 		<div class="lead col-md-4 col-sm-4 col-xs-12">
 			<div class="info-box">
 				<h3>My Emergency Contact</h3>
+				<%= link_to em_contact?(@member) ? "Add" : "Edit", emergency_contact_member_path, class: "btn member-btn" %>
 				<% if !em_contact?(@member)%>
 					<p>
 						<%= @member.emergency_contact.relationship %><br>
@@ -92,7 +104,6 @@
 						<%= @member.emergency_contact.postcode %><br>
 					</p>
 				<% end %>
-				<%= link_to em_contact?(@member) ? "Add" : "Edit", emergency_contact_member_path, class: "btn member-btn" %>
 			</div>
 		</div>
 	</div>

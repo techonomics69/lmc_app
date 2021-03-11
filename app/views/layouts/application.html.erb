@@ -7,8 +7,10 @@
     <% if @meta_description.present? %>
       <meta name="description" content="<%= @meta_description %>" />
     <% end %>
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/a11b0039af.js" crossorigin="anonymous"></script>
     <%= render 'layouts/shim' %>
   </head>
   <body>

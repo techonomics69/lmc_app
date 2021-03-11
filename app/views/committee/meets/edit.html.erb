@@ -5,7 +5,7 @@
 	<div class="row row-top">
 		<div class="col-md-8 col col-md-offset-2">
 			<h1><%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
-			<p><%= link_to "Back to my details", members_path(@member) %></p>
+			<p><%= back_link(members_path(@member)) %></p>
 			<h2>Attendees</h2>
 			<% flash.each do |message_type, message| %>
 		 		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>

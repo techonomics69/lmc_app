@@ -3,7 +3,7 @@
 <div class="row row-top">
 	<div class="container">
 		<h1>Future Meets</h1>
-		<p><%= link_to "Back to my details", members_path(@member) %></p>
+		<p><%= back_link(members_path(@member)) %></p>
 		<%= link_to "Add New Meet", new_committee_meet_path, class: "btn member-btn" %>
 		<%= link_to "View Past Meets", committee_past_meets_path, class: "btn member-btn" %>
 		<% flash.each do |message_type, message| %>

@@ -6,7 +6,7 @@
 <div class="row row-top">
 	<div class="container">
 		<h1>Edit Email</h1>
-		<p><%= link_to "Back to Email Members (without saving)", committee_emails_path %></p>
+		<p><%= back_link(committee_emails_path) %></p>
 		<% flash.each do |message_type, message| %>
 	   	<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 		<% end %>

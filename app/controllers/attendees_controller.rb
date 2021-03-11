@@ -1,6 +1,8 @@
 class AttendeesController < ApplicationController
   before_action :logged_in_member
   before_action :correct_member
+  before_action :meet_open?, only: [:new, :create]
+
   helper_method :format_date
 
   include MeetsHelper
@@ -41,6 +43,15 @@ class AttendeesController < ApplicationController
       redirect_to meets_member_path(@member, {:meet => {:id => params[:meet_id]}})
     else
       redirect_to new_attendee_member_path(@member, {:meet => {:id => params[:meet_id]}})
+    end
+  end
+
+  private
+
+  def meet_open?
+    @meet = Meet.find(params[:meet_id])
+    if @meet.opens_on >= Date.today 
+      redirect_to members_path(@member)
     end
   end
 end

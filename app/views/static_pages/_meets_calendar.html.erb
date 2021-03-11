@@ -30,13 +30,13 @@
                   <% if m.opens_on.future? %>
                     Opens on <%= format_date(m.opens_on) %>
                   <% else %>
-                    <%= link_to "Sign Up!", new_attendee_member_path(@member, m) %>
+                    <%= link_with_arrow(new_attendee_member_path(@member, m), "Sign Up!") %>
                   <% end %>
                 <% end %>
 							<% else %>
 								<%= link_to "Sign Up!", login_path %>
 							<% end %>
-							<% if m.bb_url.present? %><br/><a href="<%= m.bb_url %>" target="_blank">Bulletin Board Thread</a><% end %>
+							<% if m.bb_url.present? %><br/><%= link_with_arrow(m.bb_url, "Bulletin Board Thread") %><% end %>
 						</td>
 					</tr>
 				<% end %>

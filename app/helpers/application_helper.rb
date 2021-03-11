@@ -45,4 +45,16 @@ module ApplicationHelper
 	def format_date(date)
 		date.strftime("%d/%m/%Y")
 	end
+
+	def back_link(path)
+		link_to " Back", path, class: "fas fa-arrow-left back-link"
+	end
+
+	def link_with_arrow(path, text, given_class='')
+		isNewTab = text == "Bulletin Board Thread"
+		link = link_to path, target: isNewTab ? "_blank" : "", class: "link-with-arrow " + given_class do
+			text
+		end
+		return link + ' <i class="fas fa-arrow-right"></i>'.html_safe
+	end
 end

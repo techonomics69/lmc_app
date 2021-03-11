@@ -8,9 +8,11 @@ $dark-background: #e6e6e6;
 $light-background: #f2f2f2;
 $dark-border: #cccccc;
 $text-color: #1a1a1a;
+$pale-text: #656565;
 $nav-dark: #333333;
 $btn-green: #99e687;
 $bright-green: #80e16b;
+$animate: all 0.2s ease-in-out;
 
 html {
   position: relative;
@@ -29,10 +31,31 @@ body {
 }
 
 .emoji-link {
-  // border: 1px solid #333333;
-  // border-radius: 2px;
-  // padding: 1.25px;
   text-decoration: none !important;
+}
+
+.back-link {
+  color: $pale-text;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.bb-link {
+  color: $text-color;
+}
+
+a:hover.back-link {
+  text-decoration: none;
+  transition: $animate;
+  transition-duration: 0.3s;
+  color: $text-color;
+}
+
+a:active.back-link,
+a:focus.back-link {
+  font-size: 15px;
+  transition: none;
+  color: $text-color;
 }
 
 /*Full Navbar*/
@@ -65,6 +88,8 @@ body {
 .navbar-default .navbar-nav > li > a:hover {
   background-color: $nav-dark;
   color: $light-background;
+  transition: $animate;
+  transition-duration: 0.3s;
 }
 
 .navbar-default .navbar-nav > li > a:focus {
@@ -531,6 +556,14 @@ div#main.home {
   border-radius: 1px;
 }
 
+.member-btn-small {
+  background-color: $btn-green;
+  color: $text-color;
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 2px 8px 2px 8px;
+}
+
 .member-btn-large {
   width: 150px;
   font-weight: 500;
@@ -546,18 +579,22 @@ div#main.home {
   margin-top: 4px;
 }
 
-.member-btn:hover {
+.member-btn:hover,
+.member-btn-small:hover {
   background-color: $bright-green;
   border: 1px solid $bright-green;
 }
 
 .member-btn:active,
-.member-btn:focus {
+.member-btn:focus,
+.member-btn-small:active,
+.member-btn-small:focus {
   border: 1px solid $dark-green;
   background-color: $dark-green;
 }
 
-.member-btn:active:hover {
+.member-btn:active:hover,
+.member-btn-small:active:hover {
   border: 1px solid $dark-green;
 }
 
@@ -765,6 +802,23 @@ ul.attendees-list {
   overflow-y: visible;
 }
 
+.email-opt-line {
+  height: 20px;
+}
+
+.link-with-arrow,
+a:hover.link-with-arrow,
+a:focus.link-with-arrow {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  color: $text-color;
+}
+
+.meet-sign-up-bb-link {
+  font-size: 12px;
+}
+
 @media screen and (max-width: 768px) {
   .meets-cal {
     tbody {
@@ -785,6 +839,12 @@ ul.attendees-list {
 }
 
 /* miscellaneous */
+
+.email-opt-in {
+  vertical-align: middle;
+  margin-bottom: 10px;
+  display: block;
+}
 
 .debug_dump {
   clear: both;

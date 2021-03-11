@@ -3,7 +3,7 @@
 	<div class="row row-top">
 		<div class="container">
 			<h1>Membership Database</h1>
-			<p><%= link_to "Back to my details", members_path(@member) %></p>
+			<p><%= back_link(members_path(@member)) %></p>
 			<% flash.each do |message_type, message| %>
 	    	<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 	 		<% end %>
