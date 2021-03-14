@@ -1,53 +1,38 @@
 # README
 
-Windows Gem Issues:
-bcrypt path set to builders site, not ruby gems as ruby gems version doesn't work
-tzinfo-data has platforms removed as this stops it working
+## Dependencies
 
-OS:
-Windows 10 64 bit
+- Ruby: 2.6.6
+- Rails: 5.1.7
+- Postgres (production)
+- SQLite3 (development, test)
 
-Ruby:
-2.3.2p222
+## Setup
 
-Rails:
-5.1.2
+- install gems with `bundle install`
+- `rails s` to run server on localhost:3000
 
-Tests:
-minitest
-run rails db:fixtures:load RAILS_ENV=test if fixtures have been changed
+## Database
 
-Database:
-Dev - SQLite3 1.3.13 x86-mingw32, 1.3.12 x86-mingw32
+- `rails db:drop`
+- `rails db:create`
+- `rails db:migrate`
+- `rails db:seed`
 
-Production - PostgreSQL 0.21.0 x86-mingw32, 0.20.0 x86-mingw32, 0.19.0 x86-mingw32
+## Testing
 
-SQLite3 does not support arrays. For fees_received_on field in Membership table to log all past payments dev needs to use PostgreSQL.
+- `rails test` runs the test suite with minitest
+- run `rails db:fixtures:load RAILS_ENV=test` if fixtures have been changed
+- specify `RAILS_ENV=test` when using database functions
 
-Deployment:
-Deploy to Heroku 'lmc-app'
+## Deployment
 
--------------------
+- `rake assets:precompile RAILS_ENV=production` is necessary before pushing to heroku if assets have changed
+- `git push heroku-dev` is staging app remote
+- `git push heroku-prod` is production app remote
+- heroku only builds from master branch
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Known Issues
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- bcrypt gem path set to get from github, as ruby gems version was not working when developing on Windows.
+- tzinfo-data has platforms removed as this stops it working
