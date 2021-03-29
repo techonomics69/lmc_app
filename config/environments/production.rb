@@ -75,8 +75,8 @@ Rails.application.configure do
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
+    :user_name      => ENV['SENDGRID_API_USERNAME'],
+    :password       => ENV['SENDGRID_API_KEY'],
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
@@ -102,4 +102,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+#   config.action_dispatch.default_headers = {
+#     'X-Frame-Options' => 'ALLOWALL'
+# }
+
+  # config.require_master_key = true
 end

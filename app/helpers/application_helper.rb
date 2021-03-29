@@ -59,4 +59,26 @@ module ApplicationHelper
 		end
 		return link + ' <i class="fas fa-arrow-right"></i>'.html_safe
 	end
+
+  def format_date(date)
+		date.strftime("%d/%m/%Y")
+	end
+
+	def back_link(path)
+    link_to path, class: "back-link" do
+			'<i class="fas fa-arrow-left"></i> '.html_safe + "Back"
+		end
+	end
+
+	def link_with_arrow(path, text, given_class='')
+		isNewTab = text == "Bulletin Board Thread"
+		link = link_to path, target: isNewTab ? "_blank" : "", class: "link-with-arrow " + given_class do
+			text
+		end
+		return link + ' <i class="fas fa-arrow-right"></i>'.html_safe
+  end
+  
+	def blog_url
+		"http://lmclogbook.cloudaccess.host/"
+	end
 end

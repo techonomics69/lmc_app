@@ -88,7 +88,7 @@
 			<p class="text-center"><%= Member::PARTICIPATION_STATEMENT %></p>
 
 			<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
-				<p id='error_explanation'><%= show_errors(@member, :accept_risks, "you must accept the participation statement") %></p>
+				<p id='error_explanation'><%= show_errors(@member, :accept_risks) %></p>
 				<%= f.check_box :accept_risks, { class: "radio-inline", style: "width: auto" } %>
 				<%= f.label :accept_risks, "I accept the risks." %>
 							
@@ -98,8 +98,6 @@
 	<div class="row">
 		<div class="col-md-12 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
 			<p>The club sends out newsfeeds, usually once a month, with information about past and up coming meets. We may also send out subs reminders at the start of the year if you haven't paid your subs. You can opt in or out of receiving these emails at any point after completing this application.</p>
-
-
 			<span class="input-group-addon center-block" style="border: none; background-color: inherit; width:auto">
 				<%= f.check_box :receive_emails, { class: "radio-inline", style: "width: auto" } %>
 				<%= f.label :receive_emails, "I want to receive emails from the club." %>
@@ -109,6 +107,14 @@
 	<div class="row">
 		<div class="col-md-12 text-center radio-inline" style="border:solid 1px #bbb; font-weight: bold;">
 			<p class="text-center">By completing your application below you are accepting the terms of our <%= link_to "Privacy Policy", privacy_policy_path %>.</p>
+		</div>
+	</div>
+	<div>
+		<div class="col-md-6 col-md-offset-3 text-center" style="margin-top: 20px; display: inline-block">
+			<% if @verify_error%>
+				<p id='error_explanation'><%= @verify_error %></p>
+			<% end%>
+			<%= recaptcha_tags %>
 		</div>
 	</div>
 	<div class="row">

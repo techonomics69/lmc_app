@@ -7,13 +7,14 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
-gem 'bcrypt' #, git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem 'rails', '~> 5.2.4.3'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'tinymce-rails'
 gem 'sucker_punch', '~> 2.0'
+gem 'nokogiri', '~> 1.11', '>= 1.11.1'
 # Use Puma as the app server
-gem 'puma', '~> 3.12.4'
+gem 'puma', '~> 3.12.6'
 # Use SCSS for stylesheets
 gem 'sassc-rails', '~> 2.1.2'
 # Use Uglifier as compressor for JavaScript assets
@@ -39,6 +40,8 @@ gem 'rails-html-sanitizer', '~> 1.3.0'
 gem 'rake', '~> 12.3.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do
   gem 'sqlite3'

@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module StaticPagesHelper
 
 	def meta_description(page)
@@ -32,17 +34,26 @@ module StaticPagesHelper
 	end
 
 	def bb_feed
+		openuri_params = {
+			# set timeout durations for HTTP connection
+			# default values for open_timeout and read_timeout is 60 seconds
+			:open_timeout => 3,
+			:read_timeout => 3,
+		}
 		begin
-			page = Nokogiri::HTML(open('http://bb.leedsmc.org/bbfeed.php'))
-		rescue Exception
+			content = open('http://bb.leedsmc.org/bbfeed.php', openuri_params).read
+		rescue OpenURI::HTTPError => e
 			return "Error. No response from http://bb.leedsmc.org/bbfeed.php."
-			exit
+		rescue SocketError, Net::ReadTimeout => e
+			return "Timed out waiting for response from http://bb.leedsmc.org/bbfeed.php."
+		else
+			page = Nokogiri::HTML(content)
+			links = page.css('a')
+			page.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each_with_index do |node,i|
+				node.replace(Nokogiri.make("<p>#{links[i]}<br>#{node.to_html}</p>"))
+			end
+			return page.css('p').to_s
 		end
-  	links = page.css('a')
-		page.search("//br/preceding-sibling::text()|//br/following-sibling::text()").each_with_index do |node,i|
-	    node.replace(Nokogiri.make("<p>#{links[i]}<br>#{node.to_html}</p>"))
-	  end
-  	page.css('p').to_s
 	end
 
 	def date_display(date, nights = 0)

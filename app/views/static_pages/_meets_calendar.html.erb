@@ -34,7 +34,7 @@
                   <% end %>
                 <% end %>
 							<% else %>
-								<%= link_to "Sign Up!", login_path %>
+								<%= link_with_arrow(login_path, "Log in to sign up!") %>
 							<% end %>
 							<% if m.bb_url.present? %><br/><%= link_with_arrow(m.bb_url, "Bulletin Board Thread") %><% end %>
 						</td>

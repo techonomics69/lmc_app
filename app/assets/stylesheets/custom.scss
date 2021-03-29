@@ -364,6 +364,7 @@ div#main.home {
     }
   }
 }
+
 .bottom {
   margin-bottom: 20px;
 }
@@ -879,6 +880,10 @@ select,
   border: 1px solid #bbb;
   margin-bottom: 15px;
   @include box_sizing;
+}
+
+.g-recaptcha {
+  display: inline-block;
 }
 
 input {

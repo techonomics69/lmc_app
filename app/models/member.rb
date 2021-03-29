@@ -22,10 +22,9 @@ class Member < ApplicationRecord
 	validates :town,       	 presence: true, length: { maximum: 50 }
 	validates :postcode,   	 presence: true, length: { maximum: 10 }
 	validates :country,    	 presence: true, inclusion: { in: COUNTRIES }
-	validates :email, 			 presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
+	validates :email, 		 presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
 	validates :experience,   length: { maximum: 1100 }
-	validates :accept_risks, inclusion: { in: [ true ] }
-	
+	validates :accept_risks, acceptance: { accept: true, message: "you must accept the participation statement"}
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 

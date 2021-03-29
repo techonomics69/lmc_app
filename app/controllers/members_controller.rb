@@ -16,13 +16,17 @@ class MembersController < ApplicationController
   end
 
   def create
-  	@member = Member.new(member_params)
-  	if @member.save
+    @member = Member.new(member_params)
+    verified = verify_recaptcha(model: @member)
+    if verified && @member.save
   		log_in @member
       @member.send_welcome_email
       send_application_notification
   		redirect_to member_path(@member)
-  	else
+    else
+      if !verified
+        @verify_error = "Are you a robot?"
+      end
   		render 'new'
   	end
   end
