@@ -20,7 +20,7 @@
     <% else %>
       <div class="panel panel-danger">
         <div class="panel-heading">
-          <h5>By signing up for this meet you are committing to attending and paying for your place. If you are unsure about going on this meet then please do not sign up.</h5>
+          <h5>By signing up for this meet you are committing to attending and paying for your place, even if you do not attend.</h5>
         </div>
       </div>
     <% end %>
@@ -35,14 +35,15 @@
       <ul class=attendees-list>
         <li>1. <%= @meet_leader.nil? ? "(meet leader)" : @meet_leader.full_name %></li>
         <% @attendees.each_with_index do |attendee, index| %>
-          <% if (index - @meet.places + 1) < 0 %>
+          <% attendee_is_reserve = !@meet.places.nil? && index + 1 >= @meet.places%>
+          <% if !attendee_is_reserve %>
             <li><%= index + 2 %>. <%= attendee.member.full_name %></li>
-          <% elsif (index == @meet.places - 1)%>
+          <% elsif !@meet.places.nil? && index + 1 == @meet.places%>
             <br/>
             <li><h4>Reserves</h4></li>
             <li><%= 1 %>. <%= attendee.member.full_name %></li>
           <% else %>
-            <li><%= index - @meet.places + 2 %>. <%= attendee.member.full_name %></li>
+            <li><%= !@meet.places.nil? ? index - @meet.places + 2 : index + 2%>. <%= attendee.member.full_name %></li>
           <% end %>
         <% end %>
       </ul>

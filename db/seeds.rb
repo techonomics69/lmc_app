@@ -190,128 +190,193 @@ members = []
 	members << Member.find_by(email:"member-#{n+1}@example.com")
 end
 
-remaining_committee = ["Chair",
-						 					 "Treasurer",
-						  				 "Meets Secretary",
-						 					 "Communications Secretary",
-						 					 "Climbing Co-ordinator",
-						 					 "Walking Co-ordinator",
-						 					 "Ordinary Member",
-						 					 "Member Without Portfolio"]
+remaining_committee = [
+    "Chair",
+	"Treasurer",
+	"Meets Secretary",
+	"Communications Secretary",
+	"Climbing Co-ordinator",
+	"Walking Co-ordinator",
+	"Ordinary Member",
+	"Member Without Portfolio"]
+
 n = 0
 members.each do |member|
 	member.membership.update(committee_position: remaining_committee[n])
 	n += 1
 end
 
-#Meet1
-Meet.create!( meet_date: DateTime.new(2021,8,10),
-							meet_type: "Hut",
-							number_of_nights: 2,
-							places: 12,
-							location: "Ingleton, Yorkshire Dales",
-							bb_url: "www.bburl2.com",
-							opens_on: DateTime.new(2021,7,10)
+#Meet1 - hut - open
+Meet.create!( 
+    meet_date: 10.days.from_now,
+	meet_type: "Hut",
+	number_of_nights: 2,
+	places: 12,
+	location: "Ingleton, Yorkshire Dales",
+	bb_url: "www.bburl2.com",
+	opens_on: 20.days.ago
 )
-#Meet2
-Meet.create!( meet_date: DateTime.new(2021,7,22),
-							meet_type: "Camping",
-							number_of_nights: 2,
-							location: "Ty'n Lon, Nant Peris, Snowdonia",
-							bb_url: "www.bburl12.com",
-							notes: "some notes",
-							opens_on: DateTime.new(2021,6,22)
+
+#Meet2 - camping - open
+Meet.create!( 
+    meet_date: 20.days.from_now,
+	meet_type: "Camping",
+	number_of_nights: 2,
+	location: "Ty'n Lon, Nant Peris, Snowdonia",
+	bb_url: "www.bburl12.com",
+	notes: "some notes",
+	opens_on: 10.days.ago
 )
-#Meet3
-Meet.create!( meet_date: DateTime.new(2021,5,3),
-							meet_type: "Camping",
-							number_of_nights: 2,
-							location: "Gwern Gof Uchaf Campsite, Ogwen, Wales",
-							bb_url: "www.bburl.com",
-							opens_on: DateTime.new(2021,4,3)
+
+#Meet3 - day - full
+Meet.create!( 
+    meet_date: 2.days.from_now,
+	meet_type: "Day",
+	number_of_nights: 2,
+    places: 4,
+	location: "Some walk somewhere",
+	bb_url: "www.bburl.com",
+	opens_on: -28.days.ago
 )
-#Meet4
-Meet.create!( meet_date: DateTime.new(2021,6,4),
-							meet_type: "Evening",
-							location: "Leeds Wall",
-							activity: "climb"
+
+#Meet4 - evening - open
+Meet.create!( 
+    meet_date: 26.days.from_now,
+	meet_type: "Evening",
+	location: "Leeds Wall",
+	activity: "climb"
 )
-#Meet5
-Meet.create!( meet_date: DateTime.new(2021,6,4),
-							meet_type: "Day",
-							location: "Pen y Ghent, Yorkshire Dates",
-							bb_url: "www.bburl4.com",
-							notes: "Meet at Horton in Ribblesdale at 10am",
-							activity: "walk",
-							opens_on: DateTime.new(2021,5,4)
+
+#Meet5 - day
+Meet.create!( 
+    meet_date: 57.days.from_now,
+	meet_type: "Day",
+	location: "Pen y Ghent, Yorkshire Dates",
+	bb_url: "www.bburl4.com",
+	notes: "Meet at Horton in Ribblesdale at 10am",
+	activity: "walk",
+	opens_on: 27.days.from_now
 )
+
 #Meet6
-Meet.create!( meet_date: DateTime.new(2021,11,9),
-							meet_type: "Hut",
-							number_of_nights: 2,
-							places: 16,
-							location: "K Shoes, Borrowdale",
-							opens_on: DateTime.new(2021,10,9)
+Meet.create!( 
+    meet_date: 67.days.from_now,
+	meet_type: "Hut",
+	number_of_nights: 2,
+	places: 16,
+	location: "K Shoes, Borrowdale",
+	opens_on: 37.days.from_now
 )
+
 #Meet7
-Meet.create!( meet_date: DateTime.new(2021,6,9),
-							meet_type: "Hut",
-							number_of_nights: 4,
-							places: 10,
-							location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland",
-							opens_on: DateTime.new(2021,5,9)
+Meet.create!( 
+    meet_date: 97.days.from_now,
+	meet_type: "Hut",
+	number_of_nights: 4,
+	places: 10,
+	location: "Kinlochewe Hotel Bunkhouse, nr. Torridon, Northwest Highlands, Scotland",
+	opens_on: 67.days.from_now
 )
 
 #Meet 1
-Attendee.create!( member_id: 3,
-									meet_id: 1,
-									is_meet_leader: true,
-									paid: true,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 3,
+	meet_id: 1,
+	is_meet_leader: true,
+	paid: true,
+	sign_up_date: 9.days.ago
+)
 									
-Attendee.create!( member_id: 5,
-									meet_id: 1,
-									is_meet_leader: false,
-									paid: false,
-									sign_up_date: Date.today)
+Attendee.create!(
+    member_id: 5,
+	meet_id: 1,
+	is_meet_leader: false,
+	paid: false,
+	sign_up_date: 9.days.ago
+)
 
-Attendee.create!( member_id: 7,
-									meet_id: 1,
-									is_meet_leader: false,
-									paid: false,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 7,
+	meet_id: 1,
+	is_meet_leader: false,
+	paid: false,
+	sign_up_date: 9.days.ago
+)
 
-Attendee.create!( member_id: 24,
-									meet_id: 1,
-									is_meet_leader: false,
-									paid: true,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 24,
+    meet_id: 1,
+	is_meet_leader: false,
+	paid: true,
+	sign_up_date: 7.days.ago
+)
 
 #Meet 2
-Attendee.create!( member_id: 3,
-									meet_id: 2,
-									is_meet_leader: true,
-									paid: true,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 3,
+	meet_id: 2,
+	is_meet_leader: true,
+	paid: true,
+	sign_up_date: 9.days.ago
+)
 									
-Attendee.create!( member_id: 10,
-									meet_id: 2,
-									is_meet_leader: false,
-									paid: false,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 10,
+	meet_id: 2,
+    is_meet_leader: false,
+	paid: false,
+	sign_up_date: 7.days.ago
+)
+
+#Meet 3
+Attendee.create!( 
+    member_id: 3,
+    meet_id: 3,
+    is_meet_leader: true,
+    paid: true,
+    sign_up_date: 18.days.ago
+)
+    
+Attendee.create!( 
+    member_id: 8,
+    meet_id: 3,
+    is_meet_leader: false,
+    paid: false,
+    sign_up_date: 9.days.ago
+)
+
+Attendee.create!(
+    member_id: 12,
+    meet_id: 3,
+    is_meet_leader: false,
+    paid: true,
+    sign_up_date: 9.days.ago
+)
+
+Attendee.create!( 
+    member_id: 17,
+    meet_id: 3,
+    is_meet_leader: false,
+    paid: true,
+    sign_up_date: 7.days.ago
+)
 
 #Meet 4
-Attendee.create!( member_id: 6,
-									meet_id: 4,
-									is_meet_leader: false,
-									paid: false,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 6,
+	meet_id: 4,
+	is_meet_leader: false,
+	paid: false,
+	sign_up_date: 1.days.ago
+)
 									
-Attendee.create!( member_id: 5,
-									meet_id: 4,
-									is_meet_leader: true,
-									paid: true,
-									sign_up_date: Date.today)
+Attendee.create!( 
+    member_id: 5,
+	meet_id: 4,
+	is_meet_leader: true,
+	paid: true,
+	sign_up_date: 2.days.ago
+)
 
 Email.create!(template: "newsfeed",
 							subject: "Newsfeed Template",

@@ -5,7 +5,7 @@
 	<div class="row row-top">
 		<div class="col-md-8 col col-md-offset-2">
 			<h1><%=@meet.location%>, <%=date_display(@meet.meet_date)%></h1>
-			<p><%= back_link(members_path(@member)) %></p>
+			<p><%= back_link(committee_meets_path) %></p>
 			<h2>Attendees</h2>
 			<% flash.each do |message_type, message| %>
 		 		<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
@@ -17,56 +17,71 @@
 						<th></th>
 						<th>Name</th>
 						<th>Signed Up On</th>
-						<th><% if @meet.meet_type == "Hut" %>Paid?<% end %></th>
+              <% if @meet.meet_type == "Hut" %>
+						    <th>Paid?</th>
+              <% end %>
 						<th>Make Meet Leader</th>
 						<th></th>
 					</thead>
-
 					<tbody class="table-striped narrow">
 						<tr>
 							<td>Meet Leader</td>
 							<td><%= @meet_leader.full_name if @meet_leader %></td>
 							<td><%= format_date(@meet_leader_attendee.sign_up_date) if @meet_leader %></td>
-							<td>
-								<% if @meet.meet_type == "Hut" %>
+							<% if @meet.meet_type == "Hut" %>
+                <td>
 									<% paid = @meet_leader ? @meet_leader_attendee.paid ? "✅" : "❌" : ""%>
-									<%= (link_to "#{paid}", committee_attendee_path(update_paid: true, attendee_id: @meet_leader_attendee.id), method: :patch, :class => "emoji-link") if @meet_leader %>
-								<% end %>
-							</td>
+									<%= (link_to "#{paid}", committee_attendee_path(update_paid: true, attendee: {attendee_id: @meet_leader_attendee.id}), method: :patch, :class => "emoji-link") if @meet_leader %>
+								</td>
+              <% end %>
 							<td></td>
-							<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: @meet_leader_attendee.id), method: :delete, data: { confirm: "Remove #{@meet_leader_attendee.member.first_name} #{@meet_leader_attendee.member.last_name} (meet leader) from this meet?"} if @meet_leader%></td>
-						<% @meet_attendees.each_with_index do |attendee, index| %>
+							<td><%= link_to "remove from meet", committee_attendee_path(attendee: {attendee_id: @meet_leader_attendee.id}), method: :delete, data: { confirm: "Remove #{@meet_leader_attendee.member.first_name} #{@meet_leader_attendee.member.last_name} (meet leader) from this meet?"} if @meet_leader%></td>
+						    
+              <% @meet_attendees.each_with_index do |attendee, index| %>
 								<% member_paid = attendee.paid ? "✅" : "❌" %>
-								<% if index + 1 < @meet.places %>
-									<tr>
-										<td><%= index + 2 %>.</td>
-										<td><%= attendee.member.full_name %></td>
-										<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
-										<td>
-											<% if @meet.meet_type == "Hut" %>
-												<%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%>
-											<% end %>
-										</td>
-										<td><%= link_to "make meet leader", committee_attendee_path(attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee, update_meet_leader: true), method: :patch, data: { confirm: "Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
-										<td><%= link_to "remove from meet", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
-									</tr>
-								<% else %>
-									<% if @meet.meet_type == "Hut" %>
-										<% row_class = (index - @meet.places + 1 == 0) ? "reserves-top" : "reserves" %>
-										<% if index - @meet.places + 1 == 0%>
-											<tr class="reserves"><td>Reserves</td><td></td><td></td><td></td><td></td><td></td></tr>
-										<% end %>
-										<tr class="<%= row_class %>">
-											<td><%= index - @meet.places + 2 %>.</td>
-											<td><%= attendee.member.full_name %></td>
-											<td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
-											<td><%= link_to "#{member_paid}", committee_attendee_path(attendee_id: attendee.id, update_paid: true), method: :patch, :class => "emoji-link"%></td>
-											<td></td>
-											<td><%= link_to "remove reserve", committee_attendee_path(attendee_id: attendee.id), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
-										</tr>
-									<% end %>
-								<% end %>
-						<% end %>
+                <% attendee_is_reserve = !@meet.places.nil? && index + 2 > @meet.places %>
+                <% if !attendee_is_reserve %>
+								  <tr>
+									  <td><%= index + 2 %>.</td>
+			    					<td><%= attendee.member.full_name %></td>
+									  <td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+                      <% if @meet.meet_type == "Hut" %>
+									      <td>
+											    <%= link_to "#{member_paid}", committee_attendee_path(update_paid: true, attendee: {attendee_id: attendee.id}), method: :patch, :class => "emoji-link"%>
+									      </td>
+                      <% end %>
+                    <td><%= link_to "make meet leader", committee_attendee_path(update_meet_leader: true, attendee: {attendee_id: attendee.id, meet_leader_attendee: @meet_leader_attendee}), method: :patch, data: { confirm: "Make #{attendee.member.first_name} #{attendee.member.last_name} meet leader?"} %></td>
+									  <td><%= link_to "remove from meet", committee_attendee_path(attendee: {attendee_id: attendee.id}), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+								  </tr>
+                <% elsif !@meet.places.nil? && index + 1 == @meet.places%>
+                  <tr class="reserves-top"><td>Reserves</td><td></td><td></td><% if @meet.meet_type == "Hut" %><td></td><% end %><td></td><td></td></tr>
+                  <tr class="reserves">
+                    <td><%= index - @meet.places + 2 %>.</td>
+                    <td><%= attendee.member.full_name %></td>
+                    <td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+                    <% if @meet.meet_type == "Hut" %>
+                      <td>
+											  <%= link_to "#{member_paid}", committee_attendee_path(update_paid: true, attendee: {attendee_id: attendee.id}), method: :patch, :class => "emoji-link"%>
+                      </td>
+                    <% end %>
+                    <td></td>
+                    <td><%= link_to "remove reserve", committee_attendee_path(attendee: {attendee_id: attendee.id}), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+                  </tr>
+                <% else %>
+                  <tr class="reserves">
+                    <td><%= index - @meet.places + 2 %>.</td>
+                    <td><%= attendee.member.full_name %></td>
+                    <td><%= format_date(attendee.sign_up_date) if attendee.sign_up_date %></td>
+                      <% if @meet.meet_type == "Hut" %>
+                        <td>
+											    <%= link_to "#{member_paid}", committee_attendee_path(update_paid: true, attendee: {attendee_id: attendee.id}), method: :patch, :class => "emoji-link"%>
+                        </td>
+                      <% end %>
+                      <td></td>
+                      <td><%= link_to "remove reserve", committee_attendee_path(attendee: {attendee_id: attendee.id}), method: :delete, data: { confirm: "Remove #{attendee.member.first_name} #{attendee.member.last_name} from this meet?"} %></td>
+                  </tr>
+                <% end %>
+						  <% end %>
 							<tr>
 								<td>
 									<%= f.hidden_field :meet_id, value: @meet.id %>
@@ -74,7 +89,11 @@
 								</td>
 								<td><%= f.collection_select :member_id, @remaining_members, :id, :full_name, {}, { class: 'form-control small-select-box' } %></td>
 								<td><%= f.date_field :sign_up_date, as: :date, class: 'form-control', id: 'small-date-picker' %></td>
-								<td><% if @meet.meet_type == "Hut" %><%= f.check_box :paid, {class: 'my-checkbox', type: 'checkbox'}, true, false %><% end %></td>
+								<% if @meet.meet_type == "Hut" %>
+                  <td>
+                    <%= f.check_box :paid, {class: 'my-checkbox', type: 'checkbox'}, true, false %>
+                  </td>
+                <% end %>
 								<td></td>
 								<td><%= f.submit "add to meet", { class: 'btn member-btn full-width' } %></td>
 							</tr>

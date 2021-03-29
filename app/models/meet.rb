@@ -8,6 +8,6 @@ class Meet < ApplicationRecord
 
 	validates :number_of_nights, numericality: { only_integer: true, allow_nil: true }
 	validates :meet_type, presence: true, inclusion: { in: MEET_TYPES }
-	validates :location, presence: true, length: { maximum: 100 }
+	validates :location, presence: true, length: { maximum: 200 }
 	validates :places, numericality: {only_integer: true, allow_nil: true}
 end

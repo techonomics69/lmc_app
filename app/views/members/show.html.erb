@@ -49,17 +49,14 @@
 						<% @member.meets.order(meet_date: :asc).each do |m| %>
 							<% if m.meet_date >= Date.today %>
 								<div class="meet-box" >
-									<p><strong><%= m.meet_date.strftime("%d/%m/%Y") %></strong></p>
-									<%= m.location %>
+									<p class="meet-box__date"><%= m.meet_date.strftime("%d/%m/%Y") %></p>
+									<p class="meet-box__location"><%= m.location %></p>
 									<% if meet_leader?(@member, m)%>
-										<br/>
-										<% if committee_member?(@member)%>
-											<%= link_with_arrow(edit_committee_meet_path(m), "Edit") %>
-										<% else %>
-											<p><%= link_with_arrow(meets_member_path(@member, {:meet => {:id => m.id}}), "Meet Leader") %></p>
-										<% end %>
-									<% end %>
-									<% if m.bb_url != "" %><br/><%= link_with_arrow(m.bb_url, "Bulletin Board Thread", "meet-sign-up-bb-link") %><% end %>
+										<%= link_with_arrow(meets_member_path(@member, {:meet => {:id => m.id}}), "Meet Leader") %>
+									<% else %>
+                    <%= link_with_arrow(new_attendee_member_path(@member, m), "Info") %>
+                  <% end %>
+                  <% if m.bb_url != "" %><br/><%= link_with_arrow(m.bb_url, "Bulletin Board Thread", "meet-box__bb-link") %><% end %>
 								</div>
 							<% end %>
 						<% end %>

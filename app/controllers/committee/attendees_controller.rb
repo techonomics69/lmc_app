@@ -5,7 +5,7 @@ class Committee::AttendeesController < Committee::BaseController
   include MeetsHelper
 
   def create
-    @meet = Meet.find(params[:attendee][:meet_id])
+    @meet = Meet.find(attendee_params[:meet_id])
     @attendee = @meet.attendees.create(attendee_params)
     if @attendee.save
       flash[:success] = 'Attendee added'
@@ -17,19 +17,15 @@ class Committee::AttendeesController < Committee::BaseController
   end
 
   def update
-    # @member = Member.find(params[:member_id])
     meet = Meet.find(params[:id])
-    print(meet)
-    attendee = Attendee.find_by(id: params[:attendee_id])
-    print(attendee)
+    attendee = Attendee.find(attendee_params[:attendee_id])
     if params[:update_paid]
       attendee.toggle!(:paid)
-      redirect_to edit_committee_meet_path(meet)
+      return redirect_to edit_committee_meet_path(meet)
     end
-    print(params[:update_meet_leader])
     if params[:update_meet_leader] 
-      if params[:meet_leader_attendee]
-        old_meet_leader = Attendee.find_by(id: params[:meet_leader_attendee])
+      unless attendee_params[:meet_leader_attendee] == ""
+        old_meet_leader = Attendee.find(attendee_params[:meet_leader_attendee])
         old_meet_leader.update_attributes!(is_meet_leader: false)
       end
       attendee.update_attributes!(is_meet_leader: true)
@@ -38,7 +34,7 @@ class Committee::AttendeesController < Committee::BaseController
   end
 
   def destroy
-    attendee = Attendee.find(params[:attendee_id])
+    attendee = Attendee.find(attendee_params[:attendee_id])
     attendee.destroy
     redirect_to edit_committee_meet_path
   end
@@ -47,10 +43,13 @@ class Committee::AttendeesController < Committee::BaseController
 
   def attendee_params
     params.require(:attendee).permit(
+      :attendee_id,
       :member_id,
+      :meet_id,
       :is_meet_leader,
       :sign_up_date,
       :paid,
+      :meet_leader_attendee
     )
   end
 

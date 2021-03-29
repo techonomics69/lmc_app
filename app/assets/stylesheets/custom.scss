@@ -38,6 +38,7 @@ body {
   color: $pale-text;
   margin-bottom: 10px;
   text-decoration: none;
+  font-family: inherit;
 }
 
 .bb-link {
@@ -48,13 +49,6 @@ a:hover.back-link {
   text-decoration: none;
   transition: $animate;
   transition-duration: 0.3s;
-  color: $text-color;
-}
-
-a:active.back-link,
-a:focus.back-link {
-  font-size: 15px;
-  transition: none;
   color: $text-color;
 }
 
@@ -512,6 +506,20 @@ div#main.home {
   margin-bottom: 6px;
 }
 
+.meet-box__date {
+  margin: 2px 0 0 0;
+}
+
+.meet-box__location {
+  font-size: 16px;
+  margin: 4px 0 4px 0;
+}
+
+.meet-box__bb-link {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
 .info-box h3 {
   margin: 10px;
   text-align: center;
@@ -811,13 +819,11 @@ a:hover.link-with-arrow,
 a:focus.link-with-arrow {
   display: inline-block;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
   color: $text-color;
 }
 
-.meet-sign-up-bb-link {
-  font-size: 12px;
-}
+
 
 @media screen and (max-width: 768px) {
   .meets-cal {

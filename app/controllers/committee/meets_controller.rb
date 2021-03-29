@@ -35,29 +35,16 @@ class Committee::MeetsController < Committee::BaseController
   end
 
   def edit
-    values_for_edit()
+    create_values_for_edit()
   end
 
   def update
     @meet = Meet.find(params[:id])
     if @meet.update_attributes(meet_params)
       flash[:success] = 'Meet updated'
-    else
-      values_for_edit()
-      return render 'edit'
     end
-    if attendee_params
-      attendee = Attendee.create(
-          meet_id: @meet.id,
-          member_id: attendee_params[:member_id],
-          is_meet_leader: true,
-          paid: false,
-          sign_up_date: Date.today)
-      if attendee.save
-        flash[:success] = 'Meet leader added'
-      end
-    end
-    redirect_to edit_committee_meet_path(@meet)
+      create_values_for_edit()
+      render 'edit'
   end
 
   def destroy
@@ -87,14 +74,15 @@ class Committee::MeetsController < Committee::BaseController
     params.require(:attendees).permit(:member_id)
   end
 
-  def values_for_edit
+  def create_values_for_edit
     @meet = Meet.find(params[:id])
     @meet_leader = find_meet_leader(@meet)
     @meet_leader_attendee = @meet_leader.attendees.where(meet_id: @meet.id).first if @meet_leader
     @meet_attendees = @meet.attendees.where(is_meet_leader: false).order(sign_up_date: :asc)
     attendee_member_ids = @meet_attendees.map { | attendee | attendee.member.id }
     attendee_member_ids.push(@meet_leader.id) if @meet_leader
-    @remaining_members = Member.where.not(id: attendee_member_ids).order(first_name: :ASC)
+    @remaining_members = Member.where.not(id: attendee_member_ids).order(first_name: :asc)
+    @meet_has_reserves = @meet_leader ? @meet_attendees.length + 1 > @meet.places : @meet_attendees.length > @meet.places if !@meet.places.nil?
     @new_attendee = Attendee.new
   end
 end

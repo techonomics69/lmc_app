@@ -56,10 +56,11 @@ ActiveRecord::Schema.define(version: 20210220160039) do
   end
 
   create_table "meets", force: :cascade do |t|
+    t.integer "member_id"
     t.date "meet_date"
     t.string "meet_type"
     t.integer "number_of_nights"
-    t.integer "places", default: 999
+    t.integer "places"
     t.string "location"
     t.string "activity"
     t.string "bb_url"
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20210220160039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "opens_on"
+    t.index ["member_id"], name: "index_meets_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|

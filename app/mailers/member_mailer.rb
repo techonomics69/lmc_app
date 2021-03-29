@@ -10,11 +10,6 @@ class MemberMailer < ApplicationMailer
     mail to: member.email, subject: "Password reset"
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.member_mailer.welcome_message.subject
-  #
   def welcome_message(member, content)
     @member = member
     @email = content

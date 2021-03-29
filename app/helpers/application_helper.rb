@@ -47,7 +47,9 @@ module ApplicationHelper
 	end
 
 	def back_link(path)
-		link_to " Back", path, class: "fas fa-arrow-left back-link"
+    link_to path, class: "back-link" do
+			'<i class="fas fa-arrow-left"></i> '.html_safe + "Back"
+		end
 	end
 
 	def link_with_arrow(path, text, given_class='')

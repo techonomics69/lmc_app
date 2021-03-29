@@ -40,11 +40,9 @@
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :number_of_nights) %></p>
 			<%= f.text_field :number_of_nights, :value => (f.object.number_of_nights || 0),class: 'form-control' %>
 			
-			<% if @meet.meet_type == 'Hut' %>
-				<%= f.label :places %>
-				<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :places) %></p>
-				<%= f.text_field :places, class: 'form-control' %>
-			<% end %>
+			<%= f.label :places %>
+			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :places) %></p>
+			<%= f.text_field :places, class: 'form-control' %>
 
 			<%= f.label :notes %>
 			<p id='error_explanation' style="margin: -1px 0"><%= show_errors(@meet, :notes) %></p>

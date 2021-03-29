@@ -48,8 +48,18 @@ class AttendeesController < ApplicationController
 
   private
 
+  # def attendee_params
+  #   params.require(:attendee).permit(
+  #     :meet_id,
+  #     :member_id,
+  #     :paid,
+  #     :sign_up_date
+  #   )
+  # end
+
   def meet_open?
     @meet = Meet.find(params[:meet_id])
+    return true if @meet.opens_on.nil?
     if @meet.opens_on >= Date.today 
       redirect_to members_path(@member)
     end
