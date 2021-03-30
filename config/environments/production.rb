@@ -107,5 +107,5 @@ Rails.application.configure do
 #     'X-Frame-Options' => 'ALLOWALL'
 # }
 
-  # config.require_master_key = true
+  config.require_master_key = true
 end
