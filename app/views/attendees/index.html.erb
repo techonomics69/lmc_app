@@ -39,6 +39,8 @@
                         <%= link_with_arrow(new_attendee_member_path(@member, m), "Sign Up") %>
                       </p>
                     <% end %>
+                  <% else %>
+                    No sign up required
                   <% end %>
                   <% if !m.notes.nil? %><p><%= m.notes %></p><% end %>
                   <% if m.bb_url.present? %><p><%= link_with_arrow(m.bb_url, "Bulletin Board Thread") %></p><% end %>
