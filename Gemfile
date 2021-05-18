@@ -14,7 +14,7 @@ gem 'tinymce-rails'
 gem 'sucker_punch', '~> 2.0'
 gem 'nokogiri', '~> 1.11', '>= 1.11.1'
 # Use Puma as the app server
-gem 'puma', '~> 3.12.6'
+gem 'puma', '~> 4.3.8'
 # Use SCSS for stylesheets
 gem 'sassc-rails', '~> 2.1.2'
 # Use Uglifier as compressor for JavaScript assets
