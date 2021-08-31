@@ -23,8 +23,8 @@ class Committee::AttendeesController < Committee::BaseController
       attendee.toggle!(:paid)
       return redirect_to edit_committee_meet_path(meet)
     end
-    if params[:update_meet_leader] 
-      unless attendee_params[:meet_leader_attendee] == ""
+    if params[:update_meet_leader]
+      unless attendee_params[:meet_leader_attendee] == ''
         old_meet_leader = Attendee.find(attendee_params[:meet_leader_attendee])
         old_meet_leader.update_attributes!(is_meet_leader: false)
       end
@@ -42,7 +42,7 @@ class Committee::AttendeesController < Committee::BaseController
   private
 
   def attendee_params
-    params.require(:attendee).permit(
+    permitted_params = params.require(:attendee).permit(
       :attendee_id,
       :member_id,
       :meet_id,
@@ -51,15 +51,17 @@ class Committee::AttendeesController < Committee::BaseController
       :paid,
       :meet_leader_attendee
     )
+    permitted_params[:status] = 'pending'
+    permitted_params
   end
 
-  #before_filters
+  # before_filters
 
   def committee_member_or_meet_leader
     if logged_in?
       @member = Member.find(session[:member_id])
-      unless committee_member?(@member) || meet_leader?(@member, @meet) 
-        flash[:danger] = "Restriced Access."
+      unless committee_member?(@member) || meet_leader?(@member, @meet)
+        flash[:danger] = 'Restriced Access.'
         redirect_to membership_path
       end
     else

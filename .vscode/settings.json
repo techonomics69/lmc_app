@@ -1,4 +1,20 @@
 {
+  // If not specified searches for 'rubocop' executable available on PATH (default and recommended)
+  "ruby.rubocop.executePath": "",
+
+  // You can use specific path
+  // "ruby.rubocop.executePath": "/Users/you/.rbenv/shims/"
+  // "ruby.rubocop.executePath": "/Users/you/.rvm/gems/ruby-2.3.2/bin/"
+  // "ruby.rubocop.executePath": "D:/bin/Ruby22-x64/bin/"
+
+  // If not specified, it assumes a null value by default.
+  "ruby.rubocop.configFilePath": "/home/luke/LMC/lmc_app/.rubocop.yml",
+
+  // default true
+  "ruby.rubocop.onSave": true,
   "editor.defaultFormatter": "castwide.solargraph",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "typescript.format.enable": false,
+  "java.format.enabled": false,
+  "solargraph.formatting": true
 }

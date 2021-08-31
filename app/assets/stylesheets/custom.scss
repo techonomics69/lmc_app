@@ -86,7 +86,7 @@ a:hover.back-link {
   transition-duration: 0.3s;
 }
 
-.navbar-default .navbar-nav > li > a:focus {
+.navbar-default .navbar-nav > li > a:active {
   background-color: $nav-dark;
   color: $light-background;
 }
@@ -1027,4 +1027,8 @@ a:focus {
 
 .no-padding {
   padding: 0;
+}
+
+.panel {
+  margin-top: 10px;
 }

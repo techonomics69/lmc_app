@@ -16,14 +16,6 @@ class MeetsController < ApplicationController
 
   def update
     @meet = Meet.find(meet_params[:id])
-    attendee = Attendee.find(attendee_params[:id])
-    if attendee_params[:update_paid]
-        update_paid(attendee)
-    end
-
-    if meet_params[:update_meet_leader]
-        update_meet_leader(attendee)
-    end
 
     if @meet.update_attributes(meet_params)
         flash[:success] = "Meet updated"
@@ -35,19 +27,6 @@ class MeetsController < ApplicationController
   end
 
   private
-
-  def update_paid(attendee)
-    if !attendee.toggle!(:paid)
-      flash[:error] = 'Failed to update payment status.'
-    end
-  end
-
-  def update_meet_leader(attendee)
-    current_leader = find_meet_leader(@meet).attendees.first
-    if !attendee.toggle!(:is_meet_leader) && !current_leader.update_attribute(:is_meet_leader, false)
-      flash[:error] = 'Failed to update meet leader.'
-    end
-  end
 
   def meet_leader
   	member = Member.find(params[:id])
@@ -62,8 +41,7 @@ class MeetsController < ApplicationController
       :bb_url, 
       :notes,
       :location,
-      :opens_on,
-      :update_meet_leader
+      :opens_on
     )
   end
 

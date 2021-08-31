@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210220160039) do
+ActiveRecord::Schema.define(version: 2021_04_29_190506) do
 
   create_table "attendees", force: :cascade do |t|
     t.integer "meet_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20210220160039) do
     t.date "sign_up_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["meet_id"], name: "index_attendees_on_meet_id"
     t.index ["member_id"], name: "index_attendees_on_member_id"
   end
@@ -56,7 +57,6 @@ ActiveRecord::Schema.define(version: 20210220160039) do
   end
 
   create_table "meets", force: :cascade do |t|
-    t.integer "member_id"
     t.date "meet_date"
     t.string "meet_type"
     t.integer "number_of_nights"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20210220160039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "opens_on"
-    t.index ["member_id"], name: "index_meets_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|

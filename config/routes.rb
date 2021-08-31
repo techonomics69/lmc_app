@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  patch '/update_attendee_status/:meet_id/:member_id', to: 'attendees#update_status', as: 'update_attendee_status'
+
   resources :password_resets, only: %i[new create edit update]
 
   resources :members do
@@ -40,6 +42,8 @@ Rails.application.routes.draw do
       get 'meets', to: 'meets#edit'
       patch 'meets', to: 'meets#update'
       get 'attendees', to: 'attendees#index'
+      patch 'attendees', to: 'attendees#update'
+      delete 'attendees', to: 'attendees#destroy'
       get 'sign_up/:meet_id', to: 'attendees#new', as: :new_attendee
       post 'sign_up/:meet_id', to: 'attendees#create'
       patch 'email_subscribe', to: 'members#email_subscribe'

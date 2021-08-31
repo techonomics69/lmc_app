@@ -10,15 +10,7 @@ class Committee::MeetsController < Committee::BaseController
   def create
     @meet = Meet.new(meet_params)
     if @meet.save
-      if attendee_params[:member_id] != nil
-        attendee = Attendee.create(
-                        meet_id: @meet.id,
-                        member_id: attendee_params[:member_id],
-                        is_meet_leader: true,
-                        paid: false,
-                        sign_up_date: Date.today)
-        attendee.save
-      end
+      save_attendee unless attendee_params[:member_id].nil?
       flash[:success] = 'Meet created'
       redirect_to committee_meets_path
     else
@@ -35,16 +27,16 @@ class Committee::MeetsController < Committee::BaseController
   end
 
   def edit
-    create_values_for_edit()
+    create_values_for_edit
   end
 
   def update
     @meet = Meet.find(params[:id])
-    if @meet.update_attributes(meet_params)
+    if @meet.update_attributes(meet_params) && save_attendee
       flash[:success] = 'Meet updated'
     end
-      create_values_for_edit()
-      render 'edit'
+    create_values_for_edit
+    render 'edit'
   end
 
   def destroy
@@ -66,8 +58,7 @@ class Committee::MeetsController < Committee::BaseController
                                  :places,
                                  :activity,
                                  :notes,
-                                 :opens_on
-                                 )
+                                 :opens_on)
   end
 
   def attendee_params
@@ -77,12 +68,28 @@ class Committee::MeetsController < Committee::BaseController
   def create_values_for_edit
     @meet = Meet.find(params[:id])
     @meet_leader = find_meet_leader(@meet)
-    @meet_leader_attendee = @meet_leader.attendees.where(meet_id: @meet.id).first if @meet_leader
+    if @meet_leader
+      @meet_leader_attendee = @meet_leader.attendees.where(meet_id: @meet.id).first
+    end
     @meet_attendees = @meet.attendees.where(is_meet_leader: false).order(sign_up_date: :asc)
-    attendee_member_ids = @meet_attendees.map { | attendee | attendee.member.id }
+    attendee_member_ids = @meet_attendees.map { |attendee| attendee.member.id }
     attendee_member_ids.push(@meet_leader.id) if @meet_leader
     @remaining_members = Member.where.not(id: attendee_member_ids).order(first_name: :asc)
-    @meet_has_reserves = @meet_leader ? @meet_attendees.length + 1 > @meet.places : @meet_attendees.length > @meet.places if !@meet.places.nil?
+    unless @meet.places.nil?
+      @meet_has_reserves = @meet_leader ? @meet_attendees.length + 1 > @meet.places : @meet_attendees.length > @meet.places
+    end
     @new_attendee = Attendee.new
+  end
+
+  def save_attendee
+    attendee = Attendee.create(
+      meet_id: @meet.id,
+      member_id: attendee_params[:member_id],
+      is_meet_leader: true,
+      paid: false,
+      status: 'confirmed',
+      sign_up_date: Date.today
+    )
+    attendee.save
   end
 end

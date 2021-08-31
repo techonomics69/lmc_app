@@ -4,7 +4,7 @@
 	<div class="container">
     <h1><%= @meet.location %>, <%=date_display(@meet.meet_date, @meet.number_of_nights) %></h1>
     <%= back_link(attendees_member_path(@member)) %>
-		<% unless @member.membership.subs_paid %>
+		<% if !@member.membership.subs_paid %>
       <div class="panel panel-danger">
         <div class="panel-heading">
           <h5>You are not marked as having paid your membership for this year. You must have paid your membership fee to attend a meet.</h5>
@@ -17,6 +17,12 @@
           <h5>You are signed up to this meet. If you can no longer attend then you'll need to speak to the meet leader or meets secretary.</h5>
         </div>
       </div>
+    <% elsif @meet.places.nil?%>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h5>Sign up not required for this meet, see info below.</h5>
+        </div>
+      </div>
     <% else %>
       <div class="panel panel-danger">
         <div class="panel-heading">
@@ -27,27 +33,49 @@
     <% flash.each do |message_type, message| %>
 			<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 		<% end %>
-    <div>
-      <%= button_to  "Sign Up!", new_attendee_member_path(@member, @meet), :disabled => @member_is_on_meet || !@member.membership.subs_paid, method: :post, data: { confirm: "Sign up to go to #{@meet.location} on #{@meet.meet_date}?"},class: "btn member-btn member-btn-large" %>
-    </div>
-    <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
-      <h4>Attendees</h4>
-      <ul class=attendees-list>
-        <li>1. <%= @meet_leader.nil? ? "(meet leader)" : @meet_leader.full_name %></li>
-        <% @attendees.each_with_index do |attendee, index| %>
-          <% attendee_is_reserve = !@meet.places.nil? && index + 1 >= @meet.places%>
-          <% if !attendee_is_reserve %>
-            <li><%= index + 2 %>. <%= attendee.member.full_name %></li>
-          <% elsif !@meet.places.nil? && index + 1 == @meet.places%>
-            <br/>
-            <li><h4>Reserves</h4></li>
-            <li><%= 1 %>. <%= attendee.member.full_name %></li>
-          <% else %>
-            <li><%= !@meet.places.nil? ? index - @meet.places + 2 : index + 2%>. <%= attendee.member.full_name %></li>
+
+    <% if !@meet.places.nil? %>
+      <% if !@member_is_on_meet %>
+        <div>
+          <%= button_to "Sign Up!", new_attendee_member_path(@member, @meet), :disabled => @member_is_on_meet || !@member.membership.subs_paid, method: :post, data: { confirm: "Sign up to go to #{@meet.location} on #{@meet.meet_date}?"},class: "btn member-btn member-btn-large" %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if !@meet.places.nil? %>
+      <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
+        <h4>Attendees (confirmed)</h4>
+        <ol class=attendees-list>
+          <li><%= @meet_leader.nil? ? "(meet leader)" : @meet_leader.full_name + " (meet leader)"%> </li>
+          <% @attendees.each do |attendee| %>
+            <% if attendee.status == 'confirmed' %>
+              <li><%= attendee.member.full_name %></li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-    </div>
+        </ol>
+        <br/>
+        <h4>Reserves</h4>
+        <ol class=attendees-list>
+          <% @attendees.each do |attendee| %>
+            <% if attendee.status == 'reserve' %>
+              <li><%= attendee.member.full_name %></li>
+            <% end %>
+          <% end %>
+        </ol>
+        <br>
+        <h4>Sign ups (pending)</h4>
+        <ol class=attendees-list>
+          <% @attendees.each do |attendee| %>
+            <% if attendee.status == 'pending' %>
+              <li><%= attendee.member.full_name %></li>
+            <% end %>
+          <% end %>
+        </ol>
+        <br/>
+        <p>Pending attendees are confirmed at the end of each day. If there are more attendees than places then places are assigned randomly on a daily basis.</p>
+      </div>
+    <% end %>
+    
+    
     <div class="col-md-7 col-sm-7 col-xs-12">
       <h4>Meet Info</h4>
       <table class="table table-condensed">

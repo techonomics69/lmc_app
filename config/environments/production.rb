@@ -107,5 +107,8 @@ Rails.application.configure do
 #     'X-Frame-Options' => 'ALLOWALL'
 # }
 
+  config.time_zone = 'Europe/London'
+  config.active_record.default_timezone = :local
+
   config.require_master_key = true
 end
